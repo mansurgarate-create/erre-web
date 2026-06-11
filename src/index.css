@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Sora", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-black: #000;
+  --color-white: #FAFAF8;
+  --color-muted: #999;
+  --color-border: #e5e5e5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-black);
+  background: #FAFAF8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

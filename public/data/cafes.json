@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Punto Pádel Social Club",
+    "city": "Tepic",
+    "address": "Tepic, Nayarit",
+    "lat": 21.509,
+    "lng": -104.894,
+    "hours": "Lun–Sáb 8:00–20:00"
+  },
+  {
+    "name": "Café Avellaneda",
+    "city": "CDMX",
+    "address": "Coyoacán, Ciudad de México",
+    "lat": 19.349,
+    "lng": -99.162,
+    "hours": "Lun–Dom 7:00–22:00"
+  },
+  {
+    "name": "Paradigma Café",
+    "city": "Guadalajara",
+    "address": "Col. Americana, Guadalajara, Jalisco",
+    "lat": 20.672,
+    "lng": -103.364,
+    "hours": "Lun–Sáb 8:00–20:00"
+  },
+  {
+    "name": "Café Brújula",
+    "city": "Oaxaca",
+    "address": "Centro Histórico, Oaxaca de Juárez",
+    "lat": 17.065,
+    "lng": -96.726,
+    "hours": "Lun–Dom 8:00–21:00"
+  },
+  {
+    "name": "Almanegra Café",
+    "city": "CDMX",
+    "address": "Roma Norte, Ciudad de México",
+    "lat": 19.419,
+    "lng": -99.163,
+    "hours": "Lun–Dom 8:00–20:00"
+  },
+  {
+    "name": "Café Vitro",
+    "city": "Monterrey",
+    "address": "Col. Obispado, Monterrey, Nuevo León",
+    "lat": 25.672,
+    "lng": -100.316,
+    "hours": "Lun–Vie 7:00–19:00"
+  }
+]
