@@ -20,7 +20,7 @@ const faqItems = [
   {
     question: '¿Tiene algún costo extra?',
     answer:
-      'No. El sistema erre no tiene costo adicional para ti. El café que compras es el mismo, solo que en un vaso que puede usarse una y otra vez.',
+      'El café cuesta lo mismo. Al pedir tu bebida en un vaso erre, dejas un pequeño depósito que se te regresa completo cuando devuelves el vaso en cualquier cafetería de la red. No es un cobro, es una garantía de que el vaso sigue circulando.',
   },
 ]
 

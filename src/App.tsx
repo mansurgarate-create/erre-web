@@ -5,6 +5,7 @@ import CafeMap from './components/CafeMap'
 import CommunityImpact from './components/CommunityImpact'
 import About from './components/About'
 import FAQ from './components/FAQ'
+import Closing from './components/Closing'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <CommunityImpact />
         <About />
         <FAQ />
+        <Closing />
       </main>
       <Footer />
     </>

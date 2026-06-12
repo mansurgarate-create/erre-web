@@ -4,7 +4,7 @@ const steps = [
   {
     number: '01',
     title: 'Pide',
-    description: 'Ordena tu bebida en un vaso erre en cualquier cafetería participante.',
+    description: 'Ordena tu bebida en un vaso erre. Dejas un pequeño depósito que recuperas al devolverlo.',
   },
   {
     number: '02',
