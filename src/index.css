@@ -27,6 +27,10 @@ body {
   color: var(--color-white);
 }
 
+.leaflet-popup-content a {
+  color: #fff !important;
+}
+
 .fade-in {
   opacity: 0;
   transform: translateY(24px);

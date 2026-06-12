@@ -14,7 +14,7 @@ const steps = [
   {
     number: '03',
     title: 'Devuelve',
-    description: 'Regresa el vaso en cualquier cafetería de la red.',
+    description: 'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
   },
 ]
 
@@ -31,7 +31,7 @@ export default function HowItWorks() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {steps.map((step, i) => (
             <FadeIn key={step.number} delay={i * 150}>
-              <div className="border border-border p-8 md:p-10 text-left hover:border-black transition-colors duration-500">
+              <div className="border border-border p-8 md:p-10 text-left hover:border-black transition-colors duration-500 h-full">
                 <span className="font-heading text-4xl md:text-5xl text-muted/40 block mb-6">
                   {step.number}
                 </span>
