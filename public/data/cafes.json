@@ -46,5 +46,14 @@
     "lat": 25.672,
     "lng": -100.316,
     "hours": "Lun–Vie 7:00–19:00"
+  },
+
+  {
+    "name": "Fiato y Cafeto",
+    "city": "Monterrey",
+    "address": "Palestina 110-3, Col. Roma, Monterrey, Nuevo León",
+    "lat": 25.65561204240673,
+    "lng": -100.29667771534446,
+    "hours": "Lun–Vie 9:00–21:00"
   }
 ]
