@@ -76,8 +76,8 @@ export default function CafeMap() {
         <FadeIn delay={300}>
           <div className="border border-border overflow-hidden" style={{ height: '480px' }}>
             <MapContainer
-              center={[23.6, -102.5]}
-              zoom={5}
+              center={[25.66, -100.33]}
+              zoom={13}
               scrollWheelZoom={false}
               style={{ height: '100%', width: '100%' }}
             >
