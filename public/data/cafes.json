@@ -6,13 +6,5 @@
     "lat": 25.65561204240673,
     "lng": -100.29667771534446,
     "hours": "Lun–Dom 9:00–21:00"
-  },
-  {
-    "name": "Café Cacao",
-    "city": "Monterrey",
-    "address": "Av. del Estado 203 A, Tecnológico, Distrito Tec, Monterrey, Nuevo León",
-    "lat": 25.650759716951026,
-    "lng": -100.2935229134916,
-    "hours": "Lun–Dom 9:00–20:00"
   }
 ]
