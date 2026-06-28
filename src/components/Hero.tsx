@@ -5,9 +5,9 @@ export default function Hero() {
     <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
       <FadeIn>
         <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-medium text-black leading-[1.05] tracking-tight max-w-4xl">
-          Una taza.
+          El mismo vaso,
           <br />
-          Muchos caminos.
+          otro café.
         </h1>
       </FadeIn>
 
