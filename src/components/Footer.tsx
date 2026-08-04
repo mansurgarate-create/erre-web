@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Footer() {
   return (
     <footer className="border-t border-border px-6 py-12 md:py-16">
@@ -7,6 +9,12 @@ export default function Footer() {
         </a>
 
         <div className="flex items-center gap-6">
+          <Link
+            to="/cuidado"
+            className="text-muted hover:text-black transition-colors duration-300 no-underline text-sm"
+          >
+            Cuidado del vaso
+          </Link>
           <a
             href="https://instagram.com/erreparallevar"
             target="_blank"

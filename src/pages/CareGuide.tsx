@@ -168,7 +168,7 @@ export default function CareGuide() {
               </p>
               <a
                 href="https://holaerre.com"
-                className="inline-block mt-4 text-muted text-xs tracking-widest uppercase hover:text-black transition-colors duration-300 no-underline"
+                className="inline-block mt-4 text-muted text-xs tracking-widest hover:text-black transition-colors duration-300 no-underline"
               >
                 holaerre.com
               </a>
