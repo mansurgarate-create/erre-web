@@ -5,36 +5,26 @@ import FadeIn from '../components/ui/FadeIn'
 const washSteps = [
   {
     number: '01',
-    title: 'Enjuaga',
-    description: 'Enjuagar vaso y tapa con agua tibia inmediatamente después de recibir. No dejar que los residuos se sequen.',
+    title: 'Lava',
+    description: 'Agua tibia con jabón líquido suave — el jabón de trastes de uso diario está perfecto. Usar esponja suave o fibra no abrasiva. Lavar interior, exterior y tapa.',
   },
   {
     number: '02',
-    title: 'Lava',
-    description: 'Agua caliente (máx. 80 °C, no hirviendo) con jabón líquido neutro. Esponja suave, sin fibra metálica. Lavar interior, exterior y tapa.',
+    title: 'Enjuaga',
+    description: 'Enjuagar bien para retirar cualquier residuo de jabón.',
   },
   {
     number: '03',
-    title: 'Desinfecta',
-    description: 'Sumergir 2 minutos en solución desinfectante apta para alimentos, o en agua con vinagre blanco al 10 %. No usar cloro concentrado.',
-  },
-  {
-    number: '04',
     title: 'Seca',
-    description: 'Escurrir boca abajo sobre superficie limpia. Dejar secar al aire. No apilar húmedos.',
-  },
-  {
-    number: '05',
-    title: 'Almacena',
-    description: 'Guardar secos, boca abajo, en área limpia. Tapa separada del vaso.',
+    description: 'Dejar secar al aire. No apilar húmedos.',
   },
 ]
 
 const avoidItems = [
-  'Lavavajillas industrial — la temperatura excesiva deforma el polipropileno.',
-  'Fibras metálicas o estropajos abrasivos — rayan la superficie.',
-  'Cloro puro, blanqueador o solventes.',
-  'Microondas.',
+  'Fibras metálicas, estropajos verdes abrasivos o polvos tipo Ajax — rayan la superficie y opacan el diseño.',
+  'Cloro o blanqueadores concentrados.',
+  'Solventes fuertes: thinner, acetona, alcohol industrial.',
+  'Dejarlo remojando por horas en agua muy caliente.',
 ]
 
 const inspectItems = [
@@ -43,10 +33,10 @@ const inspectItems = [
 ]
 
 const careItems = [
-  'No exponer a temperaturas mayores a 100 °C por periodos prolongados.',
-  'No dejar el vaso al sol directo por horas — puede decolorar el material.',
-  'Evitar llenar con bebidas extremadamente ácidas por más de 24 horas.',
-  'Almacenar lejos de fuentes de calor directo (hornos, planchas).',
+  'Lavar a mano conserva mejor el color y brillo de la impresión.',
+  'No dejar remojando por horas en agua muy caliente.',
+  'No exponer al sol directo por tiempos prolongados — puede opacar los colores.',
+  'Almacenar secos, boca abajo, en área limpia. Tapa separada del vaso.',
 ]
 
 export default function CareGuide() {
@@ -77,7 +67,7 @@ export default function CareGuide() {
               Cuidado del vaso
             </h1>
             <p className="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-16 md:mb-20">
-              Instrucciones para mantener los vasos erre en las mejores condiciones. Material: polipropileno (PP).
+              Instrucciones para mantener los vasos erre en las mejores condiciones. Material: polipropileno (PP). Impresión por serigrafía UV — resistente al uso y lavado normal.
             </p>
           </FadeIn>
 
@@ -121,6 +111,18 @@ export default function CareGuide() {
                 </li>
               ))}
             </ul>
+          </FadeIn>
+
+          {/* Lavavajillas */}
+          <FadeIn delay={275}>
+            <div className="border border-border p-8 md:p-10 mb-16 md:mb-20">
+              <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
+                ¿Se puede meter al lavavajillas?
+              </h2>
+              <p className="text-muted text-sm md:text-base leading-relaxed">
+                Sí, es apto para lavavajillas. De preferencia en la charola superior con ciclo estándar — no el de sanitizado con temperaturas muy altas. El lavado a mano conserva mejor los colores a largo plazo; el uso intensivo con temperaturas altas de forma repetida puede ir opacando los tonos con el tiempo.
+              </p>
+            </div>
           </FadeIn>
 
           {/* Evitar */}
