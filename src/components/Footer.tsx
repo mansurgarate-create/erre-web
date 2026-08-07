@@ -8,7 +8,7 @@ export default function Footer() {
           erre
         </a>
 
-        <div className="flex items-center gap-6">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
           <Link
             to="/cuidado"
             className="text-muted hover:text-black transition-colors duration-300 no-underline text-sm"
