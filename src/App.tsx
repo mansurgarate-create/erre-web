@@ -9,6 +9,7 @@ import FAQ from './components/FAQ'
 import Closing from './components/Closing'
 import Footer from './components/Footer'
 import CareGuide from './pages/CareGuide'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 function Landing() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/cuidado" element={<CareGuide />} />
+      <Route path="/privacidad" element={<PrivacyPolicy />} />
     </Routes>
   )
 }

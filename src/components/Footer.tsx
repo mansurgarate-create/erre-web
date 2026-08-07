@@ -15,6 +15,12 @@ export default function Footer() {
           >
             Cuidado del vaso
           </Link>
+          <Link
+            to="/privacidad"
+            className="text-muted hover:text-black transition-colors duration-300 no-underline text-sm"
+          >
+            Privacidad
+          </Link>
           <a
             href="https://instagram.com/erreparallevar"
             target="_blank"
