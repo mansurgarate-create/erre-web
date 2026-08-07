@@ -9,6 +9,7 @@ interface Cafe {
   address: string
   lat: number
   lng: number
+  mapsUrl: string
   hours: string
 }
 
@@ -37,9 +38,6 @@ export default function CafeMap() {
       }),
     [cafes, search, cityFilter]
   )
-
-  const mapsUrl = (lat: number, lng: number) =>
-    `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
 
   return (
     <section id="cafeterias" className="px-6 py-24 md:py-32">
@@ -105,7 +103,7 @@ export default function CafeMap() {
                       <p className="text-xs text-muted m-0 mb-1">{cafe.address}</p>
                       <p className="text-xs text-muted m-0 mb-3">{cafe.hours}</p>
                       <a
-                        href={mapsUrl(cafe.lat, cafe.lng)}
+                        href={cafe.mapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block text-xs bg-black text-white px-3 py-1.5 no-underline hover:bg-black/80 transition-colors duration-300"
