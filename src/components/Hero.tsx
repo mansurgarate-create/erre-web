@@ -13,7 +13,7 @@ export default function Hero() {
 
       <FadeIn delay={200}>
         <p className="mt-6 md:mt-8 text-muted text-base md:text-lg max-w-lg leading-relaxed">
-          Una red de vasos reutilizables que conecta cafeterías y personas en todo México.
+          Una red de vasos reutilizables que conecta cafeterías y personas en Monterrey.
         </p>
       </FadeIn>
 
