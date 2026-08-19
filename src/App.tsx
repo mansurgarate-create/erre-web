@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
@@ -13,6 +14,16 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 import CafeNFCLanding from './pages/CafeNFCLanding'
 
 function Landing() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.slice(1)
+    const scroll = () => document.getElementById(id)?.scrollIntoView()
+    // Wait a tick so the section is mounted after route change
+    requestAnimationFrame(scroll)
+  }, [location.pathname, location.hash])
+
   return (
     <>
       <Navbar />
