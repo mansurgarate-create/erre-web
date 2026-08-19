@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import FadeIn from './ui/FadeIn'
+import { supabase } from '../lib/supabase'
 
 interface Cafe {
   name: string
@@ -13,15 +14,48 @@ interface Cafe {
   hours: string
 }
 
+interface SupabaseCafe {
+  name: string
+  city: string
+  address: string
+  lat: number
+  lng: number
+  maps_url: string
+  hours: string
+}
+
 export default function CafeMap() {
   const [cafes, setCafes] = useState<Cafe[]>([])
   const [search, setSearch] = useState('')
   const [cityFilter, setCityFilter] = useState('Todas')
 
   useEffect(() => {
-    fetch('/data/cafes.json')
-      .then((r) => r.json())
-      .then(setCafes)
+    async function fetchCafes() {
+      try {
+        const { data, error } = await supabase
+          .from('cafes')
+          .select('name, city, address, lat, lng, maps_url, hours')
+
+        if (error || !data || data.length === 0) throw new Error('Supabase fetch failed')
+
+        setCafes(
+          (data as SupabaseCafe[]).map((c) => ({
+            name: c.name,
+            city: c.city,
+            address: c.address,
+            lat: c.lat,
+            lng: c.lng,
+            mapsUrl: c.maps_url,
+            hours: c.hours,
+          }))
+        )
+      } catch {
+        const res = await fetch('/data/cafes.json')
+        const json = await res.json()
+        setCafes(json)
+      }
+    }
+    fetchCafes()
   }, [])
 
   const cities = useMemo(

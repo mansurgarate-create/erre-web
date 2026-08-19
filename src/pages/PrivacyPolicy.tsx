@@ -31,18 +31,34 @@ export default function PrivacyPolicy() {
           <FadeIn delay={100}>
             <div className="space-y-8 text-muted text-sm md:text-base leading-relaxed">
               <p>
-                Erre, con domicilio en Palestina 110, Interior 7, Colonia Roma, 64700, Monterrey, Nuevo León, México, es una página web que tiene el firme compromiso de cumplir con el debido manejo de los datos personales, siendo responsable de aquéllos que recabe de sus titulares o de terceros particulares, incluyendo su correcto uso y protección.
+                Erre, con domicilio en Palestina 110, Interior 7, Colonia Roma, 64700, Monterrey, Nuevo León, México, opera una página web y una aplicación móvil, y tiene el firme compromiso de cumplir con el debido manejo de los datos personales, siendo responsable de aquéllos que recabe de sus titulares o de terceros particulares, incluyendo su correcto uso y protección.
               </p>
 
               <div>
                 <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
+                  Datos personales que recabamos
+                </h2>
+                <p className="mb-4">
+                  A través de nuestra página web y aplicación móvil, Erre recaba los siguientes datos personales:
+                </p>
+                <ul className="list-disc pl-6 mb-4 space-y-2">
+                  <li><strong>Identificador de Apple (Apple ID):</strong> utilizado para autenticación y vinculación de su cuenta mediante "Iniciar sesión con Apple".</li>
+                  <li><strong>Nombre:</strong> proporcionado opcionalmente al crear su cuenta.</li>
+                  <li><strong>Correo electrónico:</strong> proporcionado opcionalmente al crear su cuenta.</li>
+                  <li><strong>Historial de transacciones:</strong> registros de renta y devolución de vasos, incluyendo la cafetería y la fecha de cada operación.</li>
+                  <li><strong>Ubicación del dispositivo:</strong> se accede a la ubicación para mostrar cafeterías cercanas en el mapa. Esta información no se almacena en nuestros servidores.</li>
+                </ul>
+                <p className="mb-4">
+                  Adicionalmente, a través del formulario de contacto en la página web o por correo electrónico, podemos recabar nombre, teléfono y correo electrónico con la finalidad de atender sus consultas.
+                </p>
+                <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4 mt-8">
                   Uso de los datos personales
                 </h2>
                 <p className="mb-4">
-                  Los datos personales que se proporcionen o recaben por cualquier medio, sólo serán utilizados para contactarlo en caso de que así se hubiese indicado. Únicamente se recaban los datos que se ingresan en el vínculo de "contacto" o los que hubiesen sido proporcionados por otros medios, como puede ser a través de correo electrónico.
+                  Los datos personales recabados serán utilizados para las siguientes finalidades primarias: (i) creación y administración de su cuenta de usuario; (ii) registro de transacciones de renta y devolución de vasos reutilizables; (iii) visualización de cafeterías cercanas; y (iv) contacto en caso de que así se hubiese solicitado.
                 </p>
                 <p className="mb-4">
-                  De tiempo en tiempo podremos contactar al Usuario con dicha finalidad; ya sea por teléfono y/o correo electrónico. Los datos personales recopilados serán proporcionados por el Usuario de forma opcional. Se informa que no se recabarán datos personales sensibles.
+                  Los datos personales recopilados serán proporcionados por el Usuario de forma voluntaria. Se informa que no se recabarán datos personales sensibles.
                 </p>
                 <p className="mb-4">
                   Erre se compromete a que los datos proporcionados por cualquier vía o medio sean tratados bajo las más estrictas medidas de seguridad que garanticen su confidencialidad, así como a no divulgar la información proporcionada salvo las excepciones legales y bajo los procedimientos correspondientes, o en caso de que así sea solicitado por las autoridades competentes.

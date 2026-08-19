@@ -1,0 +1,165 @@
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import FadeIn from '../components/ui/FadeIn'
+import { supabase } from '../lib/supabase'
+
+interface CafeInfo {
+  name: string
+  address: string
+  hours: string
+  mapsUrl: string | null
+  city: string
+}
+
+export default function CafeNFCLanding() {
+  const { slug = '' } = useParams<{ slug: string }>()
+  const [cafe, setCafe] = useState<CafeInfo | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function load() {
+      setLoading(true)
+      setNotFound(false)
+
+      const nfcTagId = `erre:${slug}`
+
+      try {
+        const { data, error } = await supabase
+          .from('cafes')
+          .select('name, address, hours, maps_url, city')
+          .eq('nfc_tag_id', nfcTagId)
+          .maybeSingle()
+
+        if (cancelled) return
+
+        if (error || !data) {
+          setNotFound(true)
+          setCafe(null)
+        } else {
+          setCafe({
+            name: data.name,
+            address: data.address,
+            hours: data.hours,
+            mapsUrl: data.maps_url,
+            city: data.city,
+          })
+        }
+      } catch {
+        if (!cancelled) {
+          setNotFound(true)
+          setCafe(null)
+        }
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    if (slug) {
+      load()
+    } else {
+      setNotFound(true)
+      setLoading(false)
+    }
+
+    return () => {
+      cancelled = true
+    }
+  }, [slug])
+
+  return (
+    <div className="min-h-screen bg-white">
+      <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
+        <div className="max-w-3xl mx-auto">
+          <Link
+            to="/"
+            className="font-heading text-xl md:text-2xl font-medium text-black no-underline hover:text-muted transition-colors duration-300"
+          >
+            erre
+          </Link>
+        </div>
+      </header>
+
+      <main className="px-6 pb-24 md:pb-32">
+        <div className="max-w-3xl mx-auto">
+          <FadeIn>
+            {loading ? (
+              <p className="text-muted text-base">Cargando…</p>
+            ) : notFound || !cafe ? (
+              <>
+                <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
+                  Punto erre
+                </h1>
+                <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
+                  No encontramos esta cafetería. Revisa el mapa de la red erre.
+                </p>
+                <Link
+                  to="/#cafeterias"
+                  className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                >
+                  Ver cafeterías
+                </Link>
+              </>
+            ) : (
+              <>
+                <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
+                  Punto erre
+                </p>
+                <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
+                  {cafe.name}
+                </h1>
+                <p className="text-muted text-base md:text-lg leading-relaxed mb-2">
+                  {cafe.address}
+                </p>
+                <p className="text-muted text-sm md:text-base mb-10">
+                  {cafe.hours}
+                  {cafe.city ? ` · ${cafe.city}` : ''}
+                </p>
+
+                <div className="border border-border p-8 md:p-10 mb-10">
+                  <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
+                    ¿Cómo funciona?
+                  </h2>
+                  <p className="text-muted text-sm md:text-base leading-relaxed mb-4">
+                    Pide tu bebida en un vaso erre y deja un pequeño depósito. Al devolverlo
+                    en cualquier cafetería de la red, recuperas tu depósito.
+                  </p>
+                  <p className="text-muted text-sm md:text-base leading-relaxed">
+                    Para registrar renta o devolución en tu historial, abre la app{' '}
+                    <span className="text-black font-medium">erre</span>, elige Rentar o
+                    Devolver y acerca el iPhone a este punto.
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  {cafe.mapsUrl && (
+                    <a
+                      href={cafe.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block text-center px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                    >
+                      Abrir en Maps
+                    </a>
+                  )}
+                  <Link
+                    to="/#cafeterias"
+                    className="inline-block text-center px-8 py-3.5 border border-black text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
+                  >
+                    Ver la red
+                  </Link>
+                </div>
+              </>
+            )}
+          </FadeIn>
+        </div>
+      </main>
+    </div>
+  )
+}

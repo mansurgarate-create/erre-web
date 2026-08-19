@@ -10,6 +10,7 @@ import Closing from './components/Closing'
 import Footer from './components/Footer'
 import CareGuide from './pages/CareGuide'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import CafeNFCLanding from './pages/CafeNFCLanding'
 
 function Landing() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/cuidado" element={<CareGuide />} />
       <Route path="/privacidad" element={<PrivacyPolicy />} />
+      <Route path="/r/:slug" element={<CafeNFCLanding />} />
     </Routes>
   )
 }
