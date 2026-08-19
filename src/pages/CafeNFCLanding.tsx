@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
+import Closing from '../components/Closing'
+import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
 
 interface CafeInfo {
@@ -86,7 +88,7 @@ export default function CafeNFCLanding() {
         </div>
       </header>
 
-      <main className="px-6 pb-24 md:pb-32">
+      <main className="px-6 pb-8 md:pb-12">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             {loading ? (
@@ -189,6 +191,9 @@ export default function CafeNFCLanding() {
           </FadeIn>
         </div>
       </main>
+
+      <Closing />
+      <Footer />
     </div>
   )
 }
