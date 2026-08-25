@@ -200,11 +200,6 @@ export default function CafeNFCLanding() {
                       </div>
                     ))}
                   </div>
-                  <p className="text-muted text-sm md:text-base leading-relaxed mt-8 pt-8 border-t border-border">
-                    Para registrar renta o devolución en tu historial, abre la app{' '}
-                    <span className="text-black font-medium">erre</span>, elige Rentar o
-                    Devolver y acerca el iPhone a este punto.
-                  </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
