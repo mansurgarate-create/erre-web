@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet'
+import { LatLngBounds } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import FadeIn from './ui/FadeIn'
 import { supabase } from '../lib/supabase'
@@ -22,6 +23,18 @@ interface SupabaseCafe {
   lng: number
   maps_url: string
   hours: string
+}
+
+function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
+  const map = useMap()
+
+  useEffect(() => {
+    if (cafes.length === 0) return
+    const bounds = new LatLngBounds(cafes.map((c) => [c.lat, c.lng]))
+    map.fitBounds(bounds, { padding: [48, 48], maxZoom: 16 })
+  }, [cafes, map])
+
+  return null
 }
 
 export default function CafeMap() {
@@ -108,8 +121,8 @@ export default function CafeMap() {
         <FadeIn delay={300}>
           <div className="border border-border overflow-hidden" style={{ height: '480px' }}>
             <MapContainer
-              center={[25.67, -100.31]}
-              zoom={13}
+              center={[25.651, -100.294]}
+              zoom={15}
               scrollWheelZoom={false}
               style={{ height: '100%', width: '100%' }}
             >
@@ -117,6 +130,7 @@ export default function CafeMap() {
                 attribution='&copy; <a href="https://carto.com/">CARTO</a>'
                 url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               />
+              <FitMapBounds cafes={filtered} />
               {filtered.map((cafe) => (
                 <CircleMarker
                   key={cafe.name}
