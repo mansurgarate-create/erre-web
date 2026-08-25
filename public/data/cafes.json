@@ -6,6 +6,24 @@
     "lat": 25.65539792929477,
     "lng": -100.29663403153181,
     "mapsUrl": "https://maps.app.goo.gl/Ep8MtCLZRJEtfFM19?g_st=ic",
-    "hours": "Lun–Dom 9:00–21:00"
+    "hours": "Lun–Jue 8:00–21:00 · Vie 8:00–22:00 · Sáb–Dom 9:00–22:00"
+  },
+  {
+    "name": "Belum",
+    "city": "Monterrey",
+    "address": "Filósofos 215, Tecnológico, Monterrey, N.L.",
+    "lat": 25.650208,
+    "lng": -100.292493,
+    "mapsUrl": "https://maps.app.goo.gl/Mt3uW866FQbVLjwq9",
+    "hours": "Lun–Vie 8:30–22:00 · Sáb 8:30–01:00 · Dom 9:00–18:00"
+  },
+  {
+    "name": "Mala Kaffe",
+    "city": "Monterrey",
+    "address": "Químicos 201-1, Tecnológico, Monterrey, N.L.",
+    "lat": 25.649123,
+    "lng": -100.294131,
+    "mapsUrl": "https://maps.app.goo.gl/HfB2VzuSg99KxCpS8",
+    "hours": "Lun–Vie 7:30–21:00 · Sáb–Dom 10:00–18:00"
   }
 ]

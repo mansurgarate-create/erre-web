@@ -3,7 +3,7 @@ import FadeIn from './ui/FadeIn'
 const stats = [
   { value: '200', label: 'Vasos en circulación' },
   { value: '2', label: 'Vasos desechables evitados' },
-  { value: '1', label: 'Cafeterías participantes' },
+  { value: '3', label: 'Cafeterías participantes' },
 ]
 
 export default function CommunityImpact() {
