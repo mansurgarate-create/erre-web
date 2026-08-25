@@ -124,50 +124,6 @@ export default function CafeNFCLanding() {
                   {cafe.city ? ` · ${cafe.city}` : ''}
                 </p>
 
-                <div className="border border-border p-8 md:p-10 mb-10">
-                  <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-8">
-                    ¿Cómo funciona?
-                  </h2>
-                  <div className="space-y-6 md:space-y-8">
-                    {[
-                      {
-                        number: '01',
-                        title: 'Pide',
-                        description:
-                          'Ordena tu bebida en un vaso erre y deja un pequeño depósito en la caja.',
-                      },
-                      {
-                        number: '02',
-                        title: 'Disfruta',
-                        description: 'Llévalo contigo. Es tuyo mientras lo necesites.',
-                      },
-                      {
-                        number: '03',
-                        title: 'Devuelve',
-                        description:
-                          'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
-                      },
-                    ].map((step) => (
-                      <div key={step.number}>
-                        <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
-                          {step.number}
-                        </span>
-                        <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                          {step.title}
-                        </h3>
-                        <p className="text-muted text-sm md:text-base leading-relaxed">
-                          {step.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-muted text-sm md:text-base leading-relaxed mt-8 pt-8 border-t border-border">
-                    Para registrar renta o devolución en tu historial, abre la app{' '}
-                    <span className="text-black font-medium">erre</span>, elige Rentar o
-                    Devolver y acerca el iPhone a este punto.
-                  </p>
-                </div>
-
                 {slug === 'fiato-cafeto' && (
                   <div className="border border-border p-8 md:p-10 mb-10">
                     <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
@@ -212,6 +168,50 @@ export default function CafeNFCLanding() {
                     </div>
                   </div>
                 )}
+
+                <div className="border border-border p-8 md:p-10 mb-10">
+                  <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-8">
+                    ¿Cómo funciona?
+                  </h2>
+                  <div className="space-y-6 md:space-y-8">
+                    {[
+                      {
+                        number: '01',
+                        title: 'Pide',
+                        description:
+                          'Ordena tu bebida en un vaso erre y deja un pequeño depósito en la caja.',
+                      },
+                      {
+                        number: '02',
+                        title: 'Disfruta',
+                        description: 'Llévalo contigo. Es tuyo mientras lo necesites.',
+                      },
+                      {
+                        number: '03',
+                        title: 'Devuelve',
+                        description:
+                          'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
+                      },
+                    ].map((step) => (
+                      <div key={step.number}>
+                        <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
+                          {step.number}
+                        </span>
+                        <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
+                          {step.title}
+                        </h3>
+                        <p className="text-muted text-sm md:text-base leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-muted text-sm md:text-base leading-relaxed mt-8 pt-8 border-t border-border">
+                    Para registrar renta o devolución en tu historial, abre la app{' '}
+                    <span className="text-black font-medium">erre</span>, elige Rentar o
+                    Devolver y acerca el iPhone a este punto.
+                  </p>
+                </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   {cafe.mapsUrl && (
