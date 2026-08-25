@@ -168,6 +168,51 @@ export default function CafeNFCLanding() {
                   </p>
                 </div>
 
+                {slug === 'fiato-cafeto' && (
+                  <div className="border border-border p-8 md:p-10 mb-10">
+                    <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
+                      Recomendados por erre
+                    </h2>
+                    <p className="text-muted text-sm md:text-base mb-8">
+                      Pídelas en vaso erre.
+                    </p>
+                    <div className="space-y-6 md:space-y-8">
+                      {[
+                        {
+                          number: '01',
+                          title: 'Bee tonic',
+                          description:
+                            'Miel de azahar, jugo de limón, agua tónica y cold brew.',
+                        },
+                        {
+                          number: '02',
+                          title: 'Danish Latte',
+                          description:
+                            'Jarabe de frambuesa natural, leche, espresso y foam de queso crema con vainilla.',
+                        },
+                        {
+                          number: '03',
+                          title: 'Matcha tonic',
+                          description:
+                            'Jarabe de piña natural, agua tónica y matcha ceremonial.',
+                        },
+                      ].map((drink) => (
+                        <div key={drink.number}>
+                          <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
+                            {drink.number}
+                          </span>
+                          <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
+                            {drink.title}
+                          </h3>
+                          <p className="text-muted text-sm md:text-base leading-relaxed">
+                            {drink.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex flex-col sm:flex-row gap-3">
                   {cafe.mapsUrl && (
                     <a
