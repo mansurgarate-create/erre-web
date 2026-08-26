@@ -13,6 +13,41 @@ interface CafeInfo {
   city: string
 }
 
+const recommendedDrinks: Record<string, { title: string; description: string }[]> = {
+  'fiato-cafeto': [
+    {
+      title: 'Bee Tonic',
+      description: 'Miel de azahar, jugo de limón, agua tónica y cold brew.',
+    },
+    {
+      title: 'Danish Latte',
+      description:
+        'Jarabe de frambuesa natural, leche, espresso y foam de queso crema con vainilla.',
+    },
+    {
+      title: 'Matcha Tonic',
+      description: 'Jarabe de piña natural, agua tónica y matcha ceremonial.',
+    },
+  ],
+  belum: [
+    {
+      title: 'Latte de Caramelo',
+      description:
+        'Espresso con leche cremada y un toque de caramelo, suave y cremoso.',
+    },
+    {
+      title: 'Matcha Coco Latte',
+      description:
+        'Matcha con coco y leche cremada, una combinación suave y fresca.',
+    },
+    {
+      title: 'Frappe Nutella',
+      description:
+        'Frappe cremoso de Nutella, acompañado de crema batida y una galleta de Nutella.',
+    },
+  ],
+}
+
 export default function CafeNFCLanding() {
   const { slug = '' } = useParams<{ slug: string }>()
   const [cafe, setCafe] = useState<CafeInfo | null>(null)
@@ -124,7 +159,7 @@ export default function CafeNFCLanding() {
                   {cafe.city ? ` · ${cafe.city}` : ''}
                 </p>
 
-                {slug === 'fiato-cafeto' && (
+                {recommendedDrinks[slug] && (
                   <div className="bg-[#ECEAE6] p-8 md:p-10 mb-10">
                     <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
                       Recomendados por erre
@@ -133,23 +168,7 @@ export default function CafeNFCLanding() {
                       Pídelas en vaso erre.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                      {[
-                        {
-                          title: 'Bee Tonic',
-                          description:
-                            'Miel de azahar, jugo de limón, agua tónica y cold brew.',
-                        },
-                        {
-                          title: 'Danish Latte',
-                          description:
-                            'Jarabe de frambuesa natural, leche, espresso y foam de queso crema con vainilla.',
-                        },
-                        {
-                          title: 'Matcha Tonic',
-                          description:
-                            'Jarabe de piña natural, agua tónica y matcha ceremonial.',
-                        },
-                      ].map((drink) => (
+                      {recommendedDrinks[slug].map((drink) => (
                         <div key={drink.title}>
                           <h3 className="font-heading text-lg md:text-xl font-medium text-black mb-2">
                             {drink.title}
