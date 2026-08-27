@@ -39,22 +39,30 @@ function toCafeInfo(data: CafeRow): CafeInfo {
   }
 }
 
-async function loadCafeBySlug(slug: string): Promise<CafeRow | null> {
+type LoadResult =
+  | { status: 'cafe'; cafe: CafeRow }
+  | { status: 'inactive' }
+  | { status: 'missing' }
+
+async function loadBySlug(slug: string): Promise<LoadResult> {
   const cafeSelect = 'id, name, address, hours, maps_url, city, nfc_tag_id'
 
-  const { data: entry } = await supabase
+  const { data: entry, error: entryError } = await supabase
     .from('entry_codes')
     .select('cafe_id')
     .eq('code', slug)
     .maybeSingle()
 
-  if (entry?.cafe_id) {
+  if (!entryError && entry) {
+    if (!entry.cafe_id) return { status: 'inactive' }
+
     const { data, error } = await supabase
       .from('cafes')
       .select(cafeSelect)
       .eq('id', entry.cafe_id)
       .maybeSingle()
-    if (!error && data) return data as CafeRow
+    if (!error && data) return { status: 'cafe', cafe: data as CafeRow }
+    return { status: 'missing' }
   }
 
   const { data, error } = await supabase
@@ -63,8 +71,8 @@ async function loadCafeBySlug(slug: string): Promise<CafeRow | null> {
     .eq('nfc_tag_id', `erre:${slug}`)
     .maybeSingle()
 
-  if (error || !data) return null
-  return data as CafeRow
+  if (error || !data) return { status: 'missing' }
+  return { status: 'cafe', cafe: data as CafeRow }
 }
 
 const recommendedDrinks: Record<string, { title: string; description: string }[]> = {
@@ -107,6 +115,7 @@ export default function CafeNFCLanding() {
   const [cafe, setCafe] = useState<CafeInfo | null>(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
+  const [inactive, setInactive] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -118,17 +127,21 @@ export default function CafeNFCLanding() {
     async function load() {
       setLoading(true)
       setNotFound(false)
+      setInactive(false)
 
       try {
-        const data = await loadCafeBySlug(slug)
+        const result = await loadBySlug(slug)
 
         if (cancelled) return
 
-        if (!data) {
-          setNotFound(true)
+        if (result.status === 'cafe') {
+          setCafe(toCafeInfo(result.cafe))
+        } else if (result.status === 'inactive') {
+          setInactive(true)
           setCafe(null)
         } else {
-          setCafe(toCafeInfo(data))
+          setNotFound(true)
+          setCafe(null)
         }
       } catch {
         if (!cancelled) {
@@ -161,6 +174,21 @@ export default function CafeNFCLanding() {
           <FadeIn>
             {loading ? (
               <p className="text-muted text-base">Cargando…</p>
+            ) : inactive ? (
+              <>
+                <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
+                  Punto erre
+                </h1>
+                <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
+                  Este punto erre aún no está activo.
+                </p>
+                <Link
+                  to="/#cafeterias"
+                  className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                >
+                  Ver cafeterías
+                </Link>
+              </>
             ) : notFound || !cafe ? (
               <>
                 <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">

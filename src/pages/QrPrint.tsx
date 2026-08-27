@@ -12,8 +12,8 @@ type EntryRow = {
 }
 
 function cafeName(cafes: EntryRow['cafes']) {
-  if (!cafes) return 'Cafetería'
-  if (Array.isArray(cafes)) return cafes[0]?.name ?? 'Cafetería'
+  if (!cafes) return 'Sin asignar'
+  if (Array.isArray(cafes)) return cafes[0]?.name ?? 'Sin asignar'
   return cafes.name
 }
 
@@ -66,8 +66,9 @@ export default function QrPrint() {
                 QR para imprimir
               </h1>
               <p className="text-muted text-base md:text-lg leading-relaxed mb-8">
-                Cada código abre la página actual de esa cafetería. Si reasignas el
-                código en Supabase, el sticker no cambia.
+                Cada código abre la página actual de esa cafetería. Los que dicen
+                Sin asignar ya se pueden imprimir; el café se enlaza después en
+                Supabase y el sticker no cambia.
               </p>
               <button
                 type="button"
