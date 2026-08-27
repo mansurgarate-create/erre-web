@@ -5,7 +5,7 @@ const faqItems = [
   {
     question: '¿Cómo funciona erre?',
     answer:
-      'Pides tu bebida en un vaso erre en cualquier cafetería participante. Cuando termines, lo devuelves en cualquier punto de la red. Nosotros nos encargamos de lavarlo y ponerlo de nuevo en circulación.',
+      'Pides tu bebida en un vaso erre en cualquier cafetería participante. Cuando termines, lo devuelves en cualquier punto de la red. La cafetería lo lava y vuelve a circulación.',
   },
   {
     question: '¿Qué pasa si pierdo un vaso?',
