@@ -63,8 +63,8 @@ export default function ChooseCafe() {
               ¿En qué cafetería estás?
             </h1>
             <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-              Si ya estás en caja, elige el café. El depósito se queda ahí; esto solo anota tu
-              historial.
+              Elige dónde estás para registrar tu vaso. El depósito se maneja en la cafetería; esto
+              solo guarda tu historial.
             </p>
           </FadeIn>
 

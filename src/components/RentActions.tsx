@@ -25,8 +25,8 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
     await refreshProfile()
     setMessage(
       mode === 'rent'
-        ? `Registramos tu vaso en ${cafeName}. El depósito se queda en caja.`
-        : `Registramos la devolución en ${cafeName}. Recupera tu depósito en caja.`
+        ? `Listo, registramos tu renta en ${cafeName}.`
+        : `Listo, registramos tu devolución en ${cafeName}.`
     )
   }
 
@@ -37,7 +37,8 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
           Registrar vaso
         </h2>
         <p className="text-muted text-sm md:text-base leading-relaxed mb-8">
-          Entra con Google para anotar la renta o la devolución. El depósito sigue en la caja.
+          Entra con Google para registrar la renta o la devolución. El depósito se maneja en la
+          cafetería. Aquí solo llevas tu historial.
         </p>
         <button
           type="button"
@@ -59,14 +60,14 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
       <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
         {profile
           ? `Tienes ${profile.cups_in_hand} ${profile.cups_in_hand === 1 ? 'vaso' : 'vasos'} en mano.`
-          : 'El depósito se queda en caja. Esto solo anota tu historial.'}
+          : 'El depósito se maneja en la cafetería. Esto solo guarda tu historial.'}
       </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           type="button"
           disabled={busy !== null}
           onClick={() => void run('rent')}
-          className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer hover:bg-black/85 transition-colors duration-300 disabled:opacity-50"
+          className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-50"
         >
           {busy === 'rent' ? 'Registrando…' : 'Rentar'}
         </button>
