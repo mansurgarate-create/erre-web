@@ -174,9 +174,12 @@ export default function Account() {
                 <p className="text-muted text-sm md:text-base">Aún no hay rentas registradas.</p>
               ) : (
                 <>
-                  <ul className="divide-y divide-border border-t border-border">
+                  <ul
+                    className="divide-y divide-border border-t border-border"
+                    style={{ minHeight: `calc(${PAGE_SIZE} * 4.75rem)` }}
+                  >
                     {visibleTx.map((tx) => (
-                      <li key={tx.id} className="py-4 flex items-center gap-4">
+                      <li key={tx.id} className="min-h-[4.75rem] py-4 flex items-center gap-4">
                         <TxArrow type={tx.type} />
                         <div className="min-w-0 flex-1">
                           <p className="text-black text-sm md:text-base font-medium">
