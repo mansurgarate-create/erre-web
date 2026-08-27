@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
           <FadeIn delay={100}>
             <div className="space-y-8 text-muted text-sm md:text-base leading-relaxed">
               <p>
-                Erre, con domicilio en Palestina 110, Interior 7, Colonia Roma, 64700, Monterrey, Nuevo León, México, opera una página web y una aplicación móvil, y tiene el firme compromiso de cumplir con el debido manejo de los datos personales, siendo responsable de aquéllos que recabe de sus titulares o de terceros particulares, incluyendo su correcto uso y protección.
+                Erre, con domicilio en Monterrey, Nuevo León, México, opera una página web y una aplicación móvil, y tiene el firme compromiso de cumplir con el debido manejo de los datos personales, siendo responsable de aquellos que recabe de sus titulares o de terceros particulares, incluyendo su correcto uso y protección.
               </p>
 
               <div>
@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
                   <li><strong>Nombre:</strong> proporcionado opcionalmente al crear su cuenta.</li>
                   <li><strong>Correo electrónico:</strong> proporcionado opcionalmente al crear su cuenta.</li>
                   <li><strong>Historial de transacciones:</strong> registros de renta y devolución de vasos, incluyendo la cafetería y la fecha de cada operación.</li>
-                  <li><strong>Ubicación del dispositivo:</strong> únicamente en las aplicaciones móviles, se accede a la ubicación para mostrar cafeterías cercanas en el mapa. Esta información no se almacena en nuestros servidores. El mapa de la página web no accede al GPS del dispositivo.</li>
+                  <li><strong>Ubicación del dispositivo:</strong> en las aplicaciones móviles se puede acceder a la ubicación para mostrar cafeterías cercanas en el mapa y para verificar que se encuentra en una cafetería participante al registrar una renta o una devolución. Esta información no se almacena en nuestros servidores. El mapa de la página web no accede al GPS; el registro de renta o devolución en la web no utiliza geolocalización.</li>
                 </ul>
                 <p className="mb-4">
                   Adicionalmente, a través del formulario de contacto en la página web o por correo electrónico, podemos recabar nombre, teléfono y correo electrónico con la finalidad de atender sus consultas.
@@ -56,7 +56,7 @@ export default function PrivacyPolicy() {
                   Uso de los datos personales
                 </h2>
                 <p className="mb-4">
-                  Los datos personales recabados serán utilizados para las siguientes finalidades primarias: (i) creación y administración de su cuenta de usuario; (ii) registro de transacciones de renta y devolución de vasos reutilizables; (iii) visualización de cafeterías cercanas; y (iv) contacto en caso de que así se hubiese solicitado.
+                  Los datos personales recabados serán utilizados para las siguientes finalidades primarias: (i) creación y administración de su cuenta de usuario; (ii) registro de transacciones de renta y devolución de vasos reutilizables; (iii) visualización de cafeterías cercanas y, en las aplicaciones móviles, verificación de que el usuario se encuentra en la cafetería al registrar una renta o una devolución; y (iv) contacto en caso de que así se hubiese solicitado.
                 </p>
                 <p className="mb-4">
                   Los datos personales recopilados serán proporcionados por el Usuario de forma voluntaria. Se informa que no se recabarán datos personales sensibles.
@@ -77,13 +77,13 @@ export default function PrivacyPolicy() {
                   Transferencia de datos personales
                 </h2>
                 <p>
-                  No se realizarán transferencias de datos personales, salvo aquéllas que sean necesarias para atender requerimientos de información de una autoridad competente, que esté debidamente fundados y motivados. Para el inicio de sesión con Google en la página web y en Android, así como para almacenar la cuenta y el historial, se utilizan los servicios de Google y de Supabase, quienes tratan dichos datos en su carácter de encargados o proveedores de autenticación e infraestructura, conforme a sus propias políticas.
+                  No se realizarán transferencias de datos personales, salvo aquellas que sean necesarias para atender requerimientos de información de una autoridad competente, que esté debidamente fundados y motivados. Para el inicio de sesión con Google en la página web y en Android, así como para almacenar la cuenta y el historial, se utilizan los servicios de Google y de Supabase, quienes tratan dichos datos en su carácter de encargados o proveedores de autenticación e infraestructura, conforme a sus propias políticas.
                 </p>
               </div>
 
               <div>
                 <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                  Uso de cookies, web beacons y otras tecnologías de rastreo
+                  Uso de cookies y almacenamiento local
                 </h2>
                 <p className="mb-4">
                   En la página web utilizamos almacenamiento local del navegador para mantener su sesión si inicia sesión con Google. Esa información es necesaria para que su cuenta y el historial de rentas funcionen; no se usa con fines publicitarios.
