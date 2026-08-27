@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
 import Closing from '../components/Closing'
 import Footer from '../components/Footer'
+import SiteHeader from '../components/SiteHeader'
+import RentActions from '../components/RentActions'
 import { supabase } from '../lib/supabase'
 
 interface CafeInfo {
+  id: string
   name: string
   address: string
   hours: string
@@ -70,7 +73,7 @@ export default function CafeNFCLanding() {
       try {
         const { data, error } = await supabase
           .from('cafes')
-          .select('name, address, hours, maps_url, city')
+          .select('id, name, address, hours, maps_url, city')
           .eq('nfc_tag_id', nfcTagId)
           .maybeSingle()
 
@@ -81,6 +84,7 @@ export default function CafeNFCLanding() {
           setCafe(null)
         } else {
           setCafe({
+            id: data.id,
             name: data.name,
             address: data.address,
             hours: data.hours,
@@ -112,16 +116,7 @@ export default function CafeNFCLanding() {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
-        <div className="max-w-3xl mx-auto">
-          <Link
-            to="/"
-            className="font-heading text-xl md:text-2xl font-medium text-black no-underline hover:text-muted transition-colors duration-300"
-          >
-            erre
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="px-6 pb-8 md:pb-12">
         <div className="max-w-3xl mx-auto">
@@ -157,6 +152,14 @@ export default function CafeNFCLanding() {
                 <p className="text-muted text-sm md:text-base mb-10">
                   {cafe.hours}
                   {cafe.city ? ` · ${cafe.city}` : ''}
+                </p>
+
+                <RentActions cafeId={cafe.id} cafeName={cafe.name} />
+
+                <p className="text-muted text-sm mb-10">
+                  <Link to="/registrar" className="text-black no-underline hover:text-muted">
+                    ¿Otra cafetería?
+                  </Link>
                 </p>
 
                 {recommendedDrinks[slug] && (

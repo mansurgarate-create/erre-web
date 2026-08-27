@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const links = [
   { label: 'Cómo funciona', href: '#como-funciona' },
@@ -28,7 +29,6 @@ export default function Navbar() {
           erre
         </a>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
             <a
@@ -39,9 +39,14 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            to="/cuenta"
+            className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
+          >
+            Cuenta
+          </Link>
         </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden bg-transparent border-none cursor-pointer p-2"
@@ -62,10 +67,9 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 bg-white ${
-          menuOpen ? 'max-h-64' : 'max-h-0'
+          menuOpen ? 'max-h-80' : 'max-h-0'
         }`}
       >
         <div className="px-6 pb-6 flex flex-col gap-4">
@@ -79,6 +83,13 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            to="/cuenta"
+            onClick={() => setMenuOpen(false)}
+            className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
+          >
+            Cuenta
+          </Link>
         </div>
       </div>
     </nav>

@@ -18,6 +18,11 @@ const faqItems = [
       'En cualquier cafetería participante de la red erre. Consulta el mapa en esta página para encontrar la más cercana.',
   },
   {
+    question: '¿Necesito descargar una app?',
+    answer:
+      'No. Puedes acercar el teléfono al punto erre o elegir la cafetería en esta página, entrar con Google y registrar la renta o la devolución. El depósito se queda en caja. La app es opcional.',
+  },
+  {
     question: '¿Tiene algún costo extra?',
     answer:
       'El café cuesta lo mismo. Al pedir tu bebida en un vaso erre, dejas un pequeño depósito que se te regresa completo cuando devuelves el vaso en cualquier cafetería de la red. No es un cobro, es una garantía de que el vaso sigue circulando.',

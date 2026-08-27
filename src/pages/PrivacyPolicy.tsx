@@ -42,7 +42,8 @@ export default function PrivacyPolicy() {
                   A través de nuestra página web y aplicación móvil, Erre recaba los siguientes datos personales:
                 </p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li><strong>Identificador de Apple (Apple ID):</strong> utilizado para autenticación y vinculación de su cuenta mediante "Iniciar sesión con Apple".</li>
+                  <li><strong>Identificador de Apple (Apple ID):</strong> utilizado para autenticación y vinculación de su cuenta en la aplicación iOS mediante "Iniciar sesión con Apple".</li>
+                  <li><strong>Identificador de Google:</strong> utilizado para autenticación y vinculación de su cuenta en la página web y en Android mediante "Continuar con Google".</li>
                   <li><strong>Nombre:</strong> proporcionado opcionalmente al crear su cuenta.</li>
                   <li><strong>Correo electrónico:</strong> proporcionado opcionalmente al crear su cuenta.</li>
                   <li><strong>Historial de transacciones:</strong> registros de renta y devolución de vasos, incluyendo la cafetería y la fecha de cada operación.</li>

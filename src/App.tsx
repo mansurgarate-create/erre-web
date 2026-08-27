@@ -12,6 +12,9 @@ import Footer from './components/Footer'
 import CareGuide from './pages/CareGuide'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import CafeNFCLanding from './pages/CafeNFCLanding'
+import Account from './pages/Account'
+import ChooseCafe from './pages/ChooseCafe'
+import AuthCallback from './pages/AuthCallback'
 
 function Landing() {
   const location = useLocation()
@@ -47,7 +50,11 @@ export default function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/cuidado" element={<CareGuide />} />
       <Route path="/privacidad" element={<PrivacyPolicy />} />
+      <Route path="/cuenta" element={<Account />} />
+      <Route path="/registrar" element={<ChooseCafe />} />
+      <Route path="/r" element={<ChooseCafe />} />
       <Route path="/r/:slug" element={<CafeNFCLanding />} />
+      <Route path="/auth/callback" element={<AuthCallback />} />
     </Routes>
   )
 }
