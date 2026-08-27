@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../lib/auth'
+import { firstName } from '../lib/firstName'
 
 const links = [
   { label: 'Cómo funciona', href: '#como-funciona' },
@@ -8,9 +10,14 @@ const links = [
   { label: 'FAQ', href: '#faq' },
 ]
 
+const accountLinkClass =
+  'text-sm text-muted hover:text-black transition-colors duration-300 no-underline truncate max-w-[40vw]'
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { session, profile } = useAuth()
+  const accountLabel = session ? firstName(profile?.name, profile?.email) : 'Inicia sesión'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -39,20 +46,14 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <Link
-            to="/cuenta"
-            className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
-          >
-            Cuenta
+          <Link to="/cuenta" className={accountLinkClass}>
+            {accountLabel}
           </Link>
         </div>
 
         <div className="flex md:hidden items-center gap-4">
-          <Link
-            to="/cuenta"
-            className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
-          >
-            Cuenta
+          <Link to="/cuenta" className={accountLinkClass}>
+            {accountLabel}
           </Link>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
