@@ -37,7 +37,7 @@ export default function Footer() {
             href="https://instagram.com/erreparallevar"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted hover:text-black transition-colors duration-300 no-underline text-sm"
+            className="text-black hover:text-muted transition-colors duration-300 no-underline text-sm"
           >
             Instagram
           </a>

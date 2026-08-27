@@ -9,12 +9,27 @@ type CafeRow = {
   name: string
   address: string
   city: string
-  hours: string
   nfc_tag_id: string
 }
 
 function slugFromTag(nfcTagId: string) {
   return nfcTagId.replace(/^erre:/, '')
+}
+
+function coloniaFrom(address: string, city: string) {
+  const col = address.match(/Col\.?\s*([^,]+)/i)
+  if (col) return col[1].trim()
+  const parts = address
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+  const withoutCity = parts.filter(
+    (p) =>
+      !p.toLowerCase().includes(city.toLowerCase()) &&
+      !/^n\.?l\.?$/i.test(p) &&
+      !/nuevo le[oó]n/i.test(p)
+  )
+  return withoutCity[withoutCity.length - 1] || city
 }
 
 export default function ChooseCafe() {
@@ -31,7 +46,7 @@ export default function ChooseCafe() {
     async function load() {
       const { data, error } = await supabase
         .from('cafes')
-        .select('name, address, city, hours, nfc_tag_id')
+        .select('name, address, city, nfc_tag_id')
         .order('name')
 
       if (cancelled) return
@@ -56,6 +71,12 @@ export default function ChooseCafe() {
       <main className="px-6 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
+            <Link
+              to="/cuenta"
+              className="inline-block text-sm text-muted hover:text-black no-underline mb-8 transition-colors duration-300"
+            >
+              Atrás
+            </Link>
             <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
               Registrar vaso
             </p>
@@ -86,13 +107,11 @@ export default function ChooseCafe() {
                     to={`/r/${slugFromTag(cafe.nfc_tag_id)}`}
                     className="block border border-border p-6 md:p-8 no-underline hover:border-black transition-colors duration-300"
                   >
-                    <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
+                    <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-1">
                       {cafe.name}
                     </h2>
-                    <p className="text-muted text-sm md:text-base">{cafe.address}</p>
-                    <p className="text-muted text-xs md:text-sm mt-1">
-                      {cafe.hours}
-                      {cafe.city ? ` · ${cafe.city}` : ''}
+                    <p className="text-muted text-sm md:text-base">
+                      {coloniaFrom(cafe.address, cafe.city)}
                     </p>
                   </Link>
                 </li>

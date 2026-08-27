@@ -47,29 +47,37 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden bg-transparent border-none cursor-pointer p-2"
-          aria-label="Menú"
-        >
-          <div className="w-5 flex flex-col gap-1.5">
-            <span
-              className={`block h-px bg-black transition-all duration-300 ${
-                menuOpen ? 'rotate-45 translate-y-[3.5px]' : ''
-              }`}
-            />
-            <span
-              className={`block h-px bg-black transition-all duration-300 ${
-                menuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''
-              }`}
-            />
-          </div>
-        </button>
+        <div className="flex md:hidden items-center gap-4">
+          <Link
+            to="/cuenta"
+            className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
+          >
+            Cuenta
+          </Link>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="bg-transparent border-none cursor-pointer p-2"
+            aria-label="Menú"
+          >
+            <div className="w-5 flex flex-col gap-1.5">
+              <span
+                className={`block h-px bg-black transition-all duration-300 ${
+                  menuOpen ? 'rotate-45 translate-y-[3.5px]' : ''
+                }`}
+              />
+              <span
+                className={`block h-px bg-black transition-all duration-300 ${
+                  menuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 bg-white ${
-          menuOpen ? 'max-h-80' : 'max-h-0'
+          menuOpen ? 'max-h-64' : 'max-h-0'
         }`}
       >
         <div className="px-6 pb-6 flex flex-col gap-4">
@@ -83,13 +91,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <Link
-            to="/cuenta"
-            onClick={() => setMenuOpen(false)}
-            className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
-          >
-            Cuenta
-          </Link>
         </div>
       </div>
     </nav>

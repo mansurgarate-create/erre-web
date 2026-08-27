@@ -160,9 +160,9 @@ export default function Account() {
               <div className="mb-14">
                 <Link
                   to="/registrar"
-                  className="inline-block text-center px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
+                  className="block w-full text-center px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
                 >
-                  Elegir cafetería
+                  Rentar o devolver vaso
                 </Link>
               </div>
 
