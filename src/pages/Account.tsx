@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
 import SiteHeader from '../components/SiteHeader'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
 import { rpcMessage } from '../lib/rpc'
+
+const PAGE_SIZE = 8
 
 type Tx = {
   id: string
@@ -58,6 +60,7 @@ export default function Account() {
   const { session, profile, loading, signInWithGoogle, signOut } = useAuth()
   const [transactions, setTransactions] = useState<Tx[]>([])
   const [historyError, setHistoryError] = useState<string | null>(null)
+  const [page, setPage] = useState(0)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -66,6 +69,7 @@ export default function Account() {
   useEffect(() => {
     if (!session) {
       setTransactions([])
+      setPage(0)
       return
     }
 
@@ -81,6 +85,7 @@ export default function Account() {
         transactions?: Tx[]
       }
       setTransactions(payload.transactions ?? [])
+      setPage(0)
       setHistoryError(null)
     }
     void load()
@@ -88,6 +93,13 @@ export default function Account() {
       cancelled = true
     }
   }, [session])
+
+  const pageCount = Math.max(1, Math.ceil(transactions.length / PAGE_SIZE))
+  const currentPage = Math.min(page, pageCount - 1)
+  const visibleTx = useMemo(
+    () => transactions.slice(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE),
+    [transactions, currentPage]
+  )
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -145,20 +157,13 @@ export default function Account() {
                 </p>
               )}
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-14">
+              <div className="mb-14">
                 <Link
                   to="/registrar"
                   className="inline-block text-center px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
                 >
                   Elegir cafetería
                 </Link>
-                <button
-                  type="button"
-                  onClick={() => void signOut()}
-                  className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300"
-                >
-                  Cerrar sesión
-                </button>
               </div>
 
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
@@ -168,24 +173,59 @@ export default function Account() {
               {transactions.length === 0 && !historyError ? (
                 <p className="text-muted text-sm md:text-base">Aún no hay rentas registradas.</p>
               ) : (
-                <ul className="divide-y divide-border border-t border-border">
-                  {transactions.map((tx) => (
-                    <li key={tx.id} className="py-4 flex items-center gap-4">
-                      <TxArrow type={tx.type} />
-                      <div className="min-w-0 flex-1">
-                        <p className="text-black text-sm md:text-base font-medium">
-                          {tx.type === 'rent' ? 'Rentado' : 'Devuelto'}
-                        </p>
-                        <p className="text-muted text-xs md:text-sm truncate">{tx.cafe_name}</p>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <p className="text-muted text-xs">{formatDate(tx.created_at)}</p>
-                        <p className="text-muted text-xs">{formatTime(tx.created_at)}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <>
+                  <ul className="divide-y divide-border border-t border-border">
+                    {visibleTx.map((tx) => (
+                      <li key={tx.id} className="py-4 flex items-center gap-4">
+                        <TxArrow type={tx.type} />
+                        <div className="min-w-0 flex-1">
+                          <p className="text-black text-sm md:text-base font-medium">
+                            {tx.type === 'rent' ? 'Rentado' : 'Devuelto'}
+                          </p>
+                          <p className="text-muted text-xs md:text-sm truncate">{tx.cafe_name}</p>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <p className="text-muted text-xs">{formatDate(tx.created_at)}</p>
+                          <p className="text-muted text-xs">{formatTime(tx.created_at)}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  {transactions.length > PAGE_SIZE && (
+                    <div className="flex items-center justify-between gap-4 mt-6">
+                      <button
+                        type="button"
+                        disabled={currentPage === 0}
+                        onClick={() => setPage((p) => Math.max(0, p - 1))}
+                        className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
+                      >
+                        Anterior
+                      </button>
+                      <p className="text-muted text-xs">
+                        {currentPage + 1} / {pageCount}
+                      </p>
+                      <button
+                        type="button"
+                        disabled={currentPage >= pageCount - 1}
+                        onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
+                        className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
+                      >
+                        Siguiente
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
+
+              <div className="mt-16 pt-8 border-t border-border">
+                <button
+                  type="button"
+                  onClick={() => void signOut()}
+                  className="text-sm text-muted bg-transparent border-none cursor-pointer hover:text-black transition-colors duration-300 p-0"
+                >
+                  Cerrar sesión
+                </button>
+              </div>
             </FadeIn>
           )}
         </div>

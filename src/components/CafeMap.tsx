@@ -138,7 +138,6 @@ export default function CafeMap() {
         <FadeIn delay={300}>
           <div className="border border-border overflow-hidden" style={{ height: '480px' }}>
             <MapContainer
-              key={dark ? 'dark' : 'light'}
               center={[25.651, -100.294]}
               zoom={15}
               scrollWheelZoom={false}
@@ -146,11 +145,7 @@ export default function CafeMap() {
             >
               <TileLayer
                 attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                url={
-                  dark
-                    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-                    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-                }
+                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               />
               <FitMapBounds cafes={filtered} />
               {filtered.map((cafe) => (
