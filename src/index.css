@@ -7,17 +7,19 @@
   --color-white: #FAFAF8;
   --color-muted: #999;
   --color-border: #e5e5e5;
+  --color-wash: #ECEAE6;
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light dark;
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--color-black);
-  background: #FAFAF8;
+  background: var(--color-white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,8 +30,14 @@ body {
   color: var(--color-white);
 }
 
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
 .leaflet-popup-content a {
-  color: #fff !important;
+  color: var(--color-white) !important;
 }
 
 .fade-in {
@@ -41,4 +49,14 @@ body {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-black: #FAFAF8;
+    --color-white: #141413;
+    --color-muted: #8A8A86;
+    --color-border: #2C2C2A;
+    --color-wash: #1C1C1A;
+  }
 }

@@ -163,7 +163,7 @@ export default function CafeNFCLanding() {
                 </p>
 
                 {recommendedDrinks[slug] && (
-                  <div className="bg-[#ECEAE6] p-8 md:p-10 mb-10">
+                  <div className="bg-wash p-8 md:p-10 mb-10">
                     <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
                       Recomendados por erre
                     </h2>

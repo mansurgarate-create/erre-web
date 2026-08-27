@@ -37,10 +37,27 @@ function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
   return null
 }
 
+function usePrefersDark() {
+  const [dark, setDark] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const onChange = () => setDark(media.matches)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
+
+  return dark
+}
+
 export default function CafeMap() {
   const [cafes, setCafes] = useState<Cafe[]>([])
   const [search, setSearch] = useState('')
   const [cityFilter, setCityFilter] = useState('Todas')
+  const dark = usePrefersDark()
+  const pin = dark ? '#FAFAF8' : '#000'
 
   useEffect(() => {
     async function fetchCafes() {
@@ -121,6 +138,7 @@ export default function CafeMap() {
         <FadeIn delay={300}>
           <div className="border border-border overflow-hidden" style={{ height: '480px' }}>
             <MapContainer
+              key={dark ? 'dark' : 'light'}
               center={[25.651, -100.294]}
               zoom={15}
               scrollWheelZoom={false}
@@ -128,7 +146,11 @@ export default function CafeMap() {
             >
               <TileLayer
                 attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                url={
+                  dark
+                    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+                    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+                }
               />
               <FitMapBounds cafes={filtered} />
               {filtered.map((cafe) => (
@@ -137,8 +159,8 @@ export default function CafeMap() {
                   center={[cafe.lat, cafe.lng]}
                   radius={8}
                   pathOptions={{
-                    color: '#000',
-                    fillColor: '#000',
+                    color: pin,
+                    fillColor: pin,
                     fillOpacity: 0.9,
                     weight: 2,
                   }}
