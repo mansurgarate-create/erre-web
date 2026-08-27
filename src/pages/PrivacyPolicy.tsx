@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
                   <li><strong>Nombre:</strong> proporcionado opcionalmente al crear su cuenta.</li>
                   <li><strong>Correo electrónico:</strong> proporcionado opcionalmente al crear su cuenta.</li>
                   <li><strong>Historial de transacciones:</strong> registros de renta y devolución de vasos, incluyendo la cafetería y la fecha de cada operación.</li>
-                  <li><strong>Ubicación del dispositivo:</strong> se accede a la ubicación para mostrar cafeterías cercanas en el mapa. Esta información no se almacena en nuestros servidores.</li>
+                  <li><strong>Ubicación del dispositivo:</strong> únicamente en las aplicaciones móviles, se accede a la ubicación para mostrar cafeterías cercanas en el mapa. Esta información no se almacena en nuestros servidores. El mapa de la página web no accede al GPS del dispositivo.</li>
                 </ul>
                 <p className="mb-4">
                   Adicionalmente, a través del formulario de contacto en la página web o por correo electrónico, podemos recabar nombre, teléfono y correo electrónico con la finalidad de atender sus consultas.
@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
                   Transferencia de datos personales
                 </h2>
                 <p>
-                  No se realizarán transferencias de datos personales, salvo aquéllas que sean necesarias para atender requerimientos de información de una autoridad competente, que esté debidamente fundados y motivados.
+                  No se realizarán transferencias de datos personales, salvo aquéllas que sean necesarias para atender requerimientos de información de una autoridad competente, que esté debidamente fundados y motivados. Para el inicio de sesión con Google en la página web y en Android, así como para almacenar la cuenta y el historial, se utilizan los servicios de Google y de Supabase, quienes tratan dichos datos en su carácter de encargados o proveedores de autenticación e infraestructura, conforme a sus propias políticas.
                 </p>
               </div>
 
@@ -86,13 +86,16 @@ export default function PrivacyPolicy() {
                   Uso de cookies, web beacons y otras tecnologías de rastreo
                 </h2>
                 <p className="mb-4">
-                  Al navegar por esta página Web pudieran recabarse datos que no son percibidos tales como cookies, web beacons o similares que informan sobre el tipo de navegador, sistema operativo, páginas visitadas, vínculos o dirección IP, entre otras. Esta información puede ser recabada para saber más sobre las áreas de la página que son de mayor interés para los visitantes, o para saber quién visita la página.
+                  En la página web utilizamos almacenamiento local del navegador para mantener su sesión si inicia sesión con Google. Esa información es necesaria para que su cuenta y el historial de rentas funcionen; no se usa con fines publicitarios.
                 </p>
                 <p className="mb-4">
-                  Podemos emplear a terceros para manejar estas medidas de ejecución. Sin embargo, en ningún caso obtenemos información sobre la identidad individual de cualquier visitante. Dichos terceros deberán observar nuestros estándares de privacidad y proporcionarnos únicamente la información en su totalidad, para utilizarla sólo para los propósitos para los que el tercero fue contratado, y después destruir dicha información.
+                  También empleamos Vercel Analytics para fines estadísticos (páginas visitadas y datos técnicos agregados, como tipo de navegador). Esta medición no está vinculada a su historial de vasos.
+                </p>
+                <p className="mb-4">
+                  Al usar “Continuar con Google”, el consentimiento de esa cuenta ocurre en los servidores de Google. El mapa de cafeterías carga imágenes de un proveedor de mapas; no recabamos su ubicación GPS desde la web.
                 </p>
                 <p>
-                  No obstante, si usted así lo desea, las cookies, los web beacons o similares pueden ser deshabilitados o borrados, para lo cual se recomienda leer el manual o la leyenda de "ayuda" de su navegador.
+                  Si no desea el tratamiento estadístico de Analytics, puede comunicarlo a <a href="mailto:reusoconerre@gmail.com" className="text-black underline hover:text-muted transition-colors duration-300">reusoconerre@gmail.com</a> o borrar los datos del sitio holaerre.com desde la configuración de su navegador. Cerrar sesión en la página web elimina la sesión guardada en este dispositivo.
                 </p>
               </div>
 

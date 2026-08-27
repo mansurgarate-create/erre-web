@@ -73,9 +73,9 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
         </button>
         <button
           type="button"
-          disabled={busy !== null}
+          disabled={busy !== null || !profile || profile.cups_in_hand <= 0}
           onClick={() => void run('return')}
-          className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-50"
+          className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-default disabled:hover:bg-transparent disabled:hover:text-black"
         >
           {busy === 'return' ? 'Registrando…' : 'Devolver'}
         </button>
