@@ -14,6 +14,57 @@ interface CafeInfo {
   hours: string
   mapsUrl: string | null
   city: string
+  drinksKey: string
+}
+
+type CafeRow = {
+  id: string
+  name: string
+  address: string
+  hours: string
+  maps_url: string | null
+  city: string
+  nfc_tag_id: string
+}
+
+function toCafeInfo(data: CafeRow): CafeInfo {
+  return {
+    id: data.id,
+    name: data.name,
+    address: data.address,
+    hours: data.hours,
+    mapsUrl: data.maps_url,
+    city: data.city,
+    drinksKey: data.nfc_tag_id.replace(/^erre:/, ''),
+  }
+}
+
+async function loadCafeBySlug(slug: string): Promise<CafeRow | null> {
+  const cafeSelect = 'id, name, address, hours, maps_url, city, nfc_tag_id'
+
+  const { data: entry } = await supabase
+    .from('entry_codes')
+    .select('cafe_id')
+    .eq('code', slug)
+    .maybeSingle()
+
+  if (entry?.cafe_id) {
+    const { data, error } = await supabase
+      .from('cafes')
+      .select(cafeSelect)
+      .eq('id', entry.cafe_id)
+      .maybeSingle()
+    if (!error && data) return data as CafeRow
+  }
+
+  const { data, error } = await supabase
+    .from('cafes')
+    .select(cafeSelect)
+    .eq('nfc_tag_id', `erre:${slug}`)
+    .maybeSingle()
+
+  if (error || !data) return null
+  return data as CafeRow
 }
 
 const recommendedDrinks: Record<string, { title: string; description: string }[]> = {
@@ -68,29 +119,16 @@ export default function CafeNFCLanding() {
       setLoading(true)
       setNotFound(false)
 
-      const nfcTagId = `erre:${slug}`
-
       try {
-        const { data, error } = await supabase
-          .from('cafes')
-          .select('id, name, address, hours, maps_url, city')
-          .eq('nfc_tag_id', nfcTagId)
-          .maybeSingle()
+        const data = await loadCafeBySlug(slug)
 
         if (cancelled) return
 
-        if (error || !data) {
+        if (!data) {
           setNotFound(true)
           setCafe(null)
         } else {
-          setCafe({
-            id: data.id,
-            name: data.name,
-            address: data.address,
-            hours: data.hours,
-            mapsUrl: data.maps_url,
-            city: data.city,
-          })
+          setCafe(toCafeInfo(data))
         }
       } catch {
         if (!cancelled) {
@@ -162,7 +200,7 @@ export default function CafeNFCLanding() {
                   </Link>
                 </p>
 
-                {recommendedDrinks[slug] && (
+                {recommendedDrinks[cafe.drinksKey] && (
                   <div className="bg-wash p-8 md:p-10 mb-10">
                     <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
                       Recomendados por erre
@@ -171,7 +209,7 @@ export default function CafeNFCLanding() {
                       Pídelas en vaso erre.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                      {recommendedDrinks[slug].map((drink) => (
+                      {recommendedDrinks[cafe.drinksKey].map((drink) => (
                         <div key={drink.title}>
                           <h3 className="font-heading text-lg md:text-xl font-medium text-black mb-2">
                             {drink.title}

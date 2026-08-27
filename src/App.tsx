@@ -15,6 +15,7 @@ import CafeNFCLanding from './pages/CafeNFCLanding'
 import Account from './pages/Account'
 import ChooseCafe from './pages/ChooseCafe'
 import AuthCallback from './pages/AuthCallback'
+import QrPrint from './pages/QrPrint'
 
 function Landing() {
   const location = useLocation()
@@ -54,6 +55,7 @@ export default function App() {
       <Route path="/registrar" element={<ChooseCafe />} />
       <Route path="/r" element={<ChooseCafe />} />
       <Route path="/r/:slug" element={<CafeNFCLanding />} />
+      <Route path="/qr" element={<QrPrint />} />
       <Route path="/auth/callback" element={<AuthCallback />} />
     </Routes>
   )

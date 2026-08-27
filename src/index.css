@@ -56,6 +56,37 @@ body {
   transform: translateY(0);
 }
 
+@media print {
+  :root {
+    --color-black: #000;
+    --color-white: #fff;
+    --color-muted: #444;
+    --color-border: #ccc;
+    --color-wash: #fff;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .qr-print-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .qr-print-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #e5e5e5;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-black: #FAFAF8;
