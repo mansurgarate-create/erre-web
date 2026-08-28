@@ -4,11 +4,11 @@ import { useAuth } from '../lib/auth'
 import { firstName } from '../lib/firstName'
 
 const accountLinkClass =
-  'text-sm text-muted hover:text-black transition-colors duration-300 no-underline truncate max-w-[40vw]'
+  'text-sm text-muted hover:text-black transition-all duration-300 no-underline truncate max-w-[40vw]'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const { session, profile } = useAuth()
+  const { session, profile, loading } = useAuth()
   const accountLabel = session ? firstName(profile?.name, profile?.email) : 'Inicia sesión'
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Navbar() {
           erre
         </a>
 
-        <Link to="/cuenta" className={accountLinkClass}>
+        <Link to="/cuenta" className={`${accountLinkClass} ${loading ? 'opacity-0' : 'opacity-100'}`}>
           {accountLabel}
         </Link>
       </div>

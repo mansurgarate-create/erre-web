@@ -31,14 +31,7 @@ interface SupabaseCafe {
   instagram: string | null
 }
 
-const ESRI_LIGHT =
-  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
-const ESRI_LIGHT_REF =
-  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}'
-const ESRI_DARK =
-  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
-const ESRI_DARK_REF =
-  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}'
+const OSM_TILES = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 const pinIcon = L.divIcon({
   className: 'erre-pin',
@@ -69,7 +62,6 @@ export default function CafeMap() {
   const [cafes, setCafes] = useState<Cafe[]>([])
   const [search, setSearch] = useState('')
   const { resolved } = useTheme()
-  const dark = resolved === 'dark'
 
   useEffect(() => {
     async function fetchCafes() {
@@ -140,14 +132,15 @@ export default function CafeMap() {
               key={resolved}
               center={[25.651, -100.294]}
               zoom={15}
+              maxZoom={19}
               scrollWheelZoom={false}
               style={{ height: '100%', width: '100%', background: 'var(--color-wash)' }}
             >
               <TileLayer
-                attribution='Tiles &copy; <a href="https://www.esri.com/">Esri</a>'
-                url={dark ? ESRI_DARK : ESRI_LIGHT}
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                url={OSM_TILES}
+                maxZoom={19}
               />
-              <TileLayer url={dark ? ESRI_DARK_REF : ESRI_LIGHT_REF} />
               <FitMapBounds cafes={filtered} />
               {filtered.map((cafe) => (
                 <Marker key={cafe.name} position={[cafe.lat, cafe.lng]} icon={pinIcon}>
