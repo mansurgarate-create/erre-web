@@ -92,14 +92,6 @@ body {
   color: var(--color-muted) !important;
 }
 
-.leaflet-tile-pane {
-  filter: grayscale(1) contrast(1.1) blur(0.4px);
-}
-
-html[data-theme='dark'] .leaflet-tile-pane {
-  filter: grayscale(1) invert(1) contrast(0.9) brightness(1.1) blur(0.4px);
-}
-
 .erre-pin {
   background: none !important;
   border: none !important;

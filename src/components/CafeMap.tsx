@@ -31,7 +31,9 @@ interface SupabaseCafe {
   instagram: string | null
 }
 
-const OSM_TILES = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+const MB_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string
+const MB_LIGHT = `https://api.mapbox.com/styles/v1/mapbox/light-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${MB_TOKEN}`
+const MB_DARK = `https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${MB_TOKEN}`
 
 const pinIcon = L.divIcon({
   className: 'erre-pin',
@@ -62,6 +64,7 @@ export default function CafeMap() {
   const [cafes, setCafes] = useState<Cafe[]>([])
   const [search, setSearch] = useState('')
   const { resolved } = useTheme()
+  const dark = resolved === 'dark'
 
   useEffect(() => {
     async function fetchCafes() {
@@ -132,14 +135,15 @@ export default function CafeMap() {
               key={resolved}
               center={[25.651, -100.294]}
               zoom={15}
-              maxZoom={19}
+              maxZoom={20}
               scrollWheelZoom={false}
               style={{ height: '100%', width: '100%', background: 'var(--color-wash)' }}
             >
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url={OSM_TILES}
-                maxZoom={19}
+                attribution='&copy; <a href="https://www.mapbox.com/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                url={dark ? MB_DARK : MB_LIGHT}
+                tileSize={256}
+                maxZoom={20}
               />
               <FitMapBounds cafes={filtered} />
               {filtered.map((cafe) => (
