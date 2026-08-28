@@ -4,11 +4,9 @@ import FadeIn from '../components/ui/FadeIn'
 import Closing from '../components/Closing'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
-import RentActions from '../components/RentActions'
 import PageLoading from '../components/ui/PageLoading'
 import { rentSteps } from '../lib/rentSteps'
 import { supabase } from '../lib/supabase'
-import { useAuth } from '../lib/auth'
 
 interface CafeInfo {
   id: string
@@ -118,7 +116,6 @@ const recommendedDrinks: Record<string, { title: string; description: string }[]
 
 export default function CafeNFCLanding() {
   const { slug = '' } = useParams<{ slug: string }>()
-  const { loading: authLoading } = useAuth()
   const [cafe, setCafe] = useState<CafeInfo | null>(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
@@ -178,7 +175,7 @@ export default function CafeNFCLanding() {
 
       <main className="px-6 pb-8 md:pb-12">
         <div className="max-w-3xl mx-auto">
-          {loading || authLoading ? (
+          {loading ? (
             <PageLoading />
           ) : (
             <FadeIn appear>
@@ -237,14 +234,6 @@ export default function CafeNFCLanding() {
                       @{cafe.instagram}
                     </a>
                   ) : null}
-
-                  <RentActions cafeId={cafe.id} cafeName={cafe.name} />
-
-                  <p className="text-muted text-sm mb-10">
-                    <Link to="/registrar" className="text-black no-underline hover:text-muted">
-                      ¿Otra cafetería?
-                    </Link>
-                  </p>
 
                   {recommendedDrinks[cafe.drinksKey] && (
                     <div className="bg-wash p-8 md:p-10 mb-10">
@@ -315,7 +304,7 @@ export default function CafeNFCLanding() {
         </div>
       </main>
 
-      {loading || authLoading ? null : <Closing />}
+      {loading ? null : <Closing />}
       <Footer />
     </div>
   )

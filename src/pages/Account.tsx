@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
 import PageLoading from '../components/ui/PageLoading'
@@ -126,8 +125,7 @@ export default function Account() {
               {!session ? (
                 <>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-8">
-                    Entra con Google para ver tu historial y registrar vasos. El depósito se maneja
-                    en la cafetería. Aquí solo llevas tu historial.
+                    Entra con Google para ver tu historial de vasos erre.
                   </p>
                   <button
                     type="button"
@@ -150,29 +148,6 @@ export default function Account() {
                         {profile?.email || 'Sesión con Google'}
                       </p>
                     ) : null}
-                  </div>
-
-                  {profile ? (
-                    <div className="border border-border p-6 md:p-8 mb-10">
-                      <p className="text-muted text-xs md:text-sm mb-2">Vasos en mano</p>
-                      <p className="font-heading text-5xl md:text-6xl font-medium text-black leading-none tracking-tight">
-                        {profile.cups_in_hand}
-                      </p>
-                      <p className="text-muted text-xs md:text-sm mt-3">vasos rentados actualmente</p>
-                    </div>
-                  ) : (
-                    <p className="text-muted text-sm md:text-base mb-10">
-                      No pudimos cargar tu perfil. ¿Corriste el SQL de la web en Supabase?
-                    </p>
-                  )}
-
-                  <div className="mb-14">
-                    <Link
-                      to="/registrar"
-                      className="block w-full text-center px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
-                    >
-                      Rentar o devolver vaso
-                    </Link>
                   </div>
 
                   <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">

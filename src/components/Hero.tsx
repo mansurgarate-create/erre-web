@@ -1,5 +1,4 @@
 import FadeIn from './ui/FadeIn'
-import { Link } from 'react-router-dom'
 
 export default function Hero() {
   return (
@@ -33,14 +32,7 @@ export default function Hero() {
             Cómo funciona
           </a>
         </div>
-        <p className="mt-6">
-          <Link
-            to="/registrar"
-            className="text-muted text-sm hover:text-black transition-colors duration-300 no-underline"
-          >
-            Registrar un vaso
-          </Link>
-        </p>
+
       </FadeIn>
     </section>
   )

@@ -1,18 +1,12 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
-import { firstName } from '../lib/firstName'
-
-function isRentFlow(pathname: string) {
-  return pathname === '/registrar' || pathname === '/r' || pathname.startsWith('/r/')
-}
 
 export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: string }) {
-  const { session, profile } = useAuth()
+  const { session } = useAuth()
   const { pathname } = useLocation()
 
   const onAccount = pathname === '/cuenta'
-  const rentFlow = isRentFlow(pathname)
-  const label = !session ? 'Entrar' : rentFlow ? firstName(profile?.name, profile?.email) : 'Cuenta'
+  const label = !session ? 'Entrar' : 'Cuenta'
 
   return (
     <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">

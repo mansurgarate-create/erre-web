@@ -3,19 +3,11 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
 import { firstName } from '../lib/firstName'
 
-const links = [
-  { label: 'Cómo funciona', href: '#como-funciona' },
-  { label: 'Cafeterías', href: '#cafeterias' },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'FAQ', href: '#faq' },
-]
-
 const accountLinkClass =
   'text-sm text-muted hover:text-black transition-colors duration-300 no-underline truncate max-w-[40vw]'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
   const { session, profile } = useAuth()
   const accountLabel = session ? firstName(profile?.name, profile?.email) : 'Inicia sesión'
 
@@ -36,63 +28,9 @@ export default function Navbar() {
           erre
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
-            >
-              {link.label}
-            </a>
-          ))}
-          <Link to="/cuenta" className={accountLinkClass}>
-            {accountLabel}
-          </Link>
-        </div>
-
-        <div className="flex md:hidden items-center gap-4">
-          <Link to="/cuenta" className={accountLinkClass}>
-            {accountLabel}
-          </Link>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="bg-transparent border-none cursor-pointer p-2"
-            aria-label="Menú"
-          >
-            <div className="w-5 flex flex-col gap-1.5">
-              <span
-                className={`block h-px bg-black transition-all duration-300 ${
-                  menuOpen ? 'rotate-45 translate-y-[3.5px]' : ''
-                }`}
-              />
-              <span
-                className={`block h-px bg-black transition-all duration-300 ${
-                  menuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''
-                }`}
-              />
-            </div>
-          </button>
-        </div>
-      </div>
-
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-500 bg-white ${
-          menuOpen ? 'max-h-64' : 'max-h-0'
-        }`}
-      >
-        <div className="px-6 pb-6 flex flex-col gap-4">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        <Link to="/cuenta" className={accountLinkClass}>
+          {accountLabel}
+        </Link>
       </div>
     </nav>
   )
