@@ -24,6 +24,7 @@ type AuthContextValue = {
   profile: WebProfile | null
   loading: boolean
   signInWithGoogle: (nextPath?: string) => Promise<void>
+  signInWithApple: (nextPath?: string) => Promise<void>
   signOut: () => Promise<void>
   refreshProfile: () => Promise<void>
 }
@@ -77,17 +78,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [loadProfile])
 
-  const signInWithGoogle = useCallback(async (nextPath?: string) => {
+  const signInWithOAuth = useCallback(async (provider: 'google' | 'apple', nextPath?: string) => {
     sessionStorage.setItem(NEXT_KEY, nextPath ?? `${window.location.pathname}${window.location.search}`)
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+      provider,
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
-        queryParams: { prompt: 'select_account' },
+        queryParams: provider === 'google' ? { prompt: 'select_account' } : undefined,
       },
     })
     if (error) throw error
   }, [])
+
+  const signInWithGoogle = useCallback(
+    (nextPath?: string) => signInWithOAuth('google', nextPath),
+    [signInWithOAuth]
+  )
+
+  const signInWithApple = useCallback(
+    (nextPath?: string) => signInWithOAuth('apple', nextPath),
+    [signInWithOAuth]
+  )
 
   const signOut = useCallback(async () => {
     await supabase.auth.signOut()
@@ -104,10 +115,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       profile,
       loading,
       signInWithGoogle,
+      signInWithApple,
       signOut,
       refreshProfile,
     }),
-    [session, profile, loading, signInWithGoogle, signOut, refreshProfile]
+    [session, profile, loading, signInWithGoogle, signInWithApple, signOut, refreshProfile]
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

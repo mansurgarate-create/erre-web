@@ -57,7 +57,7 @@ function TxArrow({ type }: { type: 'rent' | 'return' }) {
 }
 
 export default function Account() {
-  const { session, profile, loading, signInWithGoogle, signOut } = useAuth()
+  const { session, profile, loading, signInWithGoogle, signInWithApple, signOut } = useAuth()
   const [transactions, setTransactions] = useState<Tx[]>([])
   const [historyError, setHistoryError] = useState<string | null>(null)
   const [historyReady, setHistoryReady] = useState(false)
@@ -125,15 +125,24 @@ export default function Account() {
               {!session ? (
                 <>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-8">
-                    Entra con Google para ver tu historial de vasos erre.
+                    Entra con Google o Apple para ver tu historial de vasos erre.
                   </p>
-                  <button
-                    type="button"
-                    onClick={() => void signInWithGoogle('/cuenta')}
-                    className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer hover:bg-black/85 transition-colors duration-300"
-                  >
-                    Continuar con Google
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button
+                      type="button"
+                      onClick={() => void signInWithGoogle('/cuenta')}
+                      className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer hover:bg-black/85 transition-colors duration-300"
+                    >
+                      Continuar con Google
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void signInWithApple('/cuenta')}
+                      className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300"
+                    >
+                      Continuar con Apple
+                    </button>
+                  </div>
                 </>
               ) : (
                 <>
@@ -145,7 +154,7 @@ export default function Account() {
                     ) : null}
                     {profile?.email || !profile?.name ? (
                       <p className="text-muted text-sm md:text-base">
-                        {profile?.email || 'Sesión con Google'}
+                        {profile?.email || 'Sesión iniciada'}
                       </p>
                     ) : null}
                   </div>

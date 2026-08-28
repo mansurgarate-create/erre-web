@@ -44,8 +44,8 @@ export default function AuthCallback() {
           {stuck ? (
             <>
               <p className="text-muted text-base leading-relaxed mb-8">
-                No se completó el inicio de sesión. Revisa que Google esté activo en Supabase y que
-                esta URL esté en Redirect URLs.
+                No se completó el inicio de sesión. Revisa que Google y Apple estén activos en
+                Supabase y que esta URL esté en Redirect URLs.
               </p>
               <button
                 type="button"

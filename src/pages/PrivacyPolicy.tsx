@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
           <FadeIn delay={100}>
             <div className="space-y-8 text-muted text-sm md:text-base leading-relaxed">
               <p>
-                Erre, con domicilio en Monterrey, Nuevo León, México, opera una página web y una aplicación móvil, y tiene el firme compromiso de cumplir con el debido manejo de los datos personales, siendo responsable de aquellos que recabe de sus titulares o de terceros particulares, incluyendo su correcto uso y protección.
+                Erre, con domicilio en Monterrey, Nuevo León, México, opera una página web y aplicaciones móviles para iOS y Android, y tiene el firme compromiso de cumplir con el debido manejo de los datos personales, siendo responsable de aquellos que recabe de sus titulares o de terceros particulares, incluyendo su correcto uso y protección.
               </p>
 
               <div>
@@ -31,13 +31,13 @@ export default function PrivacyPolicy() {
                   Datos personales que recabamos
                 </h2>
                 <p className="mb-4">
-                  A través de nuestra página web y aplicación móvil, Erre recaba los siguientes datos personales:
+                  A través de nuestra página web y aplicaciones móviles, Erre recaba los siguientes datos personales:
                 </p>
                 <ul className="list-disc pl-6 mb-4 space-y-2">
-                  <li><strong>Identificador de Apple (Apple ID):</strong> utilizado para autenticación y vinculación de su cuenta en la aplicación iOS mediante "Iniciar sesión con Apple".</li>
-                  <li><strong>Identificador de Google:</strong> utilizado para autenticación y vinculación de su cuenta en la página web y en Android mediante "Continuar con Google".</li>
+                  <li><strong>Identificador de Apple (Apple ID):</strong> utilizado para autenticación y vinculación de su cuenta en la página web y en las aplicaciones iOS y Android mediante "Iniciar sesión con Apple" o "Continuar con Apple".</li>
+                  <li><strong>Identificador de Google:</strong> utilizado para autenticación y vinculación de su cuenta en la página web y en las aplicaciones iOS y Android mediante "Continuar con Google".</li>
                   <li><strong>Nombre:</strong> proporcionado opcionalmente al crear su cuenta.</li>
-                  <li><strong>Correo electrónico:</strong> proporcionado opcionalmente al crear su cuenta.</li>
+                  <li><strong>Correo electrónico:</strong> proporcionado opcionalmente al crear su cuenta. Si el mismo correo se usa con Google y con Apple, unificamos ambas identidades en una sola cuenta. Si en Apple elige “Ocultar mi correo”, ese buzón no coincidirá con Gmail y se creará una cuenta distinta.</li>
                   <li><strong>Historial de transacciones:</strong> registros de renta y devolución de vasos, incluyendo la cafetería y la fecha de cada operación.</li>
                   <li><strong>Ubicación del dispositivo:</strong> en las aplicaciones móviles se puede acceder a la ubicación para mostrar cafeterías cercanas en el mapa y para verificar que se encuentra en una cafetería participante al registrar una renta o una devolución. Esta información no se almacena en nuestros servidores. El mapa de la página web no accede al GPS; el registro de renta o devolución en la web no utiliza geolocalización.</li>
                 </ul>
@@ -69,7 +69,7 @@ export default function PrivacyPolicy() {
                   Transferencia de datos personales
                 </h2>
                 <p>
-                  No se realizarán transferencias de datos personales, salvo aquellas que sean necesarias para atender requerimientos de información de una autoridad competente, que esté debidamente fundados y motivados. Para el inicio de sesión con Google en la página web y en Android, así como para almacenar la cuenta y el historial, se utilizan los servicios de Google y de Supabase, quienes tratan dichos datos en su carácter de encargados o proveedores de autenticación e infraestructura, conforme a sus propias políticas.
+                  No se realizarán transferencias de datos personales, salvo aquellas que sean necesarias para atender requerimientos de información de una autoridad competente, que esté debidamente fundados y motivados. Para el inicio de sesión con Google o Apple en la página web y en las aplicaciones iOS y Android, así como para almacenar la cuenta y el historial, se utilizan los servicios de Google, Apple y de Supabase, quienes tratan dichos datos en su carácter de encargados o proveedores de autenticación e infraestructura, conforme a sus propias políticas.
                 </p>
               </div>
 
@@ -78,13 +78,13 @@ export default function PrivacyPolicy() {
                   Uso de cookies y almacenamiento local
                 </h2>
                 <p className="mb-4">
-                  En la página web utilizamos almacenamiento local del navegador para mantener su sesión si inicia sesión con Google. Esa información es necesaria para que su cuenta y el historial de rentas funcionen; no se usa con fines publicitarios.
+                  En la página web utilizamos almacenamiento local del navegador para mantener su sesión si inicia sesión con Google o Apple. Esa información es necesaria para que su cuenta y el historial de rentas funcionen; no se usa con fines publicitarios.
                 </p>
                 <p className="mb-4">
                   También empleamos Vercel Analytics para fines estadísticos (páginas visitadas y datos técnicos agregados, como tipo de navegador). Esta medición no está vinculada a su historial de vasos.
                 </p>
                 <p className="mb-4">
-                  Al usar “Continuar con Google”, el consentimiento de esa cuenta ocurre en los servidores de Google. El mapa de cafeterías carga imágenes de Esri; no recabamos su ubicación GPS desde la web.
+                  Al usar “Continuar con Google” o “Continuar con Apple”, el consentimiento de esa cuenta ocurre en los servidores de Google o de Apple. El mapa de cafeterías carga imágenes de Mapbox; no recabamos su ubicación GPS desde la web.
                 </p>
                 <p>
                   Si no desea el tratamiento estadístico de Analytics, puede comunicarlo a <a href="mailto:reusoconerre@gmail.com" className="text-black underline hover:text-muted transition-colors duration-300">reusoconerre@gmail.com</a> o borrar los datos del sitio holaerre.com desde la configuración de su navegador. Cerrar sesión en la página web elimina la sesión guardada en este dispositivo.
