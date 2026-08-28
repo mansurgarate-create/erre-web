@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
 import { rpcMessage } from '../lib/rpc'
 import FadeIn from './ui/FadeIn'
+import PageLoading from './ui/PageLoading'
 
 type Mode = 'rent' | 'return'
 
@@ -34,7 +35,7 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
     )
   }
 
-  if (loading) return null
+  if (loading) return <PageLoading />
 
   if (!session) {
     return (

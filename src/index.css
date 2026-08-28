@@ -5,7 +5,7 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --color-black: #000;
   --color-white: #FAFAF8;
-  --color-muted: #999;
+  --color-muted: #5c5c5c;
   --color-border: #e5e5e5;
   --color-wash: #ECEAE6;
 }
@@ -34,6 +34,18 @@ body {
 .leaflet-popup-tip {
   background: var(--color-white) !important;
   color: var(--color-black) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border: 1px solid var(--color-border) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 16px 18px 18px !important;
+  font-family: var(--font-sans);
 }
 
 .leaflet-popup-content,
@@ -41,8 +53,56 @@ body {
   color: var(--color-black) !important;
 }
 
-.leaflet-popup-content a {
+.leaflet-popup-close-button {
+  color: var(--color-muted) !important;
+}
+
+.leaflet-popup-content a.erre-popup-muted {
+  color: var(--color-muted) !important;
+}
+
+.leaflet-popup-content a.erre-popup-cta {
   color: var(--color-white) !important;
+}
+
+.leaflet-bar {
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background: var(--color-white) !important;
+  color: var(--color-black) !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+}
+
+.leaflet-control-attribution {
+  background: transparent !important;
+  color: var(--color-muted) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--color-muted) !important;
+}
+
+.erre-pin {
+  background: none !important;
+  border: none !important;
+}
+
+.erre-pin span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: var(--color-black);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-black) 18%, transparent);
 }
 
 .fade-in {
@@ -100,11 +160,8 @@ html[data-theme='dark'] {
   color-scheme: dark;
   --color-black: #fafaf8;
   --color-white: #141413;
-  --color-muted: #8a8a86;
+  --color-muted: #a3a39e;
   --color-border: #2c2c2a;
   --color-wash: #1c1c1a;
 }
 
-html[data-theme='dark'] .leaflet-tile-pane {
-  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.95);
-}

@@ -5,6 +5,8 @@ import Closing from '../components/Closing'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import RentActions from '../components/RentActions'
+import PageLoading from '../components/ui/PageLoading'
+import { rentSteps } from '../lib/rentSteps'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
 
@@ -176,7 +178,9 @@ export default function CafeNFCLanding() {
 
       <main className="px-6 pb-8 md:pb-12">
         <div className="max-w-3xl mx-auto">
-          {loading || authLoading ? null : (
+          {loading || authLoading ? (
+            <PageLoading />
+          ) : (
             <FadeIn appear>
               {inactive ? (
                 <>
@@ -270,25 +274,7 @@ export default function CafeNFCLanding() {
                       ¿Cómo funciona?
                     </h2>
                     <div className="space-y-6 md:space-y-8">
-                      {[
-                        {
-                          number: '01',
-                          title: 'Pide',
-                          description:
-                            'Ordena tu bebida en un vaso erre y deja un pequeño depósito en la caja.',
-                        },
-                        {
-                          number: '02',
-                          title: 'Disfruta',
-                          description: 'Llévalo contigo. Es tuyo mientras lo necesites.',
-                        },
-                        {
-                          number: '03',
-                          title: 'Devuelve',
-                          description:
-                            'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
-                        },
-                      ].map((step) => (
+                      {rentSteps.map((step) => (
                         <div key={step.number}>
                           <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
                             {step.number}

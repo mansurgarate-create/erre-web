@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
+import PageLoading from '../components/ui/PageLoading'
 import SiteHeader from '../components/SiteHeader'
 import Footer from '../components/Footer'
 import { supabase } from '../lib/supabase'
@@ -117,7 +118,9 @@ export default function ChooseCafe() {
                 </ul>
               )}
             </FadeIn>
-          ) : null}
+          ) : (
+            <PageLoading />
+          )}
         </div>
       </main>
       <Footer />

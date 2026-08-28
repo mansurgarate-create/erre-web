@@ -1,22 +1,5 @@
 import FadeIn from './ui/FadeIn'
-
-const steps = [
-  {
-    number: '01',
-    title: 'Pide',
-    description: 'Ordena tu bebida en un vaso erre. Dejas un pequeño depósito que recuperas al devolverlo.',
-  },
-  {
-    number: '02',
-    title: 'Disfruta',
-    description: 'Llévalo contigo. Es tuyo mientras lo necesites.',
-  },
-  {
-    number: '03',
-    title: 'Devuelve',
-    description: 'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
-  },
-]
+import { rentSteps } from '../lib/rentSteps'
 
 export default function HowItWorks() {
   return (
@@ -29,7 +12,7 @@ export default function HowItWorks() {
         </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {steps.map((step, i) => (
+          {rentSteps.map((step, i) => (
             <FadeIn key={step.number} delay={i * 150}>
               <div className="border border-border p-8 md:p-10 text-left hover:border-black transition-colors duration-500 h-full">
                 <span className="font-heading text-4xl md:text-5xl text-muted/40 block mb-6">

@@ -1,6 +1,7 @@
-import { useEffect, useState, useMemo } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet'
-import { LatLngBounds } from 'leaflet'
+import { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import L, { LatLngBounds } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import FadeIn from './ui/FadeIn'
 import { supabase } from '../lib/supabase'
@@ -14,6 +15,8 @@ interface Cafe {
   lng: number
   mapsUrl: string
   hours: string
+  slug: string | null
+  instagram: string | null
 }
 
 interface SupabaseCafe {
@@ -24,6 +27,30 @@ interface SupabaseCafe {
   lng: number
   maps_url: string
   hours: string
+  nfc_tag_id: string | null
+  instagram: string | null
+}
+
+const ESRI_LIGHT =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+const ESRI_LIGHT_REF =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}'
+const ESRI_DARK =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+const ESRI_DARK_REF =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}'
+
+const pinIcon = L.divIcon({
+  className: 'erre-pin',
+  html: '<span></span>',
+  iconSize: [12, 12],
+  iconAnchor: [6, 6],
+  popupAnchor: [0, -10],
+})
+
+function slugFromTag(nfcTagId: string | null) {
+  if (!nfcTagId?.startsWith('erre:')) return null
+  return nfcTagId.slice('erre:'.length)
 }
 
 function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
@@ -41,16 +68,15 @@ function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
 export default function CafeMap() {
   const [cafes, setCafes] = useState<Cafe[]>([])
   const [search, setSearch] = useState('')
-  const [cityFilter, setCityFilter] = useState('Todas')
   const { resolved } = useTheme()
-  const pin = resolved === 'dark' ? '#FAFAF8' : '#000'
+  const dark = resolved === 'dark'
 
   useEffect(() => {
     async function fetchCafes() {
       try {
         const { data, error } = await supabase
           .from('cafes')
-          .select('name, city, address, lat, lng, maps_url, hours')
+          .select('name, city, address, lat, lng, maps_url, hours, nfc_tag_id, instagram')
 
         if (error || !data || data.length === 0) throw new Error('Supabase fetch failed')
 
@@ -63,30 +89,28 @@ export default function CafeMap() {
             lng: c.lng,
             mapsUrl: c.maps_url,
             hours: c.hours,
+            slug: slugFromTag(c.nfc_tag_id),
+            instagram: c.instagram,
           }))
         )
       } catch {
         const res = await fetch('/data/cafes.json')
-        const json = await res.json()
-        setCafes(json)
+        const json = (await res.json()) as Cafe[]
+        setCafes(
+          json.map((c) => ({
+            ...c,
+            slug: c.slug ?? null,
+            instagram: c.instagram ?? null,
+          }))
+        )
       }
     }
-    fetchCafes()
+    void fetchCafes()
   }, [])
 
-  const cities = useMemo(
-    () => ['Todas', ...Array.from(new Set(cafes.map((c) => c.city)))],
-    [cafes]
-  )
-
   const filtered = useMemo(
-    () =>
-      cafes.filter((c) => {
-        const matchCity = cityFilter === 'Todas' || c.city === cityFilter
-        const matchSearch = c.name.toLowerCase().includes(search.toLowerCase())
-        return matchCity && matchSearch
-      }),
-    [cafes, search, cityFilter]
+    () => cafes.filter((c) => c.name.toLowerCase().includes(search.toLowerCase())),
+    [cafes, search]
   )
 
   return (
@@ -99,71 +123,74 @@ export default function CafeMap() {
         </FadeIn>
 
         <FadeIn delay={150}>
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
+          <div className="mb-8">
             <input
               type="text"
               placeholder="Buscar cafetería..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 px-4 py-3 border border-border text-sm font-sans text-black placeholder:text-muted focus:outline-none focus:border-black transition-colors duration-300"
+              className="w-full px-4 py-3 border border-border text-sm font-sans text-black placeholder:text-muted focus:outline-none focus:border-black transition-colors duration-300"
             />
-            <select
-              value={cityFilter}
-              onChange={(e) => setCityFilter(e.target.value)}
-              className="px-4 py-3 border border-border text-sm font-sans text-black bg-white focus:outline-none focus:border-black transition-colors duration-300 cursor-pointer appearance-none"
-            >
-              {cities.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
           </div>
         </FadeIn>
 
         <FadeIn delay={300}>
           <div className="border border-border overflow-hidden" style={{ height: '480px' }}>
             <MapContainer
+              key={resolved}
               center={[25.651, -100.294]}
               zoom={15}
               scrollWheelZoom={false}
-              style={{ height: '100%', width: '100%' }}
+              style={{ height: '100%', width: '100%', background: 'var(--color-wash)' }}
             >
               <TileLayer
-                attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                attribution='Tiles &copy; <a href="https://www.esri.com/">Esri</a>'
+                url={dark ? ESRI_DARK : ESRI_LIGHT}
               />
+              <TileLayer url={dark ? ESRI_DARK_REF : ESRI_LIGHT_REF} />
               <FitMapBounds cafes={filtered} />
               {filtered.map((cafe) => (
-                <CircleMarker
-                  key={cafe.name}
-                  center={[cafe.lat, cafe.lng]}
-                  radius={8}
-                  pathOptions={{
-                    color: pin,
-                    fillColor: pin,
-                    fillOpacity: 0.9,
-                    weight: 2,
-                  }}
-                >
+                <Marker key={cafe.name} position={[cafe.lat, cafe.lng]} icon={pinIcon}>
                   <Popup>
-                    <div className="font-sans p-1">
-                      <h3 className="text-sm font-semibold text-black m-0 mb-1">
+                    <div className="erre-popup">
+                      <h3 className="font-heading text-base font-medium text-black m-0 mb-1">
                         {cafe.name}
                       </h3>
                       <p className="text-xs text-muted m-0 mb-1">{cafe.address}</p>
                       <p className="text-xs text-muted m-0 mb-3">{cafe.hours}</p>
-                      <a
-                        href={cafe.mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block text-xs bg-black text-white px-3 py-1.5 no-underline hover:bg-black/80 transition-colors duration-300"
-                      >
-                        Abrir en Maps
-                      </a>
+                      {cafe.instagram ? (
+                        <a
+                          href={`https://instagram.com/${cafe.instagram}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="erre-popup-muted block text-xs text-muted no-underline mb-3 hover:text-black"
+                        >
+                          @{cafe.instagram}
+                        </a>
+                      ) : null}
+                      <div className="flex flex-wrap items-center gap-3">
+                        {cafe.mapsUrl ? (
+                          <a
+                            href={cafe.mapsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="erre-popup-cta inline-block text-xs bg-black px-3 py-1.5 no-underline hover:bg-black/80 transition-colors duration-300"
+                          >
+                            Abrir en Maps
+                          </a>
+                        ) : null}
+                        {cafe.slug ? (
+                          <Link
+                            to={`/r/${cafe.slug}`}
+                            className="erre-popup-muted text-xs text-muted no-underline hover:text-black transition-colors duration-300"
+                          >
+                            Punto erre
+                          </Link>
+                        ) : null}
+                      </div>
                     </div>
                   </Popup>
-                </CircleMarker>
+                </Marker>
               ))}
             </MapContainer>
           </div>

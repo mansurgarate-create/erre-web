@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import FadeIn from '../components/ui/FadeIn'
+import SiteHeader from '../components/SiteHeader'
+import Footer from '../components/Footer'
 
 const washSteps = [
   {
@@ -45,19 +46,10 @@ export default function CareGuide() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
-        <div className="max-w-3xl mx-auto">
-          <Link
-            to="/"
-            className="font-heading text-xl md:text-2xl font-medium text-black no-underline hover:text-muted transition-colors duration-300"
-          >
-            erre
-          </Link>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white flex flex-col">
+      <SiteHeader />
 
-      <main className="px-6 pb-24 md:pb-32">
+      <main className="px-6 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
@@ -156,26 +148,9 @@ export default function CareGuide() {
               </ul>
             </div>
           </FadeIn>
-
-          {/* Pie */}
-          <FadeIn delay={400}>
-            <div className="border-t border-border pt-10 text-center">
-              <p className="font-heading text-lg md:text-xl font-medium text-black mb-2">
-                erre
-              </p>
-              <p className="text-muted text-sm italic">
-                de mano en mano.
-              </p>
-              <a
-                href="https://holaerre.com"
-                className="inline-block mt-4 text-muted text-xs tracking-widest hover:text-black transition-colors duration-300 no-underline"
-              >
-                holaerre.com
-              </a>
-            </div>
-          </FadeIn>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

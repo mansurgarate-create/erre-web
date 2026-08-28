@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import FadeIn from '../components/ui/FadeIn'
+import SiteHeader from '../components/SiteHeader'
+import Footer from '../components/Footer'
 
 export default function PrivacyPolicy() {
   useEffect(() => {
@@ -8,19 +9,10 @@ export default function PrivacyPolicy() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
-        <div className="max-w-3xl mx-auto">
-          <Link
-            to="/"
-            className="font-heading text-xl md:text-2xl font-medium text-black no-underline hover:text-muted transition-colors duration-300"
-          >
-            erre
-          </Link>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white flex flex-col">
+      <SiteHeader />
 
-      <main className="px-6 pb-24 md:pb-32">
+      <main className="px-6 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6 md:mb-8">
@@ -92,7 +84,7 @@ export default function PrivacyPolicy() {
                   También empleamos Vercel Analytics para fines estadísticos (páginas visitadas y datos técnicos agregados, como tipo de navegador). Esta medición no está vinculada a su historial de vasos.
                 </p>
                 <p className="mb-4">
-                  Al usar “Continuar con Google”, el consentimiento de esa cuenta ocurre en los servidores de Google. El mapa de cafeterías carga imágenes de un proveedor de mapas; no recabamos su ubicación GPS desde la web.
+                  Al usar “Continuar con Google”, el consentimiento de esa cuenta ocurre en los servidores de Google. El mapa de cafeterías carga imágenes de Esri; no recabamos su ubicación GPS desde la web.
                 </p>
                 <p>
                   Si no desea el tratamiento estadístico de Analytics, puede comunicarlo a <a href="mailto:reusoconerre@gmail.com" className="text-black underline hover:text-muted transition-colors duration-300">reusoconerre@gmail.com</a> o borrar los datos del sitio holaerre.com desde la configuración de su navegador. Cerrar sesión en la página web elimina la sesión guardada en este dispositivo.
@@ -139,25 +131,9 @@ export default function PrivacyPolicy() {
               </div>
             </div>
           </FadeIn>
-
-          <FadeIn delay={200}>
-            <div className="border-t border-border mt-16 pt-10 text-center">
-              <p className="font-heading text-lg md:text-xl font-medium text-black mb-2">
-                erre
-              </p>
-              <p className="text-muted text-sm italic">
-                de mano en mano.
-              </p>
-              <a
-                href="https://holaerre.com"
-                className="inline-block mt-4 text-muted text-xs tracking-widest hover:text-black transition-colors duration-300 no-underline"
-              >
-                holaerre.com
-              </a>
-            </div>
-          </FadeIn>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
