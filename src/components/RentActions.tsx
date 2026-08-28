@@ -62,6 +62,7 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
     )
   }
 
+  const expanded = busy !== null || message !== null || error !== null
   const statusKey = busy ? `busy-${busy}` : message ? `ok-${message}` : error ? `err-${error}` : null
   const status = busy ? (
     <p className="text-muted text-sm md:text-base">Registrando…</p>
@@ -99,12 +100,19 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
           Devolver
         </button>
       </div>
-      <div className="mt-6 min-h-[5rem]">
-        {statusKey && status ? (
-          <FadeIn appear opacity key={statusKey}>
-            {status}
-          </FadeIn>
-        ) : null}
+      <div
+        className="grid transition-[grid-template-rows] duration-500 ease-out"
+        style={{ gridTemplateRows: expanded ? '1fr' : '0fr' }}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="mt-6 min-h-[5rem]">
+            {statusKey && status ? (
+              <FadeIn appear opacity key={statusKey}>
+                {status}
+              </FadeIn>
+            ) : null}
+          </div>
+        </div>
       </div>
     </div>
   )
