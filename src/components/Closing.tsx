@@ -6,7 +6,7 @@ export default function Closing() {
       <img
         src="/photos/hand-cup.webp"
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-[center_60%]"
+        className="absolute inset-0 w-full h-full object-cover object-[center_75%]"
       />
       <div className="absolute inset-0 bg-black/55" />
 
