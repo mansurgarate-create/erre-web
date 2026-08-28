@@ -205,8 +205,8 @@ export default function CafeNFCLanding() {
                 </>
               ) : (
                 <>
-                  <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
-                    Punto erre
+                  <p className="text-muted text-xs md:text-sm mb-4">
+                    punto erre
                   </p>
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
                     {cafe.name}
