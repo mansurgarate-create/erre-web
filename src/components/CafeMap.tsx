@@ -4,6 +4,7 @@ import { LatLngBounds } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import FadeIn from './ui/FadeIn'
 import { supabase } from '../lib/supabase'
+import { useTheme } from '../lib/theme'
 
 interface Cafe {
   name: string
@@ -37,27 +38,12 @@ function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
   return null
 }
 
-function usePrefersDark() {
-  const [dark, setDark] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
-  )
-
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-color-scheme: dark)')
-    const onChange = () => setDark(media.matches)
-    media.addEventListener('change', onChange)
-    return () => media.removeEventListener('change', onChange)
-  }, [])
-
-  return dark
-}
-
 export default function CafeMap() {
   const [cafes, setCafes] = useState<Cafe[]>([])
   const [search, setSearch] = useState('')
   const [cityFilter, setCityFilter] = useState('Todas')
-  const dark = usePrefersDark()
-  const pin = dark ? '#FAFAF8' : '#000'
+  const { resolved } = useTheme()
+  const pin = resolved === 'dark' ? '#FAFAF8' : '#000'
 
   useEffect(() => {
     async function fetchCafes() {

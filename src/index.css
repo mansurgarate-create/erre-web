@@ -12,7 +12,7 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
@@ -96,16 +96,15 @@ body {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-black: #FAFAF8;
-    --color-white: #141413;
-    --color-muted: #8A8A86;
-    --color-border: #2C2C2A;
-    --color-wash: #1C1C1A;
-  }
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --color-black: #fafaf8;
+  --color-white: #141413;
+  --color-muted: #8a8a86;
+  --color-border: #2c2c2a;
+  --color-wash: #1c1c1a;
+}
 
-  .leaflet-tile-pane {
-    filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.95);
-  }
+html[data-theme='dark'] .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.95);
 }

@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom'
+import { useTheme, type ThemePref } from '../lib/theme'
+
+const themeOptions: { id: ThemePref; label: string }[] = [
+  { id: 'system', label: 'Sistema' },
+  { id: 'light', label: 'Claro' },
+  { id: 'dark', label: 'Oscuro' },
+]
 
 export default function Footer() {
+  const { pref, setPref } = useTheme()
   return (
     <footer className="border-t border-border px-6 py-12 md:py-16">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -50,10 +58,25 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto mt-8 pt-8 border-t border-border">
-        <p className="text-muted text-xs text-center">
+      <div className="max-w-5xl mx-auto mt-8 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-muted text-xs text-center sm:text-left">
           &copy; {new Date().getFullYear()} erre. Todos los derechos reservados.
         </p>
+        <div className="flex items-center gap-4">
+          {themeOptions.map((option) => (
+            <button
+              key={option.id}
+              type="button"
+              aria-pressed={pref === option.id}
+              onClick={() => setPref(option.id)}
+              className={`text-xs bg-transparent border-none cursor-pointer p-0 transition-colors duration-300 ${
+                pref === option.id ? 'text-black' : 'text-muted hover:text-black'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
       </div>
     </footer>
   )
