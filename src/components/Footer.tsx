@@ -44,10 +44,10 @@ export default function Footer() {
             Instagram
           </a>
           <a
-            href="mailto:reusoconerre@gmail.com"
+            href="mailto:hola@holaerre.com"
             className="text-muted hover:text-black transition-colors duration-300 no-underline text-sm"
           >
-            reusoconerre@gmail.com
+            hola@holaerre.com
           </a>
         </div>
       </div>

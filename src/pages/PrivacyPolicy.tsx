@@ -60,7 +60,7 @@ export default function PrivacyPolicy() {
                   De manera adicional, Erre puede utilizar su información personal para finalidades secundarias, como pueden ser fines estadísticos, los cuales no serán transferidos salvo las excepciones y a través de los procedimientos previstos en los ordenamientos legales aplicables.
                 </p>
                 <p>
-                  En caso que usted no desee que sus datos personales sean tratados para estos fines secundarios, desde este momento usted nos puede comunicar lo anterior a la siguiente cuenta de correo electrónico: <a href="mailto:reusoconerre@gmail.com" className="text-black underline hover:text-muted transition-colors duration-300">reusoconerre@gmail.com</a>, en donde será atendido y recibirá la respuesta correspondiente por parte de nuestros encargados del tratamiento y protección de sus datos.
+                  En caso que usted no desee que sus datos personales sean tratados para estos fines secundarios, desde este momento usted nos puede comunicar lo anterior a la siguiente cuenta de correo electrónico: <a href="mailto:hola@holaerre.com" className="text-black underline hover:text-muted transition-colors duration-300">hola@holaerre.com</a>, en donde será atendido y recibirá la respuesta correspondiente por parte de nuestros encargados del tratamiento y protección de sus datos.
                 </p>
               </div>
 
@@ -87,7 +87,7 @@ export default function PrivacyPolicy() {
                   Al usar “Continuar con Google” o “Continuar con Apple”, el consentimiento de esa cuenta ocurre en los servidores de Google o de Apple. El mapa de cafeterías carga imágenes de Mapbox; no recabamos su ubicación GPS desde la web.
                 </p>
                 <p>
-                  Si no desea el tratamiento estadístico de Analytics, puede comunicarlo a <a href="mailto:reusoconerre@gmail.com" className="text-black underline hover:text-muted transition-colors duration-300">reusoconerre@gmail.com</a> o borrar los datos del sitio holaerre.com desde la configuración de su navegador. Cerrar sesión en la página web elimina la sesión guardada en este dispositivo.
+                  Si no desea el tratamiento estadístico de Analytics, puede comunicarlo a <a href="mailto:hola@holaerre.com" className="text-black underline hover:text-muted transition-colors duration-300">hola@holaerre.com</a> o borrar los datos del sitio holaerre.com desde la configuración de su navegador. Cerrar sesión en la página web elimina la sesión guardada en este dispositivo.
                 </p>
               </div>
 
@@ -120,7 +120,7 @@ export default function PrivacyPolicy() {
                   Procedimiento para ejercer sus derechos de acceso, modificación, cancelación u oposición
                 </h2>
                 <p className="mb-4">
-                  En caso de que requiera ejercer sus derechos de acceso, modificación, cancelación u oposición respecto de los datos proporcionados o recabados, Erre pone a disposición la siguiente cuenta de correo electrónico: <a href="mailto:reusoconerre@gmail.com" className="text-black underline hover:text-muted transition-colors duration-300">reusoconerre@gmail.com</a> en donde será atendido y recibirá la respuesta por parte del encargado del tratamiento y protección de los datos personales. También podrá en cualquier momento revocar su consentimiento de manera gratuita.
+                  En caso de que requiera ejercer sus derechos de acceso, modificación, cancelación u oposición respecto de los datos proporcionados o recabados, Erre pone a disposición la siguiente cuenta de correo electrónico: <a href="mailto:hola@holaerre.com" className="text-black underline hover:text-muted transition-colors duration-300">hola@holaerre.com</a> en donde será atendido y recibirá la respuesta por parte del encargado del tratamiento y protección de los datos personales. También podrá en cualquier momento revocar su consentimiento de manera gratuita.
                 </p>
                 <p className="mb-4">
                   Para ejercer sus derechos, será necesario que envíe su solicitud al correo electrónico indicado, proporcionando los datos de contacto que nos permitan identificarlo (tales como nombre completo, teléfono, dirección de correo electrónico y domicilio) debiendo indicar la forma en que prefiere sea contactado, es decir, por medio de correo ordinario o mediante correo electrónico.
