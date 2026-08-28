@@ -56,6 +56,15 @@ body {
   transform: translateY(0);
 }
 
+.fade-in.fade-in-opacity {
+  transform: none;
+  transition: opacity 0.8s ease;
+}
+
+.fade-in.fade-in-opacity.visible {
+  transform: none;
+}
+
 @media print {
   :root {
     --color-black: #000;

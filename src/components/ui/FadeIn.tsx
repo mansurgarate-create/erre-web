@@ -5,6 +5,7 @@ interface FadeInProps {
   className?: string
   delay?: number
   appear?: boolean
+  opacity?: boolean
 }
 
 export default function FadeIn({
@@ -12,6 +13,7 @@ export default function FadeIn({
   className = '',
   delay = 0,
   appear = false,
+  opacity = false,
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -39,7 +41,7 @@ export default function FadeIn({
   }, [delay, appear])
 
   return (
-    <div ref={ref} className={`fade-in ${className}`}>
+    <div ref={ref} className={`fade-in${opacity ? ' fade-in-opacity' : ''} ${className}`}>
       {children}
     </div>
   )

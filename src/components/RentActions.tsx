@@ -64,11 +64,11 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
 
   const statusKey = busy ? `busy-${busy}` : message ? `ok-${message}` : error ? `err-${error}` : null
   const status = busy ? (
-    <p className="text-muted text-sm md:text-base mt-6">Registrando…</p>
+    <p className="text-muted text-sm md:text-base">Registrando…</p>
   ) : message ? (
-    <p className="text-black text-sm md:text-base mt-6">{message}</p>
+    <p className="text-black text-sm md:text-base">{message}</p>
   ) : error ? (
-    <p className="text-muted text-sm md:text-base mt-6">{error}</p>
+    <p className="text-muted text-sm md:text-base">{error}</p>
   ) : null
 
   return (
@@ -76,17 +76,11 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
       <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
         Registrar vaso
       </h2>
-      {profile ? (
-        <FadeIn appear key={profile.cups_in_hand}>
-          <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
-            Tienes {profile.cups_in_hand} {profile.cups_in_hand === 1 ? 'vaso' : 'vasos'} en mano.
-          </p>
-        </FadeIn>
-      ) : (
-        <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
-          El depósito se maneja en la cafetería. Esto solo guarda tu historial.
-        </p>
-      )}
+      <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
+        {profile
+          ? `Tienes ${profile.cups_in_hand} ${profile.cups_in_hand === 1 ? 'vaso' : 'vasos'} en mano.`
+          : 'El depósito se maneja en la cafetería. Esto solo guarda tu historial.'}
+      </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           type="button"
@@ -105,11 +99,13 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
           Devolver
         </button>
       </div>
-      {statusKey && status ? (
-        <FadeIn appear key={statusKey}>
-          {status}
-        </FadeIn>
-      ) : null}
+      <div className="mt-6 min-h-[5rem]">
+        {statusKey && status ? (
+          <FadeIn appear opacity key={statusKey}>
+            {status}
+          </FadeIn>
+        ) : null}
+      </div>
     </div>
   )
 }
