@@ -60,6 +60,7 @@ export default function Account() {
   const { session, profile, loading, signInWithGoogle, signOut } = useAuth()
   const [transactions, setTransactions] = useState<Tx[]>([])
   const [historyError, setHistoryError] = useState<string | null>(null)
+  const [historyReady, setHistoryReady] = useState(false)
   const [page, setPage] = useState(0)
 
   useEffect(() => {
@@ -67,18 +68,25 @@ export default function Account() {
   }, [])
 
   useEffect(() => {
+    if (loading) return
+
     if (!session) {
       setTransactions([])
       setPage(0)
+      setHistoryError(null)
+      setHistoryReady(true)
       return
     }
 
     let cancelled = false
+    setHistoryReady(false)
     async function load() {
       const { data, error } = await supabase.rpc('my_web_account')
       if (cancelled) return
       if (error || !data) {
         setHistoryError(rpcMessage(error))
+        setTransactions([])
+        setHistoryReady(true)
         return
       }
       const payload = (typeof data === 'string' ? JSON.parse(data) : data) as {
@@ -87,12 +95,13 @@ export default function Account() {
       setTransactions(payload.transactions ?? [])
       setPage(0)
       setHistoryError(null)
+      setHistoryReady(true)
     }
     void load()
     return () => {
       cancelled = true
     }
-  }, [session])
+  }, [loading, session])
 
   const pageCount = Math.max(1, Math.ceil(transactions.length / PAGE_SIZE))
   const currentPage = Math.min(page, pageCount - 1)
@@ -100,137 +109,138 @@ export default function Account() {
     () => transactions.slice(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE),
     [transactions, currentPage]
   )
+  const ready = !loading && historyReady
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <SiteHeader />
       <main className="px-6 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
-          <FadeIn>
-            <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
-              Cuenta
-            </h1>
-          </FadeIn>
+          {ready ? (
+            <FadeIn appear>
+              <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
+                Cuenta
+              </h1>
 
-          {loading ? (
-            <p className="text-muted text-base">Cargando…</p>
-          ) : !session ? (
-            <FadeIn delay={80}>
-              <p className="text-muted text-base md:text-lg leading-relaxed mb-8">
-                Entra con Google para ver tu historial y registrar vasos. El depósito se maneja en
-                la cafetería. Aquí solo llevas tu historial.
-              </p>
-              <button
-                type="button"
-                onClick={() => void signInWithGoogle('/cuenta')}
-                className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer hover:bg-black/85 transition-colors duration-300"
-              >
-                Continuar con Google
-              </button>
-            </FadeIn>
-          ) : (
-            <FadeIn delay={80}>
-              <div className="mb-8">
-                {profile?.name ? (
-                  <p className="font-heading text-xl md:text-2xl font-medium text-black mb-1">
-                    {profile.name}
+              {!session ? (
+                <>
+                  <p className="text-muted text-base md:text-lg leading-relaxed mb-8">
+                    Entra con Google para ver tu historial y registrar vasos. El depósito se maneja
+                    en la cafetería. Aquí solo llevas tu historial.
                   </p>
-                ) : null}
-                {profile?.email || !profile?.name ? (
-                  <p className="text-muted text-sm md:text-base">
-                    {profile?.email || 'Sesión con Google'}
-                  </p>
-                ) : null}
-              </div>
-
-              {profile ? (
-                <div className="border border-border p-6 md:p-8 mb-10">
-                  <p className="text-muted text-xs md:text-sm mb-2">Vasos en mano</p>
-                  <p className="font-heading text-5xl md:text-6xl font-medium text-black leading-none tracking-tight">
-                    {profile.cups_in_hand}
-                  </p>
-                  <p className="text-muted text-xs md:text-sm mt-3">vasos rentados actualmente</p>
-                </div>
-              ) : (
-                <p className="text-muted text-sm md:text-base mb-10">
-                  No pudimos cargar tu perfil. ¿Corriste el SQL de la web en Supabase?
-                </p>
-              )}
-
-              <div className="mb-14">
-                <Link
-                  to="/registrar"
-                  className="block w-full text-center px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
-                >
-                  Rentar o devolver vaso
-                </Link>
-              </div>
-
-              <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
-                Historial
-              </h2>
-              {historyError && <p className="text-muted text-sm mb-4">{historyError}</p>}
-              {transactions.length === 0 && !historyError ? (
-                <p className="text-muted text-sm md:text-base">Aún no hay rentas registradas.</p>
+                  <button
+                    type="button"
+                    onClick={() => void signInWithGoogle('/cuenta')}
+                    className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer hover:bg-black/85 transition-colors duration-300"
+                  >
+                    Continuar con Google
+                  </button>
+                </>
               ) : (
                 <>
-                  <ul
-                    className="divide-y divide-border border-t border-border"
-                    style={{ minHeight: `calc(${PAGE_SIZE} * 4.75rem)` }}
-                  >
-                    {visibleTx.map((tx) => (
-                      <li key={tx.id} className="min-h-[4.75rem] py-4 flex items-center gap-4">
-                        <TxArrow type={tx.type} />
-                        <div className="min-w-0 flex-1">
-                          <p className="text-black text-sm md:text-base font-medium">
-                            {tx.type === 'rent' ? 'Rentado' : 'Devuelto'}
-                          </p>
-                          <p className="text-muted text-xs md:text-sm truncate">{tx.cafe_name}</p>
-                        </div>
-                        <div className="text-right shrink-0">
-                          <p className="text-muted text-xs">{formatDate(tx.created_at)}</p>
-                          <p className="text-muted text-xs">{formatTime(tx.created_at)}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  {transactions.length > PAGE_SIZE && (
-                    <div className="flex items-center justify-between gap-4 mt-6">
-                      <button
-                        type="button"
-                        disabled={currentPage === 0}
-                        onClick={() => setPage((p) => Math.max(0, p - 1))}
-                        className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
-                      >
-                        Anterior
-                      </button>
-                      <p className="text-muted text-xs">
-                        {currentPage + 1} / {pageCount}
+                  <div className="mb-8">
+                    {profile?.name ? (
+                      <p className="font-heading text-xl md:text-2xl font-medium text-black mb-1">
+                        {profile.name}
                       </p>
-                      <button
-                        type="button"
-                        disabled={currentPage >= pageCount - 1}
-                        onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
-                        className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
-                      >
-                        Siguiente
-                      </button>
+                    ) : null}
+                    {profile?.email || !profile?.name ? (
+                      <p className="text-muted text-sm md:text-base">
+                        {profile?.email || 'Sesión con Google'}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  {profile ? (
+                    <div className="border border-border p-6 md:p-8 mb-10">
+                      <p className="text-muted text-xs md:text-sm mb-2">Vasos en mano</p>
+                      <p className="font-heading text-5xl md:text-6xl font-medium text-black leading-none tracking-tight">
+                        {profile.cups_in_hand}
+                      </p>
+                      <p className="text-muted text-xs md:text-sm mt-3">vasos rentados actualmente</p>
                     </div>
+                  ) : (
+                    <p className="text-muted text-sm md:text-base mb-10">
+                      No pudimos cargar tu perfil. ¿Corriste el SQL de la web en Supabase?
+                    </p>
                   )}
+
+                  <div className="mb-14">
+                    <Link
+                      to="/registrar"
+                      className="block w-full text-center px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
+                    >
+                      Rentar o devolver vaso
+                    </Link>
+                  </div>
+
+                  <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
+                    Historial
+                  </h2>
+                  {historyError && <p className="text-muted text-sm mb-4">{historyError}</p>}
+                  {transactions.length === 0 && !historyError ? (
+                    <p className="text-muted text-sm md:text-base">Aún no hay rentas registradas.</p>
+                  ) : (
+                    <>
+                      <ul
+                        className="divide-y divide-border border-t border-border"
+                        style={{ minHeight: `calc(${PAGE_SIZE} * 4.75rem)` }}
+                      >
+                        {visibleTx.map((tx) => (
+                          <li key={tx.id} className="min-h-[4.75rem] py-4 flex items-center gap-4">
+                            <TxArrow type={tx.type} />
+                            <div className="min-w-0 flex-1">
+                              <p className="text-black text-sm md:text-base font-medium">
+                                {tx.type === 'rent' ? 'Rentado' : 'Devuelto'}
+                              </p>
+                              <p className="text-muted text-xs md:text-sm truncate">{tx.cafe_name}</p>
+                            </div>
+                            <div className="text-right shrink-0">
+                              <p className="text-muted text-xs">{formatDate(tx.created_at)}</p>
+                              <p className="text-muted text-xs">{formatTime(tx.created_at)}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                      {transactions.length > PAGE_SIZE && (
+                        <div className="flex items-center justify-between gap-4 mt-6">
+                          <button
+                            type="button"
+                            disabled={currentPage === 0}
+                            onClick={() => setPage((p) => Math.max(0, p - 1))}
+                            className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
+                          >
+                            Anterior
+                          </button>
+                          <p className="text-muted text-xs">
+                            {currentPage + 1} / {pageCount}
+                          </p>
+                          <button
+                            type="button"
+                            disabled={currentPage >= pageCount - 1}
+                            onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
+                            className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
+                          >
+                            Siguiente
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  <div className="mt-16 pt-8 border-t border-border">
+                    <button
+                      type="button"
+                      onClick={() => void signOut()}
+                      className="text-sm text-muted bg-transparent border-none cursor-pointer hover:text-black transition-colors duration-300 p-0"
+                    >
+                      Cerrar sesión
+                    </button>
+                  </div>
                 </>
               )}
-
-              <div className="mt-16 pt-8 border-t border-border">
-                <button
-                  type="button"
-                  onClick={() => void signOut()}
-                  className="text-sm text-muted bg-transparent border-none cursor-pointer hover:text-black transition-colors duration-300 p-0"
-                >
-                  Cerrar sesión
-                </button>
-              </div>
             </FadeIn>
-          )}
+          ) : null}
         </div>
       </main>
       <Footer />

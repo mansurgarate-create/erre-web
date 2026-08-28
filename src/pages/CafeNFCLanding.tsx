@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import RentActions from '../components/RentActions'
 import { supabase } from '../lib/supabase'
+import { useAuth } from '../lib/auth'
 
 interface CafeInfo {
   id: string
@@ -112,6 +113,7 @@ const recommendedDrinks: Record<string, { title: string; description: string }[]
 
 export default function CafeNFCLanding() {
   const { slug = '' } = useParams<{ slug: string }>()
+  const { loading: authLoading } = useAuth()
   const [cafe, setCafe] = useState<CafeInfo | null>(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
@@ -171,150 +173,150 @@ export default function CafeNFCLanding() {
 
       <main className="px-6 pb-8 md:pb-12">
         <div className="max-w-3xl mx-auto">
-          <FadeIn>
-            {loading ? (
-              <p className="text-muted text-base">Cargando…</p>
-            ) : inactive ? (
-              <>
-                <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
-                  Punto erre
-                </h1>
-                <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-                  Este punto erre aún no está activo.
-                </p>
-                <Link
-                  to="/#cafeterias"
-                  className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
-                >
-                  Ver cafeterías
-                </Link>
-              </>
-            ) : notFound || !cafe ? (
-              <>
-                <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
-                  Punto erre
-                </h1>
-                <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-                  No encontramos esta cafetería. Revisa el mapa de la red erre.
-                </p>
-                <Link
-                  to="/#cafeterias"
-                  className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
-                >
-                  Ver cafeterías
-                </Link>
-              </>
-            ) : (
-              <>
-                <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
-                  Punto erre
-                </p>
-                <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
-                  {cafe.name}
-                </h1>
-                <p className="text-muted text-base md:text-lg leading-relaxed mb-2">
-                  {cafe.address}
-                </p>
-                <p className="text-muted text-sm md:text-base mb-10">
-                  {cafe.hours}
-                  {cafe.city ? ` · ${cafe.city}` : ''}
-                </p>
-
-                <RentActions cafeId={cafe.id} cafeName={cafe.name} />
-
-                <p className="text-muted text-sm mb-10">
-                  <Link to="/registrar" className="text-black no-underline hover:text-muted">
-                    ¿Otra cafetería?
+          {loading || authLoading ? null : (
+            <FadeIn appear>
+              {inactive ? (
+                <>
+                  <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
+                    Punto erre
+                  </h1>
+                  <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
+                    Este punto erre aún no está activo.
+                  </p>
+                  <Link
+                    to="/#cafeterias"
+                    className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                  >
+                    Ver cafeterías
                   </Link>
-                </p>
+                </>
+              ) : notFound || !cafe ? (
+                <>
+                  <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
+                    Punto erre
+                  </h1>
+                  <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
+                    No encontramos esta cafetería. Revisa el mapa de la red erre.
+                  </p>
+                  <Link
+                    to="/#cafeterias"
+                    className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                  >
+                    Ver cafeterías
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
+                    Punto erre
+                  </p>
+                  <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
+                    {cafe.name}
+                  </h1>
+                  <p className="text-muted text-base md:text-lg leading-relaxed mb-2">
+                    {cafe.address}
+                  </p>
+                  <p className="text-muted text-sm md:text-base mb-10">
+                    {cafe.hours}
+                    {cafe.city ? ` · ${cafe.city}` : ''}
+                  </p>
 
-                {recommendedDrinks[cafe.drinksKey] && (
-                  <div className="bg-wash p-8 md:p-10 mb-10">
-                    <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
-                      Recomendados por erre
+                  <RentActions cafeId={cafe.id} cafeName={cafe.name} />
+
+                  <p className="text-muted text-sm mb-10">
+                    <Link to="/registrar" className="text-black no-underline hover:text-muted">
+                      ¿Otra cafetería?
+                    </Link>
+                  </p>
+
+                  {recommendedDrinks[cafe.drinksKey] && (
+                    <div className="bg-wash p-8 md:p-10 mb-10">
+                      <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
+                        Recomendados por erre
+                      </h2>
+                      <p className="text-muted text-sm md:text-base mb-8">
+                        Pídelas en vaso erre.
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                        {recommendedDrinks[cafe.drinksKey].map((drink) => (
+                          <div key={drink.title}>
+                            <h3 className="font-heading text-lg md:text-xl font-medium text-black mb-2">
+                              {drink.title}
+                            </h3>
+                            <p className="text-muted text-sm md:text-base leading-relaxed">
+                              {drink.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="border border-border p-8 md:p-10 mb-10">
+                    <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-8">
+                      ¿Cómo funciona?
                     </h2>
-                    <p className="text-muted text-sm md:text-base mb-8">
-                      Pídelas en vaso erre.
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                      {recommendedDrinks[cafe.drinksKey].map((drink) => (
-                        <div key={drink.title}>
-                          <h3 className="font-heading text-lg md:text-xl font-medium text-black mb-2">
-                            {drink.title}
+                    <div className="space-y-6 md:space-y-8">
+                      {[
+                        {
+                          number: '01',
+                          title: 'Pide',
+                          description:
+                            'Ordena tu bebida en un vaso erre y deja un pequeño depósito en la caja.',
+                        },
+                        {
+                          number: '02',
+                          title: 'Disfruta',
+                          description: 'Llévalo contigo. Es tuyo mientras lo necesites.',
+                        },
+                        {
+                          number: '03',
+                          title: 'Devuelve',
+                          description:
+                            'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
+                        },
+                      ].map((step) => (
+                        <div key={step.number}>
+                          <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
+                            {step.number}
+                          </span>
+                          <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
+                            {step.title}
                           </h3>
                           <p className="text-muted text-sm md:text-base leading-relaxed">
-                            {drink.description}
+                            {step.description}
                           </p>
                         </div>
                       ))}
                     </div>
                   </div>
-                )}
 
-                <div className="border border-border p-8 md:p-10 mb-10">
-                  <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-8">
-                    ¿Cómo funciona?
-                  </h2>
-                  <div className="space-y-6 md:space-y-8">
-                    {[
-                      {
-                        number: '01',
-                        title: 'Pide',
-                        description:
-                          'Ordena tu bebida en un vaso erre y deja un pequeño depósito en la caja.',
-                      },
-                      {
-                        number: '02',
-                        title: 'Disfruta',
-                        description: 'Llévalo contigo. Es tuyo mientras lo necesites.',
-                      },
-                      {
-                        number: '03',
-                        title: 'Devuelve',
-                        description:
-                          'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
-                      },
-                    ].map((step) => (
-                      <div key={step.number}>
-                        <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
-                          {step.number}
-                        </span>
-                        <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                          {step.title}
-                        </h3>
-                        <p className="text-muted text-sm md:text-base leading-relaxed">
-                          {step.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3">
-                  {cafe.mapsUrl && (
-                    <a
-                      href={cafe.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block text-center px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    {cafe.mapsUrl && (
+                      <a
+                        href={cafe.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block text-center px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                      >
+                        Abrir en Maps
+                      </a>
+                    )}
+                    <Link
+                      to="/#cafeterias"
+                      className="inline-block text-center px-8 py-3.5 border border-black text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
                     >
-                      Abrir en Maps
-                    </a>
-                  )}
-                  <Link
-                    to="/#cafeterias"
-                    className="inline-block text-center px-8 py-3.5 border border-black text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
-                  >
-                    Ver la red
-                  </Link>
-                </div>
-              </>
-            )}
-          </FadeIn>
+                      Ver la red
+                    </Link>
+                  </div>
+                </>
+              )}
+            </FadeIn>
+          )}
         </div>
       </main>
 
-      <Closing />
+      {loading || authLoading ? null : <Closing />}
       <Footer />
     </div>
   )

@@ -4,14 +4,25 @@ interface FadeInProps {
   children: ReactNode
   className?: string
   delay?: number
+  appear?: boolean
 }
 
-export default function FadeIn({ children, className = '', delay = 0 }: FadeInProps) {
+export default function FadeIn({
+  children,
+  className = '',
+  delay = 0,
+  appear = false,
+}: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
+    if (appear) {
+      const id = window.setTimeout(() => el.classList.add('visible'), delay)
+      return () => window.clearTimeout(id)
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -25,7 +36,7 @@ export default function FadeIn({ children, className = '', delay = 0 }: FadeInPr
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [delay])
+  }, [delay, appear])
 
   return (
     <div ref={ref} className={`fade-in ${className}`}>

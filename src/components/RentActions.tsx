@@ -6,7 +6,7 @@ import { rpcMessage } from '../lib/rpc'
 type Mode = 'rent' | 'return'
 
 export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafeName: string }) {
-  const { session, profile, signInWithGoogle, refreshProfile } = useAuth()
+  const { session, profile, loading, signInWithGoogle, refreshProfile } = useAuth()
   const [busy, setBusy] = useState<Mode | null>(null)
   const [message, setMessage] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -29,6 +29,8 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
         : `Listo, registramos tu devolución en ${cafeName}.`
     )
   }
+
+  if (loading) return null
 
   if (!session) {
     return (

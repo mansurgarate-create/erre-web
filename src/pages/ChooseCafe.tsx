@@ -70,54 +70,54 @@ export default function ChooseCafe() {
       <SiteHeader />
       <main className="px-6 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
-          <FadeIn>
-            <Link
-              to="/cuenta"
-              className="inline-block text-sm text-muted hover:text-black no-underline mb-8 transition-colors duration-300"
-            >
-              Atrás
-            </Link>
-            <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
-              Registrar vaso
-            </p>
-            <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
-              ¿En qué cafetería estás?
-            </h1>
-            <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-              Elige dónde estás para registrar tu vaso. El depósito se maneja en la cafetería; esto
-              solo guarda tu historial.
-            </p>
-          </FadeIn>
-
-          {loading ? (
-            <p className="text-muted text-base">Cargando…</p>
-          ) : failed ? (
-            <p className="text-muted text-base">
-              No pudimos cargar las cafeterías.{' '}
-              <Link to="/#cafeterias" className="text-black">
-                Ver el mapa
+          {!loading ? (
+            <FadeIn appear>
+              <Link
+                to="/cuenta"
+                className="inline-block text-sm text-muted hover:text-black no-underline mb-8 transition-colors duration-300"
+              >
+                Atrás
               </Link>
-              .
-            </p>
-          ) : (
-            <ul className="space-y-3">
-              {cafes.map((cafe) => (
-                <li key={cafe.nfc_tag_id}>
-                  <Link
-                    to={`/r/${slugFromTag(cafe.nfc_tag_id)}`}
-                    className="block border border-border p-6 md:p-8 no-underline hover:border-black transition-colors duration-300"
-                  >
-                    <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-1">
-                      {cafe.name}
-                    </h2>
-                    <p className="text-muted text-sm md:text-base">
-                      {coloniaFrom(cafe.address, cafe.city)}
-                    </p>
+              <p className="text-muted text-xs md:text-sm tracking-widest uppercase mb-4">
+                Registrar vaso
+              </p>
+              <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
+                ¿En qué cafetería estás?
+              </h1>
+              <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
+                Elige dónde estás para registrar tu vaso. El depósito se maneja en la cafetería; esto
+                solo guarda tu historial.
+              </p>
+
+              {failed ? (
+                <p className="text-muted text-base">
+                  No pudimos cargar las cafeterías.{' '}
+                  <Link to="/#cafeterias" className="text-black">
+                    Ver el mapa
                   </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+                  .
+                </p>
+              ) : (
+                <ul className="space-y-3">
+                  {cafes.map((cafe) => (
+                    <li key={cafe.nfc_tag_id}>
+                      <Link
+                        to={`/r/${slugFromTag(cafe.nfc_tag_id)}`}
+                        className="block border border-border p-6 md:p-8 no-underline hover:border-black transition-colors duration-300"
+                      >
+                        <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-1">
+                          {cafe.name}
+                        </h2>
+                        <p className="text-muted text-sm md:text-base">
+                          {coloniaFrom(cafe.address, cafe.city)}
+                        </p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </FadeIn>
+          ) : null}
         </div>
       </main>
       <Footer />
