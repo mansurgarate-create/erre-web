@@ -16,7 +16,7 @@ export default function NotFound() {
           </p>
           <Link
             to="/"
-            className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+            className="erre-btn"
           >
             Ir al inicio
           </Link>

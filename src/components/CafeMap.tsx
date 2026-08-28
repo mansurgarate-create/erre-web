@@ -113,7 +113,7 @@ export default function CafeMap() {
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <h2 className="font-heading text-3xl md:text-5xl font-medium text-black text-center mb-12 md:mb-16">
-            Encuentra un café
+            La red erre
           </h2>
         </FadeIn>
 
@@ -171,7 +171,7 @@ export default function CafeMap() {
                             href={cafe.mapsUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="erre-popup-cta inline-block text-xs bg-black px-3 py-1.5 no-underline hover:bg-black/80 transition-colors duration-300"
+                            className="erre-popup-cta erre-btn erre-btn-sm"
                           >
                             Abrir en Maps
                           </a>

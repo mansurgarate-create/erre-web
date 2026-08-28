@@ -111,7 +111,7 @@ export default function QrPrint() {
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="mb-14 px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide hover:bg-black hover:text-white transition-colors duration-300 cursor-pointer"
+                className="erre-btn mb-14"
               >
                 Imprimir
               </button>

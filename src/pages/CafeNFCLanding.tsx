@@ -187,11 +187,8 @@ export default function CafeNFCLanding() {
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
                     Este punto erre aún no está activo.
                   </p>
-                  <Link
-                    to="/#cafeterias"
-                    className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
-                  >
-                    Ver cafeterías
+                  <Link to="/#cafeterias" className="erre-btn">
+                    Ver la red erre
                   </Link>
                 </>
               ) : notFound || !cafe ? (
@@ -202,11 +199,8 @@ export default function CafeNFCLanding() {
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
                     No encontramos esta cafetería. Revisa el mapa de la red erre.
                   </p>
-                  <Link
-                    to="/#cafeterias"
-                    className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
-                  >
-                    Ver cafeterías
+                  <Link to="/#cafeterias" className="erre-btn">
+                    Ver la red erre
                   </Link>
                 </>
               ) : (
@@ -285,16 +279,16 @@ export default function CafeNFCLanding() {
                         href={cafe.mapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block text-center px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+                        className="erre-btn text-center"
                       >
                         Abrir en Maps
                       </a>
                     )}
                     <Link
                       to="/#cafeterias"
-                      className="inline-block text-center px-8 py-3.5 border border-black text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
+                      className="erre-btn text-center"
                     >
-                      Ver la red
+                      Ver la red erre
                     </Link>
                   </div>
                 </>

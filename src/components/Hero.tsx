@@ -18,13 +18,9 @@ export default function Hero() {
       </FadeIn>
 
       <FadeIn delay={400}>
-        <a
-          href="#cafeterias"
-          className="mt-10 md:mt-12 inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
-        >
-          Encuentra un café
+        <a href="#cafeterias" className="erre-btn mt-10 md:mt-12">
+          Ver la red erre
         </a>
-
       </FadeIn>
     </section>
   )

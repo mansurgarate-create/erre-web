@@ -50,7 +50,7 @@ export default function AuthCallback() {
               <button
                 type="button"
                 onClick={() => navigate('/', { replace: true })}
-                className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer"
+                className="erre-btn"
               >
                 Volver
               </button>

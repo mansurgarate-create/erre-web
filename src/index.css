@@ -62,6 +62,10 @@ body {
 }
 
 .leaflet-popup-content a.erre-popup-cta {
+  color: var(--color-black) !important;
+}
+
+.leaflet-popup-content a.erre-popup-cta:hover {
   color: var(--color-white) !important;
 }
 
@@ -90,6 +94,38 @@ body {
 
 .leaflet-control-attribution a {
   color: var(--color-muted) !important;
+}
+
+.erre-btn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  border: 1px solid var(--color-black);
+  background: transparent;
+  color: var(--color-black);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.erre-btn:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.erre-btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.erre-btn-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .erre-pin {

@@ -131,7 +131,7 @@ export default function Account() {
                     <button
                       type="button"
                       onClick={() => void signInWithGoogle('/cuenta')}
-                      className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer hover:bg-black/85 transition-colors duration-300 inline-flex items-center gap-3"
+                      className="erre-btn erre-btn-row"
                     >
                       <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden>
                         <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -144,7 +144,7 @@ export default function Account() {
                     <button
                       type="button"
                       onClick={() => void signInWithApple('/cuenta')}
-                      className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300 inline-flex items-center gap-3"
+                      className="erre-btn erre-btn-row"
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                         <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
