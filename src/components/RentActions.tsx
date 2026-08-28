@@ -33,17 +33,6 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
         : `Listo, registramos tu devolución en ${cafeName}.`
     )
   }
-    if (rpcError) {
-      setError(rpcMessage(rpcError))
-      return
-    }
-    await refreshProfile()
-    setMessage(
-      mode === 'rent'
-        ? `Listo, registramos tu renta en ${cafeName}.`
-        : `Listo, registramos tu devolución en ${cafeName}.`
-    )
-  }
 
   if (loading) return null
 
