@@ -17,8 +17,22 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
     setMessage(null)
     setError(null)
     const rpc = mode === 'rent' ? 'rent_cup_for_me' : 'return_cup_for_me'
-    const { error: rpcError } = await supabase.rpc(rpc, { p_cafe_id: cafeId })
+    const [{ error: rpcError }] = await Promise.all([
+      supabase.rpc(rpc, { p_cafe_id: cafeId }),
+      new Promise((resolve) => window.setTimeout(resolve, 1200)),
+    ])
     setBusy(null)
+    if (rpcError) {
+      setError(rpcMessage(rpcError))
+      return
+    }
+    await refreshProfile()
+    setMessage(
+      mode === 'rent'
+        ? `Listo, registramos tu renta en ${cafeName}.`
+        : `Listo, registramos tu devolución en ${cafeName}.`
+    )
+  }
     if (rpcError) {
       setError(rpcMessage(rpcError))
       return
