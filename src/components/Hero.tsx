@@ -18,20 +18,12 @@ export default function Hero() {
       </FadeIn>
 
       <FadeIn delay={400}>
-        <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4">
-          <a
-            href="#cafeterias"
-            className="inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
-          >
-            Encuentra un café
-          </a>
-          <a
-            href="#como-funciona"
-            className="inline-block px-8 py-3.5 border border-black text-black text-sm font-medium tracking-wide no-underline hover:bg-black hover:text-white transition-colors duration-300"
-          >
-            Cómo funciona
-          </a>
-        </div>
+        <a
+          href="#cafeterias"
+          className="mt-10 md:mt-12 inline-block px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide no-underline hover:bg-black/85 transition-colors duration-300"
+        >
+          Encuentra un café
+        </a>
 
       </FadeIn>
     </section>
