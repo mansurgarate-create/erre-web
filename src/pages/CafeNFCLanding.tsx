@@ -15,6 +15,7 @@ interface CafeInfo {
   hours: string
   mapsUrl: string | null
   city: string
+  instagram: string | null
   drinksKey: string
 }
 
@@ -26,6 +27,7 @@ type CafeRow = {
   maps_url: string | null
   city: string
   nfc_tag_id: string
+  instagram: string | null
 }
 
 function toCafeInfo(data: CafeRow): CafeInfo {
@@ -36,6 +38,7 @@ function toCafeInfo(data: CafeRow): CafeInfo {
     hours: data.hours,
     mapsUrl: data.maps_url,
     city: data.city,
+    instagram: data.instagram,
     drinksKey: data.nfc_tag_id.replace(/^erre:/, ''),
   }
 }
@@ -46,7 +49,7 @@ type LoadResult =
   | { status: 'missing' }
 
 async function loadBySlug(slug: string): Promise<LoadResult> {
-  const cafeSelect = 'id, name, address, hours, maps_url, city, nfc_tag_id'
+  const cafeSelect = 'id, name, address, hours, maps_url, city, nfc_tag_id, instagram'
 
   const { data: entry, error: entryError } = await supabase
     .from('entry_codes')
@@ -216,10 +219,20 @@ export default function CafeNFCLanding() {
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-2">
                     {cafe.address}
                   </p>
-                  <p className="text-muted text-sm md:text-base mb-10">
+                  <p className={`text-muted text-sm md:text-base ${cafe.instagram ? 'mb-2' : 'mb-10'}`}>
                     {cafe.hours}
                     {cafe.city ? ` · ${cafe.city}` : ''}
                   </p>
+                  {cafe.instagram ? (
+                    <a
+                      href={`https://instagram.com/${cafe.instagram}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted text-sm md:text-base mb-10 inline-block no-underline hover:text-black transition-colors duration-300"
+                    >
+                      @{cafe.instagram}
+                    </a>
+                  ) : null}
 
                   <RentActions cafeId={cafe.id} cafeName={cafe.name} />
 
