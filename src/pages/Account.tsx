@@ -182,26 +182,28 @@ export default function Account() {
                     <p className="text-muted text-sm md:text-base">Aún no hay rentas registradas.</p>
                   ) : (
                     <>
-                      <ul
-                        className="divide-y divide-border border-t border-border"
-                        style={{ minHeight: `calc(${PAGE_SIZE} * 4.75rem)` }}
-                      >
-                        {visibleTx.map((tx) => (
-                          <li key={tx.id} className="min-h-[4.75rem] py-4 flex items-center gap-4">
-                            <TxArrow type={tx.type} />
-                            <div className="min-w-0 flex-1">
-                              <p className="text-black text-sm md:text-base font-medium">
-                                {tx.type === 'rent' ? 'Rentado' : 'Devuelto'}
-                              </p>
-                              <p className="text-muted text-xs md:text-sm truncate">{tx.cafe_name}</p>
-                            </div>
-                            <div className="text-right shrink-0">
-                              <p className="text-muted text-xs">{formatDate(tx.created_at)}</p>
-                              <p className="text-muted text-xs">{formatTime(tx.created_at)}</p>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
+                      <FadeIn appear key={currentPage}>
+                        <ul
+                          className="divide-y divide-border border-t border-border"
+                          style={{ minHeight: `calc(${PAGE_SIZE} * 4.75rem)` }}
+                        >
+                          {visibleTx.map((tx) => (
+                            <li key={tx.id} className="min-h-[4.75rem] py-4 flex items-center gap-4">
+                              <TxArrow type={tx.type} />
+                              <div className="min-w-0 flex-1">
+                                <p className="text-black text-sm md:text-base font-medium">
+                                  {tx.type === 'rent' ? 'Rentado' : 'Devuelto'}
+                                </p>
+                                <p className="text-muted text-xs md:text-sm truncate">{tx.cafe_name}</p>
+                              </div>
+                              <div className="text-right shrink-0">
+                                <p className="text-muted text-xs">{formatDate(tx.created_at)}</p>
+                                <p className="text-muted text-xs">{formatTime(tx.created_at)}</p>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </FadeIn>
                       {transactions.length > PAGE_SIZE && (
                         <div className="flex items-center justify-between gap-4 mt-6">
                           <button

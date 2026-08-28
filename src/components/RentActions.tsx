@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
 import { rpcMessage } from '../lib/rpc'
+import FadeIn from './ui/FadeIn'
 
 type Mode = 'rent' | 'return'
 
@@ -49,21 +50,40 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
         >
           Continuar con Google
         </button>
-        {error && <p className="text-muted text-sm mt-4">{error}</p>}
+        {error ? (
+          <FadeIn appear key={error}>
+            <p className="text-muted text-sm mt-4">{error}</p>
+          </FadeIn>
+        ) : null}
       </div>
     )
   }
+
+  const statusKey = busy ? `busy-${busy}` : message ? `ok-${message}` : error ? `err-${error}` : null
+  const status = busy ? (
+    <p className="text-muted text-sm md:text-base mt-6">Registrando…</p>
+  ) : message ? (
+    <p className="text-black text-sm md:text-base mt-6">{message}</p>
+  ) : error ? (
+    <p className="text-muted text-sm md:text-base mt-6">{error}</p>
+  ) : null
 
   return (
     <div className="border border-black p-8 md:p-10 mb-10">
       <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
         Registrar vaso
       </h2>
-      <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
-        {profile
-          ? `Tienes ${profile.cups_in_hand} ${profile.cups_in_hand === 1 ? 'vaso' : 'vasos'} en mano.`
-          : 'El depósito se maneja en la cafetería. Esto solo guarda tu historial.'}
-      </p>
+      {profile ? (
+        <FadeIn appear key={profile.cups_in_hand}>
+          <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
+            Tienes {profile.cups_in_hand} {profile.cups_in_hand === 1 ? 'vaso' : 'vasos'} en mano.
+          </p>
+        </FadeIn>
+      ) : (
+        <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
+          El depósito se maneja en la cafetería. Esto solo guarda tu historial.
+        </p>
+      )}
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           type="button"
@@ -71,7 +91,7 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
           onClick={() => void run('rent')}
           className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-50"
         >
-          {busy === 'rent' ? 'Registrando…' : 'Rentar'}
+          Rentar
         </button>
         <button
           type="button"
@@ -79,11 +99,14 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
           onClick={() => void run('return')}
           className="px-8 py-3.5 border border-black bg-transparent text-black text-sm font-medium tracking-wide cursor-pointer hover:bg-black hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-default disabled:hover:bg-transparent disabled:hover:text-black"
         >
-          {busy === 'return' ? 'Registrando…' : 'Devolver'}
+          Devolver
         </button>
       </div>
-      {message && <p className="text-black text-sm md:text-base mt-6">{message}</p>}
-      {error && <p className="text-muted text-sm md:text-base mt-6">{error}</p>}
+      {statusKey && status ? (
+        <FadeIn appear key={statusKey}>
+          {status}
+        </FadeIn>
+      ) : null}
     </div>
   )
 }

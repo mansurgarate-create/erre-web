@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { consumeAuthNext } from '../lib/auth'
+import FadeIn from '../components/ui/FadeIn'
 
 export default function AuthCallback() {
   const navigate = useNavigate()
@@ -39,23 +40,25 @@ export default function AuthCallback() {
     <div className="min-h-screen bg-white flex items-center justify-center px-6">
       <div className="text-center max-w-md">
         <p className="font-heading text-2xl text-black mb-4">erre</p>
-        {stuck ? (
-          <>
-            <p className="text-muted text-base leading-relaxed mb-8">
-              No se completó el inicio de sesión. Revisa que Google esté activo en Supabase y que
-              esta URL esté en Redirect URLs.
-            </p>
-            <button
-              type="button"
-              onClick={() => navigate('/', { replace: true })}
-              className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer"
-            >
-              Volver
-            </button>
-          </>
-        ) : (
-          <p className="text-muted text-base">Entrando…</p>
-        )}
+        <FadeIn appear key={stuck ? 'stuck' : 'entering'}>
+          {stuck ? (
+            <>
+              <p className="text-muted text-base leading-relaxed mb-8">
+                No se completó el inicio de sesión. Revisa que Google esté activo en Supabase y que
+                esta URL esté en Redirect URLs.
+              </p>
+              <button
+                type="button"
+                onClick={() => navigate('/', { replace: true })}
+                className="px-8 py-3.5 bg-black text-white text-sm font-medium tracking-wide border-none cursor-pointer"
+              >
+                Volver
+              </button>
+            </>
+          ) : (
+            <p className="text-muted text-base">Entrando…</p>
+          )}
+        </FadeIn>
       </div>
     </div>
   )
