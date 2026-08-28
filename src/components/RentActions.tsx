@@ -105,7 +105,7 @@ export default function RentActions({ cafeId, cafeName }: { cafeId: string; cafe
         style={{ gridTemplateRows: expanded ? '1fr' : '0fr' }}
       >
         <div className="min-h-0 overflow-hidden">
-          <div className="mt-6 min-h-[5rem]">
+          <div className="mt-6">
             {statusKey && status ? (
               <FadeIn appear opacity key={statusKey}>
                 {status}
