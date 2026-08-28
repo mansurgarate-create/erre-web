@@ -36,9 +36,9 @@ const OSM_TILES = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 const pinIcon = L.divIcon({
   className: 'erre-pin',
   html: '<span></span>',
-  iconSize: [12, 12],
-  iconAnchor: [6, 6],
-  popupAnchor: [0, -10],
+  iconSize: [19, 19],
+  iconAnchor: [10, 10],
+  popupAnchor: [0, -12],
 })
 
 function slugFromTag(nfcTagId: string | null) {
