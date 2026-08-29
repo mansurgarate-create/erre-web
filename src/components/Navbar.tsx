@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
+import { firstName } from '../lib/firstName'
 
 const accountLinkClass =
   'text-sm text-muted hover:text-black transition-all duration-300 no-underline truncate max-w-[40vw]'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const { session, loading } = useAuth()
-  const accountLabel = session ? 'Cuenta' : 'Entrar'
+  const { session, profile, loading } = useAuth()
+  const accountLabel = session ? firstName(profile?.name, profile?.email) : 'Entrar'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)

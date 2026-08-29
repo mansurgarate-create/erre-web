@@ -1,12 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
+import { firstName } from '../lib/firstName'
 
 export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: string }) {
-  const { session } = useAuth()
+  const { session, profile } = useAuth()
   const { pathname } = useLocation()
 
   const onAccount = pathname === '/cuenta'
-  const label = !session ? 'Entrar' : 'Cuenta'
+  const label = !session ? 'Entrar' : firstName(profile?.name, profile?.email)
 
   return (
     <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
