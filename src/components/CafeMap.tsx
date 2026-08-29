@@ -158,8 +158,8 @@ export default function CafeMap() {
           </h2>
         </FadeIn>
 
-        <FadeIn delay={150}>
-          <div className="mb-8 relative z-[1000]" ref={searchRef}>
+        <FadeIn delay={150} className="relative z-[1000]">
+          <div className="mb-8 relative" ref={searchRef}>
             <input
               type="text"
               placeholder="Buscar cafetería..."
