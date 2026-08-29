@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import L, { LatLngBounds } from 'leaflet'
@@ -60,9 +60,34 @@ function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
   return null
 }
 
+function FlyToSelected({
+  cafe,
+  markerRefs,
+}: {
+  cafe: Cafe | null
+  markerRefs: React.RefObject<Map<string, L.Marker>>
+}) {
+  const map = useMap()
+
+  useEffect(() => {
+    if (!cafe) return
+    map.flyTo([cafe.lat, cafe.lng], 17, { duration: 0.8 })
+    const marker = markerRefs.current?.get(cafe.name)
+    if (marker) {
+      setTimeout(() => marker.openPopup(), 500)
+    }
+  }, [cafe, map, markerRefs])
+
+  return null
+}
+
 export default function CafeMap() {
   const [cafes, setCafes] = useState<Cafe[]>([])
   const [search, setSearch] = useState('')
+  const [showDropdown, setShowDropdown] = useState(false)
+  const [selected, setSelected] = useState<Cafe | null>(null)
+  const searchRef = useRef<HTMLDivElement>(null)
+  const markerRefs = useRef<Map<string, L.Marker>>(new Map())
   const { resolved } = useTheme()
   const dark = resolved === 'dark'
 
@@ -103,10 +128,26 @@ export default function CafeMap() {
     void fetchCafes()
   }, [])
 
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setShowDropdown(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
   const filtered = useMemo(
     () => cafes.filter((c) => c.name.toLowerCase().includes(search.toLowerCase())),
     [cafes, search]
   )
+
+  function handleSelect(cafe: Cafe) {
+    setSelected(cafe)
+    setSearch('')
+    setShowDropdown(false)
+  }
 
   return (
     <section id="cafeterias" className="px-6 py-24 md:py-32">
@@ -118,14 +159,35 @@ export default function CafeMap() {
         </FadeIn>
 
         <FadeIn delay={150}>
-          <div className="mb-8">
+          <div className="mb-8 relative z-[1000]" ref={searchRef}>
             <input
               type="text"
               placeholder="Buscar cafetería..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                setSearch(e.target.value)
+                setShowDropdown(true)
+                setSelected(null)
+              }}
+              onFocus={() => { if (search) setShowDropdown(true) }}
               className="w-full px-4 py-3 border border-border text-sm font-sans text-black placeholder:text-muted focus:outline-none focus:border-black transition-colors duration-300"
             />
+            {showDropdown && search.length > 0 && filtered.length > 0 && (
+              <ul className="absolute left-0 right-0 top-full z-50 bg-white border border-border border-t-0 max-h-60 overflow-y-auto shadow-sm"
+                style={{ background: 'var(--color-wash, #fff)' }}
+              >
+                {filtered.map((cafe) => (
+                  <li
+                    key={cafe.name}
+                    onClick={() => handleSelect(cafe)}
+                    className="px-4 py-3 cursor-pointer hover:bg-black/5 transition-colors duration-150"
+                  >
+                    <p className="text-sm font-medium text-black m-0">{cafe.name}</p>
+                    <p className="text-xs text-muted m-0">{cafe.address}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </FadeIn>
 
@@ -145,9 +207,17 @@ export default function CafeMap() {
                 tileSize={256}
                 maxZoom={20}
               />
-              <FitMapBounds cafes={filtered} />
-              {filtered.map((cafe) => (
-                <Marker key={cafe.name} position={[cafe.lat, cafe.lng]} icon={pinIcon}>
+              <FitMapBounds cafes={cafes} />
+              <FlyToSelected cafe={selected} markerRefs={markerRefs} />
+              {cafes.map((cafe) => (
+                <Marker
+                  key={cafe.name}
+                  position={[cafe.lat, cafe.lng]}
+                  icon={pinIcon}
+                  ref={(ref) => {
+                    if (ref) markerRefs.current.set(cafe.name, ref)
+                  }}
+                >
                   <Popup>
                     <div className="erre-popup">
                       <h3 className="font-heading text-base font-medium text-black m-0 mb-1">
@@ -193,7 +263,7 @@ export default function CafeMap() {
           </div>
         </FadeIn>
 
-        {filtered.length === 0 && (
+        {cafes.length === 0 && (
           <p className="text-muted text-sm text-center mt-6">
             No se encontraron cafeterías.
           </p>
