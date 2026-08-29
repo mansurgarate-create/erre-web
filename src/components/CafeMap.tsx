@@ -169,11 +169,11 @@ export default function CafeMap() {
                 setShowDropdown(true)
                 setSelected(null)
               }}
-              onFocus={() => { if (search) setShowDropdown(true) }}
+              onFocus={() => setShowDropdown(true)}
               className="w-full px-4 py-3 border border-border text-sm font-sans text-black placeholder:text-muted focus:outline-none focus:border-black transition-colors duration-300"
             />
-            {showDropdown && search.length > 0 && filtered.length > 0 && (
-              <ul className="absolute left-0 right-0 top-full z-50 bg-white border border-border border-t-0 max-h-60 overflow-y-auto shadow-sm"
+            {showDropdown && filtered.length > 0 && (
+              <ul className="absolute left-0 right-0 top-full z-50 bg-white border border-border border-t-0 max-h-60 overflow-y-auto shadow-md"
                 style={{ background: 'var(--color-wash, #fff)' }}
               >
                 {filtered.map((cafe) => (
