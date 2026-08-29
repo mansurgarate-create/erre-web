@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>erre — para cafeterías</title>
+  <meta name="description" content="Únete a la red de vasos reutilizables en Monterrey. Sin costo para tu cafetería.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000;
+      --white: #FAFAF8;
+      --muted: #5c5c5c;
+      --border: #e5e5e5;
+      --wash: #ECEAE6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .page {
+      padding: 48px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .logo {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .tagline {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 48ch;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .benefit-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .benefit-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: var(--white);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .benefit-text h3 {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .benefit-text p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .split-col h2 {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .split-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .split-col li {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .split-col li::before {
+      position: absolute;
+      left: 0;
+      font-size: 11px;
+    }
+
+    .col-us li::before {
+      content: "→";
+      color: var(--black);
+    }
+
+    .col-you li::before {
+      content: "·";
+      color: var(--muted);
+      font-size: 16px;
+      top: -1px;
+    }
+
+    .how {
+      background: var(--wash);
+      margin: 0 -36px;
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .how h2 {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .step-num {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+    }
+
+    .step-title {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .step-desc {
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .cta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+      padding: 20px 0 0;
+    }
+
+    .cta-line {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-sub {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .cta-contact {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 13px;
+    }
+
+    .cta-contact a {
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .cta-contact span {
+      color: var(--muted);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--border);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 36px 24px; gap: 32px; }
+      .hero h1 { font-size: 24px; }
+      .split { grid-template-columns: 1fr; gap: 20px; }
+      .steps { grid-template-columns: 1fr; gap: 12px; }
+      .how { margin: 0 -24px; padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="logo">erre</div>
+      <div class="tagline">Red de vasos reutilizables</div>
+    </div>
+
+    <div class="hero">
+      <h1>Tu cafetería, parte de algo más grande.</h1>
+      <p>erre es una red de vasos reutilizables que conecta cafeterías en Monterrey. Tus clientes piden su bebida en vaso erre, lo llevan, y lo devuelven en cualquier café de la red. Sin desechables, sin complicaciones.</p>
+    </div>
+
+    <hr>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="benefit-text">
+          <h3>Sin costo para tu cafetería</h3>
+          <p>erre provee los vasos, la app y el sistema de depósitos. Tú no pagas nada por unirte a la red.</p>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+        </div>
+        <div class="benefit-text">
+          <h3>Visibilidad en la red</h3>
+          <p>Tu cafetería aparece en holaerre.com y en la app con mapa, horarios, dirección e Instagram. Cada vaso que circula lleva gente nueva a tu puerta.</p>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+        </div>
+        <div class="benefit-text">
+          <h3>Compromiso ambiental real</h3>
+          <p>No es un sticker ni un hashtag. Es una acción concreta que tus clientes ven y valoran cada vez que piden su café.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="split">
+      <div class="split-col col-us">
+        <h2>erre pone</h2>
+        <ul>
+          <li>Los vasos reutilizables</li>
+          <li>El sistema de depósitos ($30 MXN)</li>
+          <li>La app y la tecnología</li>
+          <li>Tu perfil en holaerre.com</li>
+          <li>Material de punto de venta</li>
+        </ul>
+      </div>
+      <div class="split-col col-you">
+        <h2>Tu cafetería</h2>
+        <ul>
+          <li>Ofrece el vaso erre al cliente</li>
+          <li>Cobra y devuelve el depósito</li>
+          <li>Lava los vasos devueltos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="how">
+      <h2>Cómo funciona para el cliente</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Pide</div>
+          <div class="step-desc">Ordena su bebida en vaso erre. Deja $30 de depósito.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Disfruta</div>
+          <div class="step-desc">Se lo lleva. Es suyo mientras lo necesite.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Devuelve</div>
+          <div class="step-desc">Lo regresa en cualquier café de la red y recupera su depósito.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="cta-line">Únete a la red.</div>
+      <div class="cta-sub">3 cafeterías ya son parte. Sin contratos, sin costos fijos.</div>
+      <div class="cta-contact">
+        <a href="mailto:hola@holaerre.com">hola@holaerre.com</a>
+        <span>holaerre.com · @erreparallevar</span>
+      </div>
+    </div>
+
+    <div class="footer">de mano en mano</div>
+  </div>
+</body>
+</html>
