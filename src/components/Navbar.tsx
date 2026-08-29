@@ -9,7 +9,7 @@ const accountLinkClass =
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const { session, profile, loading } = useAuth()
-  const accountLabel = session ? firstName(profile?.name, profile?.email) : 'Entrar'
+  const accountLabel = session ? firstName(profile?.name, profile?.email) : 'Inicia sesión'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
