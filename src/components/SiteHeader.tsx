@@ -7,7 +7,7 @@ export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: stri
   const { pathname } = useLocation()
 
   const onAccount = pathname === '/cuenta'
-  const label = !session ? 'Inicia sesión' : firstName(profile?.name, profile?.email)
+  const label = !session ? 'Iniciar sesión' : firstName(profile?.name, profile?.email)
 
   return (
     <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
