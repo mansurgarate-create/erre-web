@@ -6,7 +6,7 @@ export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: stri
   const { session, profile } = useAuth()
   const { pathname } = useLocation()
 
-  const onAccount = pathname === '/cuenta'
+  const hideAccountLink = pathname === '/cuenta' || pathname === '/privacidad' || pathname === '/cuidado'
   const label = !session ? 'Iniciar sesión' : firstName(profile?.name, profile?.email)
 
   return (
@@ -18,7 +18,7 @@ export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: stri
         >
           erre
         </Link>
-        {onAccount ? null : (
+        {hideAccountLink ? null : (
           <Link
             to="/cuenta"
             className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline truncate max-w-[40vw]"

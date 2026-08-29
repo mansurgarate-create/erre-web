@@ -18,12 +18,6 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
           <Link
-            to="/cuenta"
-            className="text-muted hover:text-black transition-colors duration-300 no-underline text-sm"
-          >
-            Cuenta
-          </Link>
-          <Link
             to="/cuidado"
             className="text-muted hover:text-black transition-colors duration-300 no-underline text-sm"
           >
