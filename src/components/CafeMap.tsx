@@ -170,7 +170,7 @@ export default function CafeMap() {
                 setSelected(null)
               }}
               onFocus={() => setShowDropdown(true)}
-              className="w-full px-4 py-3 border border-border text-sm font-sans text-black placeholder:text-muted focus:outline-none focus:border-black transition-colors duration-300"
+              className="w-full px-4 py-3 border border-border text-base font-sans text-black placeholder:text-muted focus:outline-none focus:border-black transition-colors duration-300"
             />
             {showDropdown && filtered.length > 0 && (
               <ul className="absolute left-0 right-0 top-full z-50 bg-white border border-border border-t-0 max-h-60 overflow-y-auto shadow-md"
