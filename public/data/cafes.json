@@ -25,5 +25,27 @@
     "lng": -100.294131,
     "mapsUrl": "https://maps.app.goo.gl/HfB2VzuSg99KxCpS8",
     "hours": "Lun–Vie 7:30–21:00 · Sáb–Dom 10:00–18:00"
+  },
+  {
+    "name": "Mood Coffee Localital",
+    "city": "San Pedro",
+    "address": "Av. José Vasconcelos 404, Localital, San Pedro Garza García, N.L.",
+    "lat": 25.661372,
+    "lng": -100.400773,
+    "mapsUrl": "https://maps.app.goo.gl/pBgC1V7cYfPVbVPZA",
+    "hours": "Lun–Dom 8:00–21:00",
+    "slug": "mood-localital",
+    "instagram": "moodcoffeemx"
+  },
+  {
+    "name": "Mood Coffee Nuevo Sur Pico Norte",
+    "city": "Monterrey",
+    "address": "Av. Revolución 2703, Pico Norte, Nuevo Sur, Monterrey, N.L.",
+    "lat": 25.652958,
+    "lng": -100.274724,
+    "mapsUrl": "https://maps.app.goo.gl/ciF9CokVcR3RMwgt9",
+    "hours": "Lun–Vie 7:30–20:00 · Sáb–Dom 10:30–19:30",
+    "slug": "mood-nuevo-sur",
+    "instagram": "moodcoffeemx"
   }
 ]
