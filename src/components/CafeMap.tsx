@@ -246,7 +246,7 @@ export default function CafeMap() {
               <div className="flex flex-wrap items-center gap-3">
                 {selected.slug ? (
                   <Link to={`/r/${selected.slug}`} className="erre-btn erre-btn-sm">
-                    Punto erre
+                    punto erre
                   </Link>
                 ) : null}
                 {selected.mapsUrl ? (

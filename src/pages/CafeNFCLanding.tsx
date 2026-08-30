@@ -255,7 +255,7 @@ export default function CafeNFCLanding() {
               {inactive ? (
                 <div className="px-6">
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
-                    Punto erre
+                    punto erre
                   </h1>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
                     Este punto erre aún no está activo.
@@ -267,7 +267,7 @@ export default function CafeNFCLanding() {
               ) : notFound || !cafe ? (
                 <div className="px-6">
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
-                    Punto erre
+                    punto erre
                   </h1>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
                     No encontramos esta cafetería. Revisa el mapa de la red erre.
