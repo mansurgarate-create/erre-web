@@ -3,16 +3,16 @@ export const rentSteps = [
     number: '01',
     title: 'Pide',
     description:
-      'Ordena tu bebida en un vaso erre. Dejas un pequeño depósito que recuperas al devolverlo.',
+      'Ordena tu bebida en vaso erre. El depósito es de $30 y lo recuperas completo.',
   },
   {
     number: '02',
     title: 'Disfruta',
-    description: 'Llévalo contigo. Es tuyo mientras lo necesites.',
+    description: 'Disfruta tu bebida a donde vayas. Sin prisa, sin fecha límite.',
   },
   {
     number: '03',
     title: 'Devuelve',
-    description: 'Regresa el vaso en cualquier cafetería de la red y recupera tu depósito.',
+    description: 'Regresa el vaso en cualquier cafetería de la red y recupera tus $30.',
   },
 ]
