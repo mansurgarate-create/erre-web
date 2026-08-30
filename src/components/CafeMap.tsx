@@ -215,21 +215,21 @@ export default function CafeMap() {
             </MapContainer>
           </div>
           {selected && (
-            <div className="mt-4 rounded-2xl bg-wash p-5 md:p-6">
-              <div className="flex items-center gap-3 mb-1">
+            <div className="mt-4 rounded-2xl bg-wash p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-3">
                 {selected.logoUrl ? (
                   <img
                     src={selected.logoUrl}
                     alt=""
-                    className="w-10 h-10 rounded-full object-cover shrink-0"
+                    className="w-11 h-11 rounded-full object-cover shrink-0"
                   />
                 ) : null}
-                <h3 className="font-heading text-base font-medium text-black m-0">
+                <h3 className="font-heading text-lg font-medium text-black m-0">
                   {selected.name}
                 </h3>
               </div>
-              <p className="text-xs text-muted m-0 mb-1">{selected.address}</p>
-              <p className={`text-xs text-muted m-0 ${selected.instagram ? 'mb-2' : 'mb-4'}`}>
+              <p className="text-sm text-muted m-0 mb-1">{selected.address}</p>
+              <p className={`text-sm text-muted m-0 ${selected.instagram ? 'mb-2' : 'mb-5'}`}>
                 {selected.hours}
                 {selected.city ? ` · ${selected.city}` : ''}
               </p>
@@ -238,7 +238,7 @@ export default function CafeMap() {
                   href={`https://instagram.com/${selected.instagram}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-xs text-muted no-underline mb-4 hover:text-black"
+                  className="block text-sm text-muted no-underline mb-5 hover:text-black transition-colors duration-300"
                 >
                   @{selected.instagram}
                 </a>
@@ -254,7 +254,7 @@ export default function CafeMap() {
                     href={selected.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-muted no-underline hover:text-black transition-colors duration-300"
+                    className="text-sm text-muted no-underline hover:text-black transition-colors duration-300"
                   >
                     Abrir en Maps
                   </a>
