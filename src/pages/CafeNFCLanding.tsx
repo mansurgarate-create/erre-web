@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
+import Closing from '../components/Closing'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import PageLoading from '../components/ui/PageLoading'
+import { rentSteps } from '../lib/rentSteps'
 import { supabase } from '../lib/supabase'
 
 interface RecommendedItem {
@@ -342,6 +344,30 @@ export default function CafeNFCLanding() {
                     </div>
                   </div>
 
+                  {/* How it works */}
+                  <div className="px-6 md:px-10">
+                    <div className="border border-border p-8 md:p-10">
+                      <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-8">
+                        ¿Cómo funciona?
+                      </h2>
+                      <div className="space-y-6 md:space-y-8">
+                        {rentSteps.map((step) => (
+                          <div key={step.number}>
+                            <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
+                              {step.number}
+                            </span>
+                            <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
+                              {step.title}
+                            </h3>
+                            <p className="text-muted text-sm md:text-base leading-relaxed">
+                              {step.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Actions */}
                   <div className="px-6 md:px-10 flex flex-col sm:flex-row gap-3">
                     {cafe.mapsUrl && (
@@ -378,6 +404,7 @@ export default function CafeNFCLanding() {
         </div>
       </main>
 
+      {loading ? null : <Closing />}
       <Footer />
     </div>
   )
