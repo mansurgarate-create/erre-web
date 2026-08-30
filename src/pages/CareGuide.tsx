@@ -73,7 +73,7 @@ export default function CareGuide() {
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             {washSteps.map((step, i) => (
               <FadeIn key={step.number} delay={150 + i * 100}>
-                <div className="border border-border p-8 md:p-10 hover:border-black transition-colors duration-500">
+                <div className="rounded-2xl bg-wash p-8 md:p-10">
                   <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-4">
                     {step.number}
                   </span>
@@ -107,7 +107,7 @@ export default function CareGuide() {
 
           {/* Lavavajillas */}
           <FadeIn delay={275}>
-            <div className="border border-border p-8 md:p-10 mb-16 md:mb-20">
+            <div className="rounded-2xl bg-wash p-8 md:p-10 mb-16 md:mb-20">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
                 ¿Se puede meter al lavavajillas?
               </h2>
@@ -119,13 +119,13 @@ export default function CareGuide() {
 
           {/* Evitar */}
           <FadeIn delay={300}>
-            <div className="border-2 border-black p-8 md:p-10 mb-8 md:mb-10">
-              <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
+            <div className="rounded-2xl bg-black p-8 md:p-10 mb-8 md:mb-10">
+              <h2 className="font-heading text-xl md:text-2xl font-medium text-white mb-6">
                 Evitar
               </h2>
               <ul className="space-y-3">
                 {avoidItems.map((item, i) => (
-                  <li key={i} className="text-muted text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-black">
+                  <li key={i} className="text-white/70 text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-white/40">
                     {item}
                   </li>
                 ))}
@@ -135,13 +135,13 @@ export default function CareGuide() {
 
           {/* Inspección */}
           <FadeIn delay={350}>
-            <div className="border-2 border-black p-8 md:p-10 mb-16 md:mb-20">
-              <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
+            <div className="rounded-2xl bg-black p-8 md:p-10 mb-16 md:mb-20">
+              <h2 className="font-heading text-xl md:text-2xl font-medium text-white mb-6">
                 Inspección antes de reusar
               </h2>
               <ul className="space-y-3">
                 {inspectItems.map((item, i) => (
-                  <li key={i} className="text-muted text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-black">
+                  <li key={i} className="text-white/70 text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-white/40">
                     {item}
                   </li>
                 ))}

@@ -150,7 +150,7 @@ function RecommendedSection({ items }: { items: RecommendedItems }) {
   const all = [...drinks, ...food]
 
   return (
-    <div className="bg-wash p-8 md:p-10">
+    <div className="rounded-2xl bg-wash p-8 md:p-10">
       <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
         Recomendados por erre
       </h2>
@@ -164,7 +164,7 @@ function RecommendedSection({ items }: { items: RecommendedItems }) {
               <img
                 src={item.imagen_url}
                 alt={item.nombre}
-                className="w-full aspect-square object-cover mb-4"
+                className="w-full aspect-square object-cover rounded-xl mb-4"
               />
             )}
             <h3 className="font-heading text-lg md:text-xl font-medium text-black mb-2">

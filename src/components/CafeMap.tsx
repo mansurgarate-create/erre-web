@@ -170,11 +170,10 @@ export default function CafeMap() {
                 setSelected(null)
               }}
               onFocus={() => setShowDropdown(true)}
-              className="w-full px-4 py-3 border border-border text-base font-sans text-black placeholder:text-muted focus:outline-none focus:border-black transition-colors duration-300"
+              className="w-full px-5 py-3 rounded-full bg-wash border-none text-base font-sans text-black placeholder:text-muted focus:outline-none transition-colors duration-300"
             />
             {showDropdown && filtered.length > 0 && (
-              <ul className="absolute left-0 right-0 top-full z-50 bg-white border border-border border-t-0 max-h-60 overflow-y-auto shadow-md"
-                style={{ background: 'var(--color-wash, #fff)' }}
+              <ul className="absolute left-0 right-0 top-full z-50 mt-1 rounded-2xl bg-wash max-h-60 overflow-y-auto overflow-hidden"
               >
                 {filtered.map((cafe) => (
                   <li
@@ -192,7 +191,7 @@ export default function CafeMap() {
         </FadeIn>
 
         <FadeIn delay={300}>
-          <div className="border border-border overflow-hidden" style={{ height: '480px' }}>
+          <div className="rounded-2xl overflow-hidden" style={{ height: '480px' }}>
             <MapContainer
               key={resolved}
               center={[25.651, -100.294]}

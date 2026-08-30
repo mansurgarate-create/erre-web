@@ -14,7 +14,7 @@ export default function HowItWorks() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {rentSteps.map((step, i) => (
             <FadeIn key={step.number} delay={i * 150}>
-              <div className="border border-border p-8 md:p-10 text-left hover:border-black transition-colors duration-500 h-full">
+              <div className="rounded-2xl bg-wash p-8 md:p-10 text-left h-full">
                 <span className="font-heading text-4xl md:text-5xl text-muted/40 block mb-6">
                   {step.number}
                 </span>

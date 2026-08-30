@@ -32,7 +32,7 @@ function QrCard({ code, name }: { code: string; name: string }) {
   const url = `${QR_ORIGIN}/r/${code}`
 
   return (
-    <li className="qr-print-card relative border border-border p-8 flex flex-col items-center text-center">
+    <li className="qr-print-card relative rounded-2xl bg-wash p-8 flex flex-col items-center text-center">
       <div className="qr-print-code p-3" style={{ background: '#FFFFFF' }}>
         <QRCodeSVG
           value={url}
