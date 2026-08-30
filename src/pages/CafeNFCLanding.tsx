@@ -282,6 +282,19 @@ export default function CafeNFCLanding() {
                   {/* 1. Banner + logo */}
                   <CafeBanner cafe={cafe} />
 
+                  {/* Primera vez */}
+                  <div className="px-6 md:px-10">
+                    <p className="text-muted/70 text-xs md:text-sm leading-relaxed">
+                      ¿Primera vez? Pide tu bebida en vaso erre, deja $30 de depósito y recupéralo al devolverlo.{' '}
+                      <a
+                        href="https://holaerre.com/#como-funciona"
+                        className="text-muted/70 underline hover:text-muted transition-colors duration-300"
+                      >
+                        Saber más
+                      </a>
+                    </p>
+                  </div>
+
                   {/* 2–3. Info + Instagram */}
                   <div className="px-6 md:px-10 pt-4">
                     <p className="text-muted text-xs md:text-sm mb-3">
@@ -323,26 +336,12 @@ export default function CafeNFCLanding() {
                         href={cafe.menuUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="erre-btn text-center w-full block"
+                        className="inline-block px-5 py-2.5 rounded-full bg-border/50 text-black text-sm font-medium no-underline hover:bg-border transition-colors duration-200"
                       >
                         Ver menú completo
                       </a>
                     </div>
                   )}
-
-                  {/* 6. Impact */}
-                  <div className="px-6 md:px-10">
-                    <div className="border border-border p-8 md:p-10 text-center">
-                      <p className="font-heading text-4xl md:text-5xl font-medium text-black mb-3">
-                        {impactCount}
-                      </p>
-                      <p className="text-muted text-sm md:text-base leading-relaxed">
-                        {impactCount === 1
-                          ? 'vaso desechable evitado con erre en esta cafetería.'
-                          : 'vasos desechables evitados con erre en esta cafetería.'}
-                      </p>
-                    </div>
-                  </div>
 
                   {/* How it works */}
                   <div className="px-6 md:px-10">
@@ -369,27 +368,32 @@ export default function CafeNFCLanding() {
                   </div>
 
                   {/* Actions */}
-                  <div className="px-6 md:px-10 flex flex-col sm:flex-row gap-3">
+                  <div className="px-6 md:px-10 flex flex-wrap gap-3">
                     {cafe.mapsUrl && (
                       <a
                         href={cafe.mapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="erre-btn text-center"
+                        className="inline-block px-5 py-2.5 rounded-full bg-border/50 text-black text-sm font-medium no-underline hover:bg-border transition-colors duration-200"
                       >
                         Abrir en Maps
                       </a>
                     )}
                     <Link
                       to="/#cafeterias"
-                      className="erre-btn text-center"
+                      className="inline-block px-5 py-2.5 rounded-full bg-border/50 text-black text-sm font-medium no-underline hover:bg-border transition-colors duration-200"
                     >
                       Ver la red erre
                     </Link>
                   </div>
 
-                  {/* 7. Footer link */}
-                  <div className="px-6 md:px-10 text-center pt-6">
+                  {/* Impact — subtle line */}
+                  <p className="px-6 md:px-10 text-center text-muted/50 text-xs">
+                    🌱 Esta cafetería ha evitado {impactCount} {impactCount === 1 ? 'vaso desechable' : 'vasos desechables'} con erre.
+                  </p>
+
+                  {/* Footer link */}
+                  <div className="px-6 md:px-10 text-center pt-2">
                     <a
                       href="https://holaerre.com"
                       className="text-muted text-sm no-underline hover:text-black transition-colors duration-300"
