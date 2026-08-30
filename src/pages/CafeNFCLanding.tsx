@@ -325,7 +325,7 @@ export default function CafeNFCLanding() {
                         href={cafe.menuUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block px-5 py-2.5 rounded-full bg-border/50 text-black text-sm font-medium no-underline hover:bg-border transition-colors duration-200"
+                        className="erre-btn"
                       >
                         Ver menú completo
                       </a>
@@ -352,14 +352,14 @@ export default function CafeNFCLanding() {
                         href={cafe.mapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block px-5 py-2.5 rounded-full bg-border/50 text-black text-sm font-medium no-underline hover:bg-border transition-colors duration-200"
+                        className="erre-btn"
                       >
                         Abrir en Maps
                       </a>
                     )}
                     <Link
                       to="/#cafeterias"
-                      className="inline-block px-5 py-2.5 rounded-full bg-border/50 text-black text-sm font-medium no-underline hover:bg-border transition-colors duration-200"
+                      className="erre-btn"
                     >
                       Ver la red erre
                     </Link>
