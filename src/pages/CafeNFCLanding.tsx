@@ -5,7 +5,6 @@ import Closing from '../components/Closing'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import PageLoading from '../components/ui/PageLoading'
-import { rentSteps } from '../lib/rentSteps'
 import { supabase } from '../lib/supabase'
 
 interface RecommendedItem {
@@ -282,20 +281,7 @@ export default function CafeNFCLanding() {
                   {/* 1. Banner + logo */}
                   <CafeBanner cafe={cafe} />
 
-                  {/* Primera vez */}
-                  <div className="px-6 md:px-10">
-                    <p className="text-muted/70 text-xs md:text-sm leading-relaxed">
-                      ¿Primera vez? Pide tu bebida en vaso erre, deja $30 de depósito y recupéralo al devolverlo.{' '}
-                      <a
-                        href="https://holaerre.com/#como-funciona"
-                        className="text-muted/70 underline hover:text-muted transition-colors duration-300"
-                      >
-                        Saber más
-                      </a>
-                    </p>
-                  </div>
-
-                  {/* 2–3. Info + Instagram */}
+                  {/* Info + Instagram + Impact */}
                   <div className="px-6 md:px-10 pt-4">
                     <p className="text-muted text-xs md:text-sm mb-3">
                       punto erre
@@ -315,11 +301,14 @@ export default function CafeNFCLanding() {
                         href={`https://instagram.com/${cafe.instagram}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted text-sm md:text-base inline-block no-underline hover:text-black transition-colors duration-300"
+                        className="text-muted text-sm md:text-base inline-block no-underline hover:text-black transition-colors duration-300 mb-2"
                       >
                         @{cafe.instagram}
                       </a>
                     )}
+                    <p className="text-muted/50 text-xs">
+                      Esta cafetería ha evitado {impactCount} {impactCount === 1 ? 'vaso desechable' : 'vasos desechables'} con erre.
+                    </p>
                   </div>
 
                   {/* 4. Recomendados */}
@@ -343,28 +332,17 @@ export default function CafeNFCLanding() {
                     </div>
                   )}
 
-                  {/* How it works */}
+                  {/* Primera vez */}
                   <div className="px-6 md:px-10">
-                    <div className="border border-border p-8 md:p-10">
-                      <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-8">
-                        ¿Cómo funciona?
-                      </h2>
-                      <div className="space-y-6 md:space-y-8">
-                        {rentSteps.map((step) => (
-                          <div key={step.number}>
-                            <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-3">
-                              {step.number}
-                            </span>
-                            <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                              {step.title}
-                            </h3>
-                            <p className="text-muted text-sm md:text-base leading-relaxed">
-                              {step.description}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <p className="text-muted/70 text-xs md:text-sm leading-relaxed">
+                      ¿Primera vez? Pide tu bebida en vaso erre, deja $30 de depósito y recupéralo al devolverlo.{' '}
+                      <a
+                        href="https://holaerre.com/#como-funciona"
+                        className="text-muted/70 underline hover:text-muted transition-colors duration-300"
+                      >
+                        Saber más
+                      </a>
+                    </p>
                   </div>
 
                   {/* Actions */}
@@ -386,11 +364,6 @@ export default function CafeNFCLanding() {
                       Ver la red erre
                     </Link>
                   </div>
-
-                  {/* Impact — subtle line */}
-                  <p className="px-6 md:px-10 text-center text-muted/50 text-xs">
-                    🌱 Esta cafetería ha evitado {impactCount} {impactCount === 1 ? 'vaso desechable' : 'vasos desechables'} con erre.
-                  </p>
 
                   {/* Footer link */}
                   <div className="px-6 md:px-10 text-center pt-2">
