@@ -46,10 +46,18 @@ body {
   border-radius: 0 !important;
 }
 
+.leaflet-popup-pane {
+  z-index: 1200;
+}
+
 .leaflet-popup-content {
-  margin: 18px 20px 20px !important;
-  min-width: 260px;
+  margin: 16px 18px 16px !important;
+  min-width: 220px;
   font-family: var(--font-sans);
+}
+
+.leaflet-popup-content p {
+  margin: 0 !important;
 }
 
 .leaflet-popup-content,

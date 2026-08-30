@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from 'react-leaflet'
 import L, { LatLngBounds } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import FadeIn from './ui/FadeIn'
@@ -198,8 +198,10 @@ export default function CafeMap() {
               zoom={15}
               maxZoom={20}
               scrollWheelZoom={false}
+              zoomControl={false}
               style={{ height: '100%', width: '100%', background: 'var(--color-wash)' }}
             >
+              <ZoomControl position="bottomright" />
               <TileLayer
                 attribution='&copy; <a href="https://www.mapbox.com/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 url={dark ? MB_DARK : MB_LIGHT}
@@ -217,13 +219,13 @@ export default function CafeMap() {
                     if (ref) markerRefs.current.set(cafe.name, ref)
                   }}
                 >
-                  <Popup maxWidth={340} minWidth={260}>
-                    <div className="erre-popup pr-5">
-                      <h3 className="font-heading text-base font-medium text-black m-0 mb-1">
+                  <Popup maxWidth={280} minWidth={220} autoPanPadding={[48, 48]}>
+                    <div className="erre-popup pr-4">
+                      <h3 className="font-heading text-sm font-medium text-black m-0 mb-1.5 pr-4">
                         {cafe.name}
                       </h3>
                       <p className="text-xs text-muted m-0 mb-1">{cafe.address}</p>
-                      <p className="text-xs text-muted m-0 mb-3">{cafe.hours}</p>
+                      <p className="text-xs text-muted m-0 mb-2">{cafe.hours}</p>
                       {cafe.instagram ? (
                         <a
                           href={`https://instagram.com/${cafe.instagram}`}
@@ -234,7 +236,7 @@ export default function CafeMap() {
                           @{cafe.instagram}
                         </a>
                       ) : null}
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                      <div className="flex items-center gap-3">
                         {cafe.mapsUrl ? (
                           <a
                             href={cafe.mapsUrl}
