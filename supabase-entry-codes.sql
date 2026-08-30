@@ -7,8 +7,8 @@
 --   set cafe_id = (select id from public.cafes where nfc_tag_id = 'erre:belum')
 --   where code = 'fiato-cafeto';
 --
--- New cafe: insert into cafes, then insert a stable code:
---   insert into public.entry_codes (code, cafe_id) values ('nuevo-codigo', '<cafe uuid>');
+-- New cafe: insert into cafes, then assign the next empty p01–p10 code.
+-- Do not insert a new slug into entry_codes. See supabase-assign-entry-code.sql.
 
 create table if not exists public.entry_codes (
   code text primary key,

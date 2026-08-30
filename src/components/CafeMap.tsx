@@ -217,8 +217,8 @@ export default function CafeMap() {
                     if (ref) markerRefs.current.set(cafe.name, ref)
                   }}
                 >
-                  <Popup maxWidth={320}>
-                    <div className="erre-popup">
+                  <Popup maxWidth={340} minWidth={260}>
+                    <div className="erre-popup pr-5">
                       <h3 className="font-heading text-base font-medium text-black m-0 mb-1">
                         {cafe.name}
                       </h3>
@@ -234,7 +234,7 @@ export default function CafeMap() {
                           @{cafe.instagram}
                         </a>
                       ) : null}
-                      <div className="flex flex-wrap items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                         {cafe.mapsUrl ? (
                           <a
                             href={cafe.mapsUrl}

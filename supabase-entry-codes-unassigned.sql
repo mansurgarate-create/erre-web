@@ -2,10 +2,7 @@
 -- Run AFTER supabase-entry-codes.sql
 -- Revert: supabase-entry-codes-unassigned-revert.sql
 --
--- Assign a sticker later:
---   update public.entry_codes
---   set cafe_id = (select id from public.cafes where nfc_tag_id = 'erre:nueva')
---   where code = 'p01';
+-- Assign a sticker later: see supabase-assign-entry-code.sql (p01 → p10, no new slugs).
 
 alter table public.entry_codes
   alter column cafe_id drop not null;
