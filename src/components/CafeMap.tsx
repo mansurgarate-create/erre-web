@@ -180,7 +180,7 @@ export default function CafeMap() {
         </FadeIn>
 
         <FadeIn delay={300}>
-          <div className="rounded-2xl overflow-hidden" style={{ height: '480px' }}>
+          <div className="rounded-2xl overflow-hidden bg-wash" style={{ height: '480px' }}>
             <MapContainer
               key={resolved}
               center={[25.651, -100.294]}
