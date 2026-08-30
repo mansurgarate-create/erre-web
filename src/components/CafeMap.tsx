@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, ZoomControl, useMap, useMapEvents } from 'react-leaflet'
 import L, { LatLngBounds } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import FadeIn from './ui/FadeIn'
@@ -60,24 +60,21 @@ function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
   return null
 }
 
-function FlyToSelected({
-  cafe,
-  markerRefs,
-}: {
-  cafe: Cafe | null
-  markerRefs: React.RefObject<Map<string, L.Marker>>
-}) {
+function FlyToSelected({ cafe }: { cafe: Cafe | null }) {
   const map = useMap()
 
   useEffect(() => {
     if (!cafe) return
     map.flyTo([cafe.lat, cafe.lng], 17, { duration: 0.8 })
-    const marker = markerRefs.current?.get(cafe.name)
-    if (marker) {
-      setTimeout(() => marker.openPopup(), 500)
-    }
-  }, [cafe, map, markerRefs])
+  }, [cafe, map])
 
+  return null
+}
+
+function ClearSelectionOnMapClick({ onClear }: { onClear: () => void }) {
+  useMapEvents({
+    click: () => onClear(),
+  })
   return null
 }
 
@@ -87,7 +84,6 @@ export default function CafeMap() {
   const [showDropdown, setShowDropdown] = useState(false)
   const [selected, setSelected] = useState<Cafe | null>(null)
   const searchRef = useRef<HTMLDivElement>(null)
-  const markerRefs = useRef<Map<string, L.Marker>>(new Map())
   const { resolved } = useTheme()
   const dark = resolved === 'dark'
 
@@ -209,59 +205,65 @@ export default function CafeMap() {
                 maxZoom={20}
               />
               <FitMapBounds cafes={cafes} />
-              <FlyToSelected cafe={selected} markerRefs={markerRefs} />
+              <FlyToSelected cafe={selected} />
+              <ClearSelectionOnMapClick onClear={() => setSelected(null)} />
               {cafes.map((cafe) => (
                 <Marker
                   key={cafe.name}
                   position={[cafe.lat, cafe.lng]}
                   icon={pinIcon}
-                  ref={(ref) => {
-                    if (ref) markerRefs.current.set(cafe.name, ref)
+                  eventHandlers={{
+                    click: (e) => {
+                      L.DomEvent.stopPropagation(e)
+                      setSelected(cafe)
+                    },
                   }}
-                >
-                  <Popup maxWidth={280} minWidth={220} autoPanPadding={[48, 48]}>
-                    <div className="erre-popup pr-4">
-                      <h3 className="font-heading text-sm font-medium text-black m-0 mb-1.5 pr-4">
-                        {cafe.name}
-                      </h3>
-                      <p className="text-xs text-muted m-0 mb-1">{cafe.address}</p>
-                      <p className="text-xs text-muted m-0 mb-2">{cafe.hours}</p>
-                      {cafe.instagram ? (
-                        <a
-                          href={`https://instagram.com/${cafe.instagram}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="erre-popup-muted block text-xs text-muted no-underline mb-3 hover:text-black"
-                        >
-                          @{cafe.instagram}
-                        </a>
-                      ) : null}
-                      <div className="flex items-center gap-3">
-                        {cafe.mapsUrl ? (
-                          <a
-                            href={cafe.mapsUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="erre-popup-cta erre-btn erre-btn-sm"
-                          >
-                            Abrir en Maps
-                          </a>
-                        ) : null}
-                        {cafe.slug ? (
-                          <Link
-                            to={`/r/${cafe.slug}`}
-                            className="erre-popup-muted text-xs text-muted no-underline hover:text-black transition-colors duration-300"
-                          >
-                            Punto erre
-                          </Link>
-                        ) : null}
-                      </div>
-                    </div>
-                  </Popup>
-                </Marker>
+                />
               ))}
             </MapContainer>
           </div>
+          {selected && (
+            <div className="mt-4 rounded-2xl bg-wash p-5 md:p-6">
+              <h3 className="font-heading text-base font-medium text-black m-0 mb-1">
+                {selected.name}
+              </h3>
+              <p className="text-xs text-muted m-0 mb-1">{selected.address}</p>
+              <p className={`text-xs text-muted m-0 ${selected.instagram ? 'mb-2' : 'mb-4'}`}>
+                {selected.hours}
+                {selected.city ? ` · ${selected.city}` : ''}
+              </p>
+              {selected.instagram ? (
+                <a
+                  href={`https://instagram.com/${selected.instagram}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xs text-muted no-underline mb-4 hover:text-black"
+                >
+                  @{selected.instagram}
+                </a>
+              ) : null}
+              <div className="flex flex-wrap items-center gap-3">
+                {selected.mapsUrl ? (
+                  <a
+                    href={selected.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="erre-btn erre-btn-sm"
+                  >
+                    Abrir en Maps
+                  </a>
+                ) : null}
+                {selected.slug ? (
+                  <Link
+                    to={`/r/${selected.slug}`}
+                    className="text-xs text-muted no-underline hover:text-black transition-colors duration-300"
+                  >
+                    Punto erre
+                  </Link>
+                ) : null}
+              </div>
+            </div>
+          )}
         </FadeIn>
 
         {cafes.length === 0 && (
