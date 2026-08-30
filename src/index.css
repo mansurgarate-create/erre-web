@@ -43,7 +43,8 @@ body {
 }
 
 .leaflet-popup-content {
-  margin: 16px 18px 18px !important;
+  margin: 20px 20px 22px !important;
+  min-width: 240px;
   font-family: var(--font-sans);
 }
 

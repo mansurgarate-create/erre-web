@@ -217,7 +217,7 @@ export default function CafeMap() {
                     if (ref) markerRefs.current.set(cafe.name, ref)
                   }}
                 >
-                  <Popup>
+                  <Popup maxWidth={320}>
                     <div className="erre-popup">
                       <h3 className="font-heading text-base font-medium text-black m-0 mb-1">
                         {cafe.name}

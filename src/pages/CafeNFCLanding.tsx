@@ -306,9 +306,11 @@ export default function CafeNFCLanding() {
                         @{cafe.instagram}
                       </a>
                     )}
-                    <p className="text-muted/50 text-xs">
-                      Esta cafetería ha evitado {impactCount} {impactCount === 1 ? 'vaso desechable' : 'vasos desechables'} con erre.
-                    </p>
+                    {impactCount > 0 && (
+                      <p className="text-muted/50 text-xs">
+                        Esta cafetería ha evitado {impactCount} {impactCount === 1 ? 'vaso desechable' : 'vasos desechables'} con erre.
+                      </p>
+                    )}
                   </div>
 
                   {/* 4. Recomendados */}
