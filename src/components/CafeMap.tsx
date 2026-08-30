@@ -60,17 +60,6 @@ function FitMapBounds({ cafes }: { cafes: Pick<Cafe, 'lat' | 'lng'>[] }) {
   return null
 }
 
-function FlyToSelected({ cafe }: { cafe: Cafe | null }) {
-  const map = useMap()
-
-  useEffect(() => {
-    if (!cafe) return
-    map.flyTo([cafe.lat, cafe.lng], 17, { duration: 0.8 })
-  }, [cafe, map])
-
-  return null
-}
-
 function ClearSelectionOnMapClick({ onClear }: { onClear: () => void }) {
   useMapEvents({
     click: () => onClear(),
@@ -205,7 +194,6 @@ export default function CafeMap() {
                 maxZoom={20}
               />
               <FitMapBounds cafes={cafes} />
-              <FlyToSelected cafe={selected} />
               <ClearSelectionOnMapClick onClear={() => setSelected(null)} />
               {cafes.map((cafe) => (
                 <Marker
