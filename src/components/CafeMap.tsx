@@ -17,6 +17,7 @@ interface Cafe {
   hours: string
   slug: string | null
   instagram: string | null
+  logoUrl: string | null
 }
 
 interface SupabaseCafe {
@@ -29,6 +30,7 @@ interface SupabaseCafe {
   hours: string
   nfc_tag_id: string | null
   instagram: string | null
+  logo_url: string | null
 }
 
 const MB_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string
@@ -81,7 +83,7 @@ export default function CafeMap() {
       try {
         const { data, error } = await supabase
           .from('cafes')
-          .select('name, city, address, lat, lng, maps_url, hours, nfc_tag_id, instagram')
+          .select('name, city, address, lat, lng, maps_url, hours, nfc_tag_id, instagram, logo_url')
 
         if (error || !data || data.length === 0) throw new Error('Supabase fetch failed')
 
@@ -96,6 +98,7 @@ export default function CafeMap() {
             hours: c.hours,
             slug: slugFromTag(c.nfc_tag_id),
             instagram: c.instagram,
+            logoUrl: c.logo_url,
           }))
         )
       } catch {
@@ -106,6 +109,7 @@ export default function CafeMap() {
             ...c,
             slug: c.slug ?? null,
             instagram: c.instagram ?? null,
+            logoUrl: c.logoUrl ?? null,
           }))
         )
       }
@@ -212,9 +216,18 @@ export default function CafeMap() {
           </div>
           {selected && (
             <div className="mt-4 rounded-2xl bg-wash p-5 md:p-6">
-              <h3 className="font-heading text-base font-medium text-black m-0 mb-1">
-                {selected.name}
-              </h3>
+              <div className="flex items-center gap-3 mb-1">
+                {selected.logoUrl ? (
+                  <img
+                    src={selected.logoUrl}
+                    alt=""
+                    className="w-10 h-10 rounded-full object-cover shrink-0"
+                  />
+                ) : null}
+                <h3 className="font-heading text-base font-medium text-black m-0">
+                  {selected.name}
+                </h3>
+              </div>
               <p className="text-xs text-muted m-0 mb-1">{selected.address}</p>
               <p className={`text-xs text-muted m-0 ${selected.instagram ? 'mb-2' : 'mb-4'}`}>
                 {selected.hours}
@@ -231,23 +244,20 @@ export default function CafeMap() {
                 </a>
               ) : null}
               <div className="flex flex-wrap items-center gap-3">
+                {selected.slug ? (
+                  <Link to={`/r/${selected.slug}`} className="erre-btn erre-btn-sm">
+                    Punto erre
+                  </Link>
+                ) : null}
                 {selected.mapsUrl ? (
                   <a
                     href={selected.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="erre-btn erre-btn-sm"
+                    className="text-xs text-muted no-underline hover:text-black transition-colors duration-300"
                   >
                     Abrir en Maps
                   </a>
-                ) : null}
-                {selected.slug ? (
-                  <Link
-                    to={`/r/${selected.slug}`}
-                    className="text-xs text-muted no-underline hover:text-black transition-colors duration-300"
-                  >
-                    Punto erre
-                  </Link>
                 ) : null}
               </div>
             </div>
