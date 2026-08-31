@@ -62,6 +62,7 @@ export default function Account() {
   const [historyError, setHistoryError] = useState<string | null>(null)
   const [historyReady, setHistoryReady] = useState(false)
   const [page, setPage] = useState(0)
+  const [avoidedCount, setAvoidedCount] = useState(0)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -75,6 +76,7 @@ export default function Account() {
       setPage(0)
       setHistoryError(null)
       setHistoryReady(true)
+      setAvoidedCount(0)
       return
     }
 
@@ -102,6 +104,28 @@ export default function Account() {
       cancelled = true
     }
   }, [loading, session])
+
+  useEffect(() => {
+    const userId = profile?.id
+    if (!session || !userId) {
+      setAvoidedCount(0)
+      return
+    }
+    let cancelled = false
+    async function loadImpact() {
+      const { count, error } = await supabase
+        .from('transactions')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', userId)
+        .eq('type', 'rent')
+      if (cancelled) return
+      setAvoidedCount(error || count === null ? 0 : count)
+    }
+    void loadImpact()
+    return () => {
+      cancelled = true
+    }
+  }, [session, profile?.id])
 
   const pageCount = Math.max(1, Math.ceil(transactions.length / PAGE_SIZE))
   const currentPage = Math.min(page, pageCount - 1)
@@ -166,6 +190,26 @@ export default function Account() {
                         {profile?.email || 'Sesión iniciada'}
                       </p>
                     ) : null}
+                  </div>
+
+                  <div className="flex flex-col gap-4 mb-10">
+                    <p className="inline-flex items-baseline gap-1.5 w-full rounded-full bg-impact-wash px-4 py-3">
+                      <span className="font-heading text-[22px] font-medium text-impact leading-none">
+                        {avoidedCount}
+                      </span>
+                      <span className="text-muted text-[13px]">
+                        {avoidedCount === 1
+                          ? 'vaso desechable evitado'
+                          : 'vasos desechables evitados'}
+                      </span>
+                    </p>
+                    <div className="rounded-2xl border border-border p-6">
+                      <p className="text-muted text-[13px] mb-2">Vasos en mano</p>
+                      <p className="font-heading text-[44px] font-medium text-black leading-none mb-2">
+                        {profile?.cups_in_hand ?? 0}
+                      </p>
+                      <p className="text-muted text-[13px]">vasos rentados actualmente</p>
+                    </div>
                   </div>
 
                   <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">

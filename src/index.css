@@ -8,6 +8,8 @@
   --color-muted: #5c5c5c;
   --color-border: #e5e5e5;
   --color-wash: #ECEAE6;
+  --color-impact: #3D5A45;
+  --color-impact-wash: #E4EDE6;
 }
 
 html {
@@ -230,5 +232,7 @@ html[data-theme='dark'] {
   --color-muted: #a3a39e;
   --color-border: #2c2c2a;
   --color-wash: #1c1c1a;
+  --color-impact: #9BBFA8;
+  --color-impact-wash: #1E2A22;
 }
 
