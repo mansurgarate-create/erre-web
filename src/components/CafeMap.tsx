@@ -84,6 +84,7 @@ export default function CafeMap() {
         const { data, error } = await supabase
           .from('cafes')
           .select('name, city, address, lat, lng, maps_url, hours, nfc_tag_id, instagram, logo_url')
+          .eq('visible_on_map', true)
 
         if (error || !data || data.length === 0) throw new Error('Supabase fetch failed')
 
