@@ -218,13 +218,7 @@ export default function CafeMap() {
           {selected && (
             <div className="mt-4 rounded-2xl bg-wash p-6 md:p-8">
               <div className="flex items-center gap-3 mb-3">
-                {selected.logoUrl ? (
-                  <img
-                    src={selected.logoUrl}
-                    alt=""
-                    className="w-11 h-11 rounded-full object-cover shrink-0"
-                  />
-                ) : null}
+                <SelectedCafeLogo url={selected.logoUrl} name={selected.name} />
                 <h3 className="font-heading text-lg font-medium text-black m-0">
                   {selected.name}
                 </h3>
@@ -272,5 +266,32 @@ export default function CafeMap() {
         )}
       </div>
     </section>
+  )
+}
+
+function SelectedCafeLogo({ url, name }: { url: string | null; name: string }) {
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    setReady(false)
+  }, [url])
+
+  return (
+    <div className="relative w-11 h-11 shrink-0">
+      <div className="w-11 h-11 rounded-full bg-border flex items-center justify-center">
+        <span className="font-heading text-sm font-medium text-muted">
+          {name.slice(0, 1).toUpperCase()}
+        </span>
+      </div>
+      {url ? (
+        <img
+          key={url}
+          src={url}
+          alt=""
+          onLoad={() => setReady(true)}
+          className={`absolute inset-0 w-11 h-11 rounded-full object-cover ${ready ? '' : 'invisible'}`}
+        />
+      ) : null}
+    </div>
   )
 }
