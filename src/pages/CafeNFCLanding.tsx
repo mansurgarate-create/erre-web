@@ -313,22 +313,22 @@ export default function CafeNFCLanding() {
                     <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
                       {cafe.name}
                     </h1>
-                    {(cafe.hours.trim() || cafe.instagram) && (
+                    {(cafe.hours.trim() || cafe.instagram || impactCount > 0) && (
                       <div className="flex flex-wrap gap-2 mb-6">
                         {cafe.hours.trim() ? <HoursPill hours={cafe.hours} /> : null}
                         {cafe.instagram ? <InstagramHandle handle={cafe.instagram} /> : null}
-                      </div>
-                    )}
-                    {impactCount > 0 && (
-                      <div className="flex items-baseline gap-2.5 rounded-2xl bg-wash px-5 py-5">
-                        <span className="font-heading text-[32px] font-medium text-black leading-none">
-                          {impactCount}
-                        </span>
-                        <span className="text-sm text-muted">
-                          {impactCount === 1
-                            ? 'vaso desechable evitado'
-                            : 'vasos desechables evitados'}
-                        </span>
+                        {impactCount > 0 ? (
+                          <span className="inline-flex items-baseline gap-1 text-sm rounded-full bg-wash px-3 py-2">
+                            <span className="font-heading font-medium text-black leading-none">
+                              {impactCount}
+                            </span>
+                            <span className="text-muted">
+                              {impactCount === 1
+                                ? 'vaso desechable evitado'
+                                : 'vasos desechables evitados'}
+                            </span>
+                          </span>
+                        ) : null}
                       </div>
                     )}
                   </div>
