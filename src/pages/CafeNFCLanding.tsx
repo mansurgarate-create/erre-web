@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
-import Closing from '../components/Closing'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import PageLoading from '../components/ui/PageLoading'
@@ -382,16 +381,6 @@ export default function CafeNFCLanding() {
                       Enviar comentarios
                     </Link>
                   </div>
-
-                  {/* Footer link */}
-                  <div className="px-6 md:px-10 text-center pt-2">
-                    <a
-                      href="https://holaerre.com"
-                      className="text-muted text-sm no-underline hover:text-black transition-colors duration-300"
-                    >
-                      holaerre.com
-                    </a>
-                  </div>
                 </div>
               )}
             </FadeIn>
@@ -399,7 +388,6 @@ export default function CafeNFCLanding() {
         </div>
       </main>
 
-      {loading ? null : <Closing />}
       <Footer />
     </div>
   )
