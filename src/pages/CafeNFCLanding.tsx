@@ -338,7 +338,6 @@ export default function CafeNFCLanding() {
                     <RecommendedSection items={cafe.recommendedItems} />
                   )}
 
-                  {/* 5. Menu link */}
                   {cafe.menuUrl && (
                     <div className="px-6 md:px-10">
                       <a
@@ -352,22 +351,8 @@ export default function CafeNFCLanding() {
                     </div>
                   )}
 
-                  {/* Primera vez */}
-                  <div className="px-6 md:px-10">
-                    <p className="text-muted/70 text-xs md:text-sm leading-relaxed">
-                      ¿Primera vez? Pide tu bebida en vaso erre, deja $30 de depósito y recupéralo al devolverlo.{' '}
-                      <a
-                        href="https://holaerre.com/#como-funciona"
-                        className="text-muted/70 underline hover:text-muted transition-colors duration-300"
-                      >
-                        Saber más
-                      </a>
-                    </p>
-                  </div>
-
                   <div className="h-px bg-border mx-6 md:mx-10" />
 
-                  {/* Actions */}
                   <div className="px-6 md:px-10 flex flex-wrap gap-3">
                     {cafe.mapsUrl && (
                       <a
@@ -386,6 +371,8 @@ export default function CafeNFCLanding() {
                       Ver la red erre
                     </Link>
                   </div>
+
+                  <div className="h-px bg-border mx-6 md:mx-10" />
 
                   <div className="px-6 md:px-10">
                     <p className="text-muted text-sm md:text-base leading-relaxed mb-3">
