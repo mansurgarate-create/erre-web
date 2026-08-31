@@ -16,6 +16,7 @@ const TOPICS = [
 ] as const
 
 type CafeRow = {
+  id: string
   name: string
   city: string
 }
@@ -31,7 +32,7 @@ async function loadCafe(slug: string): Promise<CafeRow | 'inactive' | null> {
     if (!entry.cafe_id) return 'inactive'
     const { data, error } = await supabase
       .from('cafes')
-      .select('name, city')
+      .select('id, name, city')
       .eq('id', entry.cafe_id)
       .maybeSingle()
     if (!error && data) return data as CafeRow
@@ -40,7 +41,7 @@ async function loadCafe(slug: string): Promise<CafeRow | 'inactive' | null> {
 
   const { data, error } = await supabase
     .from('cafes')
-    .select('name, city')
+    .select('id, name, city')
     .eq('nfc_tag_id', `erre:${slug}`)
     .maybeSingle()
 
@@ -56,6 +57,9 @@ export default function CafeFeedback() {
   const [inactive, setInactive] = useState(false)
   const [topic, setTopic] = useState('')
   const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -95,21 +99,26 @@ export default function CafeFeedback() {
     }
   }, [slug])
 
-  function onSubmit(event: FormEvent) {
+  async function onSubmit(event: FormEvent) {
     event.preventDefault()
-    if (!cafe || !topic) return
+    if (!cafe || !topic || sending) return
 
-    const subject = `Feedback: ${cafe.name} — ${topic}`
-    const body = [
-      `Punto erre: ${cafe.name}`,
-      cafe.city ? `Ciudad: ${cafe.city}` : null,
-      `Tema: ${topic}`,
-      '',
-      message.trim() || '(sin mensaje)',
-    ]
-      .filter((line) => line !== null)
-      .join('\n')
-    window.location.href = `mailto:hola@holaerre.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setSending(true)
+    setError(false)
+
+    const { error: insertError } = await supabase.from('cafe_feedback').insert({
+      cafe_id: cafe.id,
+      cafe_name: cafe.name,
+      topic,
+      message: message.trim() || null,
+    })
+
+    setSending(false)
+    if (insertError) {
+      setError(true)
+      return
+    }
+    setSent(true)
   }
 
   return (
@@ -154,7 +163,12 @@ export default function CafeFeedback() {
                   </h1>
                   <p className="text-muted text-base md:text-lg mb-10">{cafe.name}</p>
 
-                  <form onSubmit={onSubmit} className="flex flex-col gap-8">
+                  {sent ? (
+                    <p className="text-black text-base md:text-lg leading-relaxed mb-10">
+                      Gracias por tu comentario.
+                    </p>
+                  ) : (
+                    <form onSubmit={onSubmit} className="flex flex-col gap-8">
                     <label className="flex flex-col gap-2">
                       <span className="text-sm font-medium text-black">
                         ¿De qué se trata? <span className="text-muted">*</span>
@@ -184,14 +198,21 @@ export default function CafeFeedback() {
                       />
                     </label>
 
+                    {error ? (
+                      <p className="text-muted text-sm">
+                        No se pudo enviar. Inténtalo de nuevo.
+                      </p>
+                    ) : null}
+
                     <button
                       type="submit"
-                      disabled={!topic}
+                      disabled={!topic || sending}
                       className="erre-btn self-start disabled:opacity-40 disabled:cursor-not-allowed"
                     >
-                      Enviar
+                      {sending ? 'Enviando…' : 'Enviar'}
                     </button>
-                  </form>
+                    </form>
+                  )}
 
                   <Link
                     to={`/r/${slug}`}
