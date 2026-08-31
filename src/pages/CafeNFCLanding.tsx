@@ -367,6 +367,15 @@ export default function CafeNFCLanding() {
                     </Link>
                   </div>
 
+                  <div className="px-6 md:px-10">
+                    <p className="text-muted text-sm md:text-base leading-relaxed mb-3">
+                      ¿Algo que contar de este punto erre? Escríbenos:
+                    </p>
+                    <Link to={`/r/${slug}/feedback`} className="erre-btn">
+                      Enviar comentarios
+                    </Link>
+                  </div>
+
                   {/* Footer link */}
                   <div className="px-6 md:px-10 text-center pt-2">
                     <a

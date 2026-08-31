@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import CareGuide from './pages/CareGuide'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import CafeNFCLanding from './pages/CafeNFCLanding'
+import CafeFeedback from './pages/CafeFeedback'
 import Account from './pages/Account'
 import AuthCallback from './pages/AuthCallback'
 import QrPrint from './pages/QrPrint'
@@ -53,6 +54,7 @@ export default function App() {
       <Route path="/privacidad" element={<PrivacyPolicy />} />
       <Route path="/cuenta" element={<Account />} />
       <Route path="/r/:slug" element={<CafeNFCLanding />} />
+      <Route path="/r/:slug/feedback" element={<CafeFeedback />} />
       <Route path="/qr" element={<QrPrint />} />
       <Route path="/auth/callback" element={<AuthCallback />} />
       <Route path="*" element={<NotFound />} />
