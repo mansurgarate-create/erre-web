@@ -290,9 +290,6 @@ export default function CafeNFCLanding() {
                     <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
                       {cafe.name}
                     </h1>
-                    <p className="text-muted text-base md:text-lg leading-relaxed mb-4">
-                      {cafe.address}
-                    </p>
                     {(cafe.hours.trim() || cafe.instagram) && (
                       <div className="flex flex-wrap gap-2 mb-6">
                         {cafe.hours.trim() ? <HoursPill hours={cafe.hours} /> : null}

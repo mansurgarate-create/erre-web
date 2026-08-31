@@ -224,7 +224,6 @@ export default function CafeMap() {
                   {selected.name}
                 </h3>
               </div>
-              <p className="text-sm text-muted m-0 mb-3">{selected.address}</p>
               {(selected.hours.trim() || selected.instagram) ? (
                 <div className="flex flex-wrap gap-2 mb-5">
                   {selected.hours.trim() ? (
