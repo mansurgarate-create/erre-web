@@ -143,40 +143,63 @@ function CafeBanner({ cafe }: { cafe: CafeInfo }) {
   )
 }
 
+function RecCard({ item }: { item: RecommendedItem }) {
+  const hasPhoto = Boolean(item.imagen_url)
+  return (
+    <div className="relative shrink-0 w-[78%] aspect-[4/5] rounded-2xl overflow-hidden bg-wash snap-start">
+      {hasPhoto ? (
+        <>
+          <img
+            src={item.imagen_url!}
+            alt={item.nombre}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+        </>
+      ) : null}
+      <div className="absolute left-0 bottom-0 p-4">
+        <p className={`font-heading text-base font-medium m-0 ${hasPhoto ? 'text-white' : 'text-black'}`}>
+          {item.nombre}
+        </p>
+        {item.descripcion ? (
+          <p
+            className={`text-sm m-0 mt-1 line-clamp-2 ${hasPhoto ? 'text-white/85' : 'text-muted'}`}
+          >
+            {item.descripcion}
+          </p>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+function RecsCarousel({ title, items }: { title: string; items: RecommendedItem[] }) {
+  return (
+    <div>
+      <h3 className="font-heading text-base font-medium text-black px-6 md:px-10 mb-3 mt-5">
+        {title}
+      </h3>
+      <div className="flex gap-3 overflow-x-auto px-6 md:px-10 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {items.map((item) => (
+          <RecCard key={item.nombre} item={item} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function RecommendedSection({ items }: { items: RecommendedItems }) {
   const drinks = items.drinks?.filter((d) => d.nombre) ?? []
   const food = items.food?.filter((f) => f.nombre) ?? []
   if (drinks.length === 0 && food.length === 0) return null
 
-  const all = [...drinks, ...food]
-
   return (
-    <div className="rounded-2xl bg-wash p-8 md:p-10">
-      <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-2">
-        Recomendados por erre
+    <div>
+      <h2 className="font-heading text-lg font-medium text-black px-6 md:px-10">
+        Recomendaciones erre
       </h2>
-      <p className="text-muted text-sm md:text-base mb-8">
-        Pídelos en vaso erre.
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {all.map((item) => (
-          <div key={item.nombre}>
-            {item.imagen_url && (
-              <img
-                src={item.imagen_url}
-                alt={item.nombre}
-                className="w-full aspect-square object-cover rounded-xl mb-4"
-              />
-            )}
-            <h3 className="font-heading text-lg md:text-xl font-medium text-black mb-2">
-              {item.nombre}
-            </h3>
-            <p className="text-muted text-sm md:text-base leading-relaxed">
-              {item.descripcion}
-            </p>
-          </div>
-        ))}
-      </div>
+      {drinks.length > 0 ? <RecsCarousel title="Bebidas" items={drinks} /> : null}
+      {food.length > 0 ? <RecsCarousel title="Comida" items={food} /> : null}
     </div>
   )
 }
@@ -312,9 +335,7 @@ export default function CafeNFCLanding() {
 
                   {/* 4. Recomendados */}
                   {cafe.recommendedItems && (
-                    <div className="px-6 md:px-10">
-                      <RecommendedSection items={cafe.recommendedItems} />
-                    </div>
+                    <RecommendedSection items={cafe.recommendedItems} />
                   )}
 
                   {/* 5. Menu link */}
@@ -343,6 +364,8 @@ export default function CafeNFCLanding() {
                       </a>
                     </p>
                   </div>
+
+                  <div className="h-px bg-border mx-6 md:mx-10" />
 
                   {/* Actions */}
                   <div className="px-6 md:px-10 flex flex-wrap gap-3">
