@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import PageLoading from '../components/ui/PageLoading'
 import { supabase } from '../lib/supabase'
+import InstagramHandle, { HoursPill } from '../components/InstagramHandle'
 
 interface RecommendedItem {
   nombre: string
@@ -289,27 +290,26 @@ export default function CafeNFCLanding() {
                     <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
                       {cafe.name}
                     </h1>
-                    <p className="text-muted text-base md:text-lg leading-relaxed mb-2">
+                    <p className="text-muted text-base md:text-lg leading-relaxed mb-4">
                       {cafe.address}
                     </p>
-                    <p className="text-muted text-sm md:text-base mb-2">
-                      {cafe.hours}
-                      {cafe.city ? ` · ${cafe.city}` : ''}
-                    </p>
-                    {cafe.instagram && (
-                      <a
-                        href={`https://instagram.com/${cafe.instagram}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted text-sm md:text-base inline-block no-underline hover:text-black transition-colors duration-300 mb-2"
-                      >
-                        @{cafe.instagram}
-                      </a>
+                    {(cafe.hours.trim() || cafe.instagram) && (
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {cafe.hours.trim() ? <HoursPill hours={cafe.hours} /> : null}
+                        {cafe.instagram ? <InstagramHandle handle={cafe.instagram} /> : null}
+                      </div>
                     )}
                     {impactCount > 0 && (
-                      <p className="text-muted/50 text-xs">
-                        Esta cafetería ha evitado {impactCount} {impactCount === 1 ? 'vaso desechable' : 'vasos desechables'} con erre.
-                      </p>
+                      <div className="flex items-baseline gap-2.5 rounded-2xl bg-wash px-5 py-5">
+                        <span className="font-heading text-[32px] font-medium text-black leading-none">
+                          {impactCount}
+                        </span>
+                        <span className="text-sm text-muted">
+                          {impactCount === 1
+                            ? 'vaso desechable evitado'
+                            : 'vasos desechables evitados'}
+                        </span>
+                      </div>
                     )}
                   </div>
 

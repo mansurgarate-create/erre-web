@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, ZoomControl, useMap, useMapEvents } fr
 import L, { LatLngBounds } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import FadeIn from './ui/FadeIn'
+import InstagramHandle, { HoursPill } from './InstagramHandle'
 import { supabase } from '../lib/supabase'
 import { useTheme } from '../lib/theme'
 
@@ -223,21 +224,19 @@ export default function CafeMap() {
                   {selected.name}
                 </h3>
               </div>
-              <p className="text-sm text-muted m-0 mb-1">{selected.address}</p>
-              <p className={`text-sm text-muted m-0 ${selected.instagram ? 'mb-2' : 'mb-5'}`}>
-                {selected.hours}
-                {selected.city ? ` · ${selected.city}` : ''}
-              </p>
-              {selected.instagram ? (
-                <a
-                  href={`https://instagram.com/${selected.instagram}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-sm text-muted no-underline mb-5 hover:text-black transition-colors duration-300"
-                >
-                  @{selected.instagram}
-                </a>
-              ) : null}
+              <p className="text-sm text-muted m-0 mb-3">{selected.address}</p>
+              {(selected.hours.trim() || selected.instagram) ? (
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {selected.hours.trim() ? (
+                    <HoursPill hours={selected.hours} className="bg-white" />
+                  ) : null}
+                  {selected.instagram ? (
+                    <InstagramHandle handle={selected.instagram} className="bg-white" />
+                  ) : null}
+                </div>
+              ) : (
+                <div className="mb-5" />
+              )}
               <div className="flex flex-wrap items-center gap-3">
                 {selected.slug ? (
                   <Link to={`/r/${selected.slug}`} className="erre-btn erre-btn-sm">
