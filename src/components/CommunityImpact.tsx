@@ -49,7 +49,7 @@ export default function CommunityImpact() {
   const stats = [
     { value: '200', label: 'Vasos en la red' },
     { value: `+${avoided}`, label: 'Vasos desechables evitados' },
-    { value: `+${cafes}`, label: 'Cafeterías participantes' },
+    { value: `${cafes}`, label: 'Cafeterías participantes' },
   ]
 
   return (
