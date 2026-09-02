@@ -1,5 +1,7 @@
 import FadeIn from './ui/FadeIn'
 
+const APP_STORE_URL = 'https://apps.apple.com/mx/app/erre/id6800519444'
+
 export default function Closing() {
   return (
     <section className="px-6 py-32 md:py-44">
@@ -16,6 +18,22 @@ export default function Closing() {
           >
             @erreparallevar
           </a>
+          <div className="mt-10">
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block no-underline opacity-90 hover:opacity-100 transition-opacity duration-300"
+            >
+              <img
+                src="/media/app-store-badge.svg"
+                alt="Consíguelo en el App Store"
+                width={120}
+                height={40}
+                className="app-store-badge h-10 w-auto mx-auto"
+              />
+            </a>
+          </div>
         </FadeIn>
       </div>
     </section>

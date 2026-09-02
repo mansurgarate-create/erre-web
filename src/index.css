@@ -236,3 +236,7 @@ html[data-theme='dark'] {
   --color-impact-wash: #1E2A22;
 }
 
+html[data-theme='dark'] .app-store-badge {
+  filter: invert(1);
+}
+
