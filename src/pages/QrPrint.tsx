@@ -2,20 +2,28 @@ import { useEffect, useRef, useState } from 'react'
 import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react'
 import FadeIn from '../components/ui/FadeIn'
 import SiteHeader from '../components/SiteHeader'
+import { slugFromNfcTag } from '../lib/puntoSlug'
 import { supabase } from '../lib/supabase'
 
 const QR_ORIGIN = 'https://holaerre.com'
 const PNG_SIZE = 1024
 
+type CafeRef = { name: string; nfc_tag_id: string | null }
+
 type EntryRow = {
   code: string
-  cafes: { name: string } | { name: string }[] | null
+  cafes: CafeRef | CafeRef[] | null
 }
 
 function cafeName(cafes: EntryRow['cafes']) {
   if (!cafes) return 'Sin asignar'
   if (Array.isArray(cafes)) return cafes[0]?.name ?? 'Sin asignar'
   return cafes.name
+}
+
+function puntoSlug(code: string, cafes: EntryRow['cafes']) {
+  const cafe = Array.isArray(cafes) ? cafes[0] : cafes
+  return slugFromNfcTag(cafe?.nfc_tag_id) ?? code
 }
 
 function downloadPng(canvas: HTMLCanvasElement | null, filename: string) {
@@ -27,9 +35,9 @@ function downloadPng(canvas: HTMLCanvasElement | null, filename: string) {
   link.click()
 }
 
-function QrCard({ code, name }: { code: string; name: string }) {
+function QrCard({ name, slug }: { name: string; slug: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const url = `${QR_ORIGIN}/r/${code}`
+  const url = `${QR_ORIGIN}/r/${slug}`
 
   return (
     <li className="qr-print-card relative rounded-2xl bg-wash p-8 flex flex-col items-center text-center">
@@ -57,7 +65,7 @@ function QrCard({ code, name }: { code: string; name: string }) {
       <p className="text-muted text-xs break-all">{url}</p>
       <button
         type="button"
-        onClick={() => downloadPng(canvasRef.current, `erre-${code}.png`)}
+        onClick={() => downloadPng(canvasRef.current, `erre-${slug}.png`)}
         className="print-hide mt-5 bg-transparent border-none p-0 text-sm text-black cursor-pointer hover:text-muted"
       >
         Descargar PNG
@@ -80,7 +88,7 @@ export default function QrPrint() {
     async function load() {
       const { data, error } = await supabase
         .from('entry_codes')
-        .select('code, cafes(name)')
+        .select('code, cafes(name, nfc_tag_id)')
         .order('code')
 
       if (cancelled) return
@@ -127,7 +135,11 @@ export default function QrPrint() {
           ) : (
             <ul className="qr-print-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 list-none p-0 m-0">
               {entries.map((entry) => (
-                <QrCard key={entry.code} code={entry.code} name={cafeName(entry.cafes)} />
+                <QrCard
+                  key={entry.code}
+                  name={cafeName(entry.cafes)}
+                  slug={puntoSlug(entry.code, entry.cafes)}
+                />
               ))}
             </ul>
           )}

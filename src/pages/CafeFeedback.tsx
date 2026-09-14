@@ -1,10 +1,11 @@
 import { useEffect, useState, type FormEvent } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import FadeIn from '../components/ui/FadeIn'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import PageLoading from '../components/ui/PageLoading'
 import { supabase } from '../lib/supabase'
+import { slugFromNfcTag } from '../lib/puntoSlug'
 
 const TOPICS = [
   'El vaso no estaba limpio',
@@ -19,6 +20,7 @@ type CafeRow = {
   id: string
   name: string
   city: string
+  nfc_tag_id: string
 }
 
 async function loadCafe(slug: string): Promise<CafeRow | 'inactive' | null> {
@@ -32,7 +34,7 @@ async function loadCafe(slug: string): Promise<CafeRow | 'inactive' | null> {
     if (!entry.cafe_id) return 'inactive'
     const { data, error } = await supabase
       .from('cafes')
-      .select('id, name, city')
+      .select('id, name, city, nfc_tag_id')
       .eq('id', entry.cafe_id)
       .maybeSingle()
     if (!error && data) return data as CafeRow
@@ -41,7 +43,7 @@ async function loadCafe(slug: string): Promise<CafeRow | 'inactive' | null> {
 
   const { data, error } = await supabase
     .from('cafes')
-    .select('id, name, city')
+    .select('id, name, city, nfc_tag_id')
     .eq('nfc_tag_id', `erre:${slug}`)
     .maybeSingle()
 
@@ -51,6 +53,7 @@ async function loadCafe(slug: string): Promise<CafeRow | 'inactive' | null> {
 
 export default function CafeFeedback() {
   const { slug = '' } = useParams<{ slug: string }>()
+  const navigate = useNavigate()
   const [cafe, setCafe] = useState<CafeRow | null>(null)
   const [loading, setLoading] = useState(true)
   const [missing, setMissing] = useState(false)
@@ -80,16 +83,26 @@ export default function CafeFeedback() {
         return
       }
 
+      let redirected = false
+
       try {
         const result = await loadCafe(slug)
         if (cancelled) return
         if (result === 'inactive') setInactive(true)
         else if (!result) setMissing(true)
-        else setCafe(result)
+        else {
+          const canonical = slugFromNfcTag(result.nfc_tag_id)
+          if (canonical && canonical !== slug) {
+            redirected = true
+            navigate(`/r/${canonical}/feedback`, { replace: true })
+            return
+          }
+          setCafe(result)
+        }
       } catch {
         if (!cancelled) setMissing(true)
       } finally {
-        if (!cancelled) setLoading(false)
+        if (!cancelled && !redirected) setLoading(false)
       }
     }
 
@@ -97,7 +110,7 @@ export default function CafeFeedback() {
     return () => {
       cancelled = true
     }
-  }, [slug])
+  }, [slug, navigate])
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault()

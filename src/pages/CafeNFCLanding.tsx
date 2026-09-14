@@ -1,10 +1,11 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import FadeIn from '../components/ui/FadeIn'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 import PageLoading from '../components/ui/PageLoading'
 import { supabase } from '../lib/supabase'
+import { slugFromNfcTag } from '../lib/puntoSlug'
 import InstagramHandle, { HoursPill } from '../components/InstagramHandle'
 
 interface RecommendedItem {
@@ -205,6 +206,7 @@ function RecommendedSection({ items }: { items: RecommendedItems }) {
 
 export default function CafeNFCLanding() {
   const { slug = '' } = useParams<{ slug: string }>()
+  const navigate = useNavigate()
   const [cafe, setCafe] = useState<CafeInfo | null>(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
@@ -222,6 +224,7 @@ export default function CafeNFCLanding() {
       setLoading(true)
       setNotFound(false)
       setInactive(false)
+      let redirected = false
 
       try {
         const result = await loadBySlug(slug)
@@ -229,6 +232,12 @@ export default function CafeNFCLanding() {
         if (cancelled) return
 
         if (result.status === 'cafe') {
+          const canonical = slugFromNfcTag(result.cafe.nfc_tag_id)
+          if (canonical && canonical !== slug) {
+            redirected = true
+            navigate(`/r/${canonical}`, { replace: true })
+            return
+          }
           const info = toCafeInfo(result.cafe)
           setCafe(info)
           loadImpactCount(info.id).then((count) => {
@@ -247,7 +256,7 @@ export default function CafeNFCLanding() {
           setCafe(null)
         }
       } finally {
-        if (!cancelled) setLoading(false)
+        if (!cancelled && !redirected) setLoading(false)
       }
     }
 
@@ -261,7 +270,7 @@ export default function CafeNFCLanding() {
     return () => {
       cancelled = true
     }
-  }, [slug])
+  }, [slug, navigate])
 
   return (
     <div className="min-h-screen bg-white">
