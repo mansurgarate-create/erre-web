@@ -220,31 +220,24 @@ export default function CafeOpsGuide() {
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   Lavado
                 </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed">
+                <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
                   Lavar bien cada vaso antes de volver a usarlo. Agua tibia con jabón de trastes, esponja suave, enjuagar y secar al aire. También es apto para lavavajillas: charola superior, ciclo estándar — no el de sanitizado.
                 </p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={300}>
-              <Link
-                to="/cuidado"
-                className="flex items-center justify-between gap-6 rounded-2xl bg-white border border-black p-8 md:p-10 no-underline group hover:bg-wash transition-colors duration-300"
-              >
-                <div>
-                  <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                    Guía de cuidado del vaso
-                  </h3>
-                  <p className="text-muted text-sm md:text-base leading-relaxed">
-                    Paso a paso de lavado, zonas de atención y qué evitar.
-                  </p>
-                </div>
-                <span
-                  className="text-black text-xl md:text-2xl shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-                  aria-hidden
+                <Link
+                  to="/cuidado"
+                  className="flex items-center justify-between gap-4 rounded-2xl bg-white border border-black px-5 py-4 md:px-6 md:py-5 no-underline group hover:bg-wash transition-colors duration-300"
                 >
-                  &rarr;
-                </span>
-              </Link>
+                  <span className="font-sans text-sm md:text-base font-medium text-black leading-snug">
+                    Guía de cuidado del vaso
+                  </span>
+                  <span
+                    className="text-black text-lg md:text-xl shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                    aria-hidden
+                  >
+                    &rarr;
+                  </span>
+                </Link>
+              </div>
             </FadeIn>
             <FadeIn delay={320}>
               <div className="rounded-2xl bg-wash p-8 md:p-10">
