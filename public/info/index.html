@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>erre — para cafeterías</title>
-  <meta name="description" content="Únete a la red de vasos reutilizables en Monterrey. Sin costo para tu cafetería.">
+  <title>erre — guía para cafeterías</title>
+  <meta name="description" content="Todo lo que tu cafetería necesita saber para operar con vasos erre.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
       padding: 48px 36px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 48px;
     }
 
     .header {
@@ -42,7 +42,6 @@
     }
 
     .logo {
-      font-family: 'Sora', system-ui, sans-serif;
       font-size: 32px;
       font-weight: 500;
       letter-spacing: -0.02em;
@@ -50,20 +49,12 @@
     }
 
     .tagline {
-      font-family: 'Sora', system-ui, sans-serif;
       font-size: 13px;
       color: var(--muted);
       letter-spacing: 0.04em;
     }
 
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .hero h1 {
-      font-family: 'Sora', system-ui, sans-serif;
+    h1 {
       font-size: 28px;
       font-weight: 500;
       line-height: 1.2;
@@ -71,11 +62,22 @@
       text-wrap: balance;
     }
 
-    .hero p {
+    h2 {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
       font-size: 15px;
-      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    p, li {
+      font-size: 14px;
+      line-height: 1.65;
       color: var(--muted);
-      max-width: 48ch;
     }
 
     hr {
@@ -83,182 +85,143 @@
       border-top: 1px solid var(--border);
     }
 
-    .benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    a {
+      color: var(--black);
+      text-decoration: none;
     }
 
-    .benefit {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .benefit-icon {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      background: var(--black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .benefit-icon svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: var(--white);
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .benefit-text h3 {
-      font-family: 'Sora', system-ui, sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    .benefit-text p {
-      font-size: 13px;
-      line-height: 1.55;
+    a:hover {
       color: var(--muted);
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .split-col h2 {
-      font-family: 'Sora', system-ui, sans-serif;
+    /* Steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .step {
+      background: var(--wash);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+
+    .step-num {
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .step h3 {
+      margin-bottom: 4px;
+    }
+
+    /* Info cards */
+    .card {
+      background: var(--wash);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p + p {
+      margin-top: 8px;
+    }
+
+    /* FAQ */
+    .faq {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-q {
       font-size: 14px;
       font-weight: 500;
-      margin-bottom: 12px;
-      letter-spacing: 0.02em;
+      color: var(--black);
+      margin-bottom: 8px;
     }
 
-    .split-col ul {
+    .faq-a {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* Links */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .link-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .link-item:hover {
+      color: var(--muted);
+    }
+
+    .link-arrow {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Benefits summary */
+    .benefits-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .split-col li {
+    .benefits-list li {
       font-size: 13px;
       line-height: 1.5;
       color: var(--muted);
-      padding-left: 16px;
+      padding-left: 18px;
       position: relative;
     }
 
-    .split-col li::before {
+    .benefits-list li::before {
+      content: "—";
       position: absolute;
       left: 0;
-      font-size: 11px;
-    }
-
-    .col-us li::before {
-      content: "→";
-      color: var(--black);
-    }
-
-    .col-you li::before {
-      content: "·";
-      color: var(--muted);
-      font-size: 16px;
-      top: -1px;
-    }
-
-    .how {
-      background: var(--wash);
-      margin: 0 -36px;
-      padding: 32px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .how h2 {
-      font-family: 'Sora', system-ui, sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-    }
-
-    .step {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .step-num {
-      font-family: 'Sora', system-ui, sans-serif;
-      font-size: 24px;
-      font-weight: 300;
       color: var(--border);
-      line-height: 1;
-    }
-
-    .step-title {
-      font-family: 'Sora', system-ui, sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .step-desc {
-      font-size: 12px;
-      line-height: 1.45;
-      color: var(--muted);
-    }
-
-    .cta {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      text-align: center;
-      padding: 20px 0 0;
-    }
-
-    .cta-line {
-      font-family: 'Sora', system-ui, sans-serif;
-      font-size: 20px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-
-    .cta-sub {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .cta-contact {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      font-size: 13px;
-    }
-
-    .cta-contact a {
-      color: var(--black);
-      text-decoration: none;
-    }
-
-    .cta-contact span {
-      color: var(--muted);
     }
 
     .footer {
@@ -270,11 +233,11 @@
     }
 
     @media (max-width: 480px) {
-      .page { padding: 36px 24px; gap: 32px; }
-      .hero h1 { font-size: 24px; }
-      .split { grid-template-columns: 1fr; gap: 20px; }
-      .steps { grid-template-columns: 1fr; gap: 12px; }
-      .how { margin: 0 -24px; padding: 28px 24px; }
+      .page { padding: 36px 24px; gap: 40px; }
+      h1 { font-size: 24px; }
+      h2 { font-size: 18px; }
+      .step { padding: 20px 22px; }
+      .card { padding: 20px 22px; }
     }
   </style>
 </head>
@@ -282,97 +245,172 @@
   <div class="page">
     <div class="header">
       <div class="logo">erre</div>
-      <div class="tagline">Red de vasos reutilizables</div>
+      <div class="tagline">Guía para cafeterías</div>
     </div>
 
-    <div class="hero">
-      <h1>Tu cafetería, parte de algo más grande.</h1>
-      <p>erre es una red de vasos reutilizables que conecta cafeterías en Monterrey. Tus clientes piden su bebida en vaso erre, lo llevan, y lo devuelven en cualquier café de la red. Sin desechables, sin complicaciones.</p>
-    </div>
-
-    <hr>
-
-    <div class="benefits">
-      <div class="benefit">
-        <div class="benefit-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
-        </div>
-        <div class="benefit-text">
-          <h3>Sin costo para tu cafetería</h3>
-          <p>erre provee los vasos, la app y el sistema de depósitos. Tú no pagas nada por unirte a la red.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
-        </div>
-        <div class="benefit-text">
-          <h3>Visibilidad en la red</h3>
-          <p>Tu cafetería aparece en holaerre.com y en la app con mapa, horarios, dirección e Instagram. Cada vaso que circula lleva gente nueva a tu puerta.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
-        </div>
-        <div class="benefit-text">
-          <h3>Compromiso ambiental real</h3>
-          <p>No es un sticker ni un hashtag. Es una acción concreta que tus clientes ven y valoran cada vez que piden su café.</p>
-        </div>
-      </div>
+    <div class="section">
+      <h1>Todo lo que necesitas saber para operar con vasos erre.</h1>
+      <p>erre es una red de vasos reutilizables que conecta cafeterías en Monterrey. Tus clientes piden su bebida en vaso erre, lo llevan, y lo devuelven en cualquier cafetería de la red.</p>
     </div>
 
     <hr>
 
-    <div class="split">
-      <div class="split-col col-us">
-        <h2>erre pone</h2>
-        <ul>
-          <li>Los vasos reutilizables</li>
-          <li>El sistema de depósitos ($30 MXN)</li>
-          <li>La app y la tecnología</li>
-          <li>Tu perfil en holaerre.com</li>
-          <li>Material de punto de venta</li>
-        </ul>
-      </div>
-      <div class="split-col col-you">
-        <h2>Tu cafetería</h2>
-        <ul>
-          <li>Ofrece el vaso erre al cliente</li>
-          <li>Cobra y devuelve el depósito</li>
-          <li>Lava los vasos devueltos</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="how">
-      <h2>Cómo funciona para el cliente</h2>
+    <!-- Cómo funciona -->
+    <div class="section">
+      <h2>Cómo funciona</h2>
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
-          <div class="step-title">Pide</div>
-          <div class="step-desc">Ordena su bebida en vaso erre. Deja $30 de depósito.</div>
+          <h3>El cliente pide su bebida en vaso erre</h3>
+          <p>Deja un depósito de $30. Se lo puede llevar sin prisa y sin fecha límite.</p>
         </div>
         <div class="step">
           <div class="step-num">2</div>
-          <div class="step-title">Disfruta</div>
-          <div class="step-desc">Se lo lleva. Es suyo mientras lo necesite.</div>
+          <h3>Devuelve el vaso en cualquier cafetería de la red</h3>
+          <p>No tiene que ser la misma cafetería donde lo pidió. Puede ser cualquier punto erre.</p>
         </div>
         <div class="step">
           <div class="step-num">3</div>
-          <div class="step-title">Devuelve</div>
-          <div class="step-desc">Lo regresa en cualquier café de la red y recupera su depósito.</div>
+          <h3>La cafetería le regresa los $30</h3>
+          <p>Siempre. No importa quién lo trajo, ni en qué condición llegue el vaso. Los $30 se regresan completos.</p>
         </div>
       </div>
     </div>
 
-    <div class="cta">
-      <div class="cta-line">Únete a la red.</div>
-      <div class="cta-sub">5 cafeterías ya son parte. Sin contratos, sin costos fijos.</div>
-      <div class="cta-contact">
-        <a href="mailto:hola@holaerre.com">hola@holaerre.com</a>
-        <span>holaerre.com · @erreparallevar</span>
+    <hr>
+
+    <!-- Operación del depósito -->
+    <div class="section">
+      <h2>Operación del depósito</h2>
+
+      <div class="card">
+        <h3>Si el cliente paga con tarjeta</h3>
+        <p>Suma los $30 del depósito al total de la cuenta. Cuando alguien devuelva un vaso, regrésale los $30 en efectivo.</p>
       </div>
+
+      <div class="card">
+        <h3>Si el cliente paga en efectivo</h3>
+        <p>Cobra los $30 junto con la bebida. Ese dinero queda como caja chica para devolver depósitos cuando otros clientes regresen vasos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Devoluciones</h3>
+        <p>Es posible que lleguen personas solo a devolver un vaso y recibir sus $30. No necesitan comprar nada. Hay que darles su depósito.</p>
+        <p>El vaso no tiene que venir de tu cafetería. Puede venir de cualquier punto erre.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- El vaso -->
+    <div class="section">
+      <h2>El vaso</h2>
+      <p>Material: polipropileno (PP), impresión por serigrafía UV. Si se cuida bien, cada vaso puede usarse más de 1,000 veces.</p>
+      <div class="card">
+        <h3>Bebidas calientes y frías</h3>
+        <p>El vaso funciona para ambas. Con bebidas calientes, el material traspasa algo de calor. Se recomienda agarrar de la parte de arriba o con una manga reusable si se necesita.</p>
+      </div>
+      <div class="card">
+        <h3>Lavado</h3>
+        <p>Es muy importante lavar bien cada vaso antes de volver a usarlo. Agua tibia con jabón de trastes, esponja suave, enjuagar y secar al aire. Revisar que no tenga grietas, decoloración ni olor residual.</p>
+        <p>La guía completa de lavado está en <a href="https://holaerre.com/cuidado" style="text-decoration: underline;">holaerre.com/cuidado</a>.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- FAQ -->
+    <div class="section">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+
+        <div class="faq-item">
+          <div class="faq-q">¿Qué pasa si llega un vaso sin tapa, rayado o roto?</div>
+          <div class="faq-a">Recíbelo y da los $30. No importa la condición. erre repone los vasos dañados, así que no te preocupes. Lo que queremos es que el cliente siempre tenga una buena experiencia al devolver.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Qué pasa si alguien viene solo a devolver un vaso sin comprar nada?</div>
+          <div class="faq-a">Se le dan sus $30. Es parte del sistema. Puede que ese vaso haya salido de otra cafetería de la red.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Qué pasa si un cliente no regresa el vaso?</div>
+          <div class="faq-a">No pasa nada. Ya pagó los $30 por él. Lo más probable es que lo regrese eventualmente en otra cafetería de la red. Y si no, pues se quedó con un buen vaso.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Qué hago si me quedo sin vasos?</div>
+          <div class="faq-a">Mándanos un mensaje. erre te lleva más sin costo. No hay problema.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Qué hago si se me acumulan muchos vasos?</div>
+          <div class="faq-a">Avísanos. erre pasa a recoger los que te sobren y los redistribuye a otras cafeterías que los necesiten.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Cómo manejo la caja chica de depósitos?</div>
+          <div class="faq-a">Lo que hacen las cafeterías de la red es sumar los $30 al cobro con tarjeta, y usar esos $30 en efectivo para devolver depósitos. Si recibes depósitos en efectivo, esos mismos billetes se quedan en caja para regresárselos al siguiente cliente que devuelva un vaso.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Se puede usar para bebidas calientes?</div>
+          <div class="faq-a">Sí. El vaso aguanta caliente y frío. Con bebidas calientes traspasa algo de calor, así que se recomienda agarrar de la parte de arriba o usar una manga reusable.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">¿Cuánto dura un vaso?</div>
+          <div class="faq-a">Si se cuida bien, más de 1,000 usos. Es importante lavarlo correctamente y no usar fibras abrasivas ni cloro.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Links -->
+    <div class="section">
+      <h2>Links útiles</h2>
+      <div class="links">
+        <a href="https://holaerre.com/cuidado" class="link-item">
+          Guía de cuidado del vaso
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="https://holaerre.com/#cafeterias" class="link-item">
+          Mapa de la red erre
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="https://holaerre.com" class="link-item">
+          holaerre.com
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="https://instagram.com/erreparallevar" class="link-item">
+          @erreparallevar
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="https://apps.apple.com/app/erre/id6744076519" class="link-item">
+          App para iOS
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="mailto:hola@holaerre.com" class="link-item">
+          hola@holaerre.com
+          <span class="link-arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Benefits -->
+    <div class="section">
+      <h2>Beneficios para tu cafetería</h2>
+      <ul class="benefits-list">
+        <li>erre provee los vasos, la app y el sistema de depósitos. No pagas nada por unirte.</li>
+        <li>Tu cafetería aparece en holaerre.com y en la app con mapa, horarios, dirección e Instagram.</li>
+        <li>Cada vaso que circula lleva gente nueva a tu puerta.</li>
+        <li>Compromiso ambiental real que tus clientes ven y valoran.</li>
+      </ul>
     </div>
 
     <div class="footer">de mano en mano</div>
