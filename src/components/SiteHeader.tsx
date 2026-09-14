@@ -6,7 +6,11 @@ export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: stri
   const { session, profile } = useAuth()
   const { pathname } = useLocation()
 
-  const hideAccountLink = pathname === '/cuenta' || pathname === '/privacidad' || pathname === '/cuidado'
+  const hideAccountLink =
+    pathname === '/cuenta' ||
+    pathname === '/privacidad' ||
+    pathname === '/cuidado' ||
+    pathname === '/info'
   const label = !session ? 'Iniciar sesión' : firstName(profile?.name, profile?.email)
 
   return (

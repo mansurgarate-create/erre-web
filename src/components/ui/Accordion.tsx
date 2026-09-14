@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 
 interface AccordionItemProps {
   question: string
-  answer: string
+  answer: ReactNode
 }
 
 function AccordionItem({ question, answer }: AccordionItemProps) {
@@ -11,6 +11,7 @@ function AccordionItem({ question, answer }: AccordionItemProps) {
   return (
     <div className="border-b border-border">
       <button
+        type="button"
         onClick={() => setOpen(!open)}
         className="w-full flex justify-between items-center py-6 text-left cursor-pointer bg-transparent border-none"
       >
@@ -25,19 +26,22 @@ function AccordionItem({ question, answer }: AccordionItemProps) {
         </span>
       </button>
       <div
-        className="overflow-hidden transition-all duration-500 ease-in-out"
-        style={{ maxHeight: open ? '200px' : '0px', opacity: open ? 1 : 0 }}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out print:grid-rows-[1fr] print:opacity-100 ${
+          open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
       >
-        <p className="pb-6 text-muted text-sm md:text-base leading-relaxed">
-          {answer}
-        </p>
+        <div className="overflow-hidden">
+          <p className="pb-6 text-muted text-sm md:text-base leading-relaxed">
+            {answer}
+          </p>
+        </div>
       </div>
     </div>
   )
 }
 
 interface AccordionProps {
-  items: { question: string; answer: string }[]
+  items: { question: string; answer: ReactNode }[]
 }
 
 export default function Accordion({ items }: AccordionProps) {

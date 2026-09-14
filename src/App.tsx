@@ -10,6 +10,7 @@ import FAQ from './components/FAQ'
 import Closing from './components/Closing'
 import Footer from './components/Footer'
 import CareGuide from './pages/CareGuide'
+import CafeOpsGuide from './pages/CafeOpsGuide'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import CafeNFCLanding from './pages/CafeNFCLanding'
 import CafeFeedback from './pages/CafeFeedback'
@@ -51,6 +52,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/cuidado" element={<CareGuide />} />
+      <Route path="/info" element={<CafeOpsGuide />} />
       <Route path="/privacidad" element={<PrivacyPolicy />} />
       <Route path="/cuenta" element={<Account />} />
       <Route path="/r/:slug" element={<CafeNFCLanding />} />
