@@ -24,34 +24,35 @@
       color: var(--black);
       background: var(--white);
       -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      padding: 40px 36px 24px;
       max-width: 640px;
       margin: 0 auto;
     }
 
+    .site-header a {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .site-header a:hover {
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+
     .page {
-      padding: 48px 36px;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 36px 48px;
       display: flex;
       flex-direction: column;
       gap: 48px;
-    }
-
-    .header {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .logo {
-      font-size: 32px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-
-    .tagline {
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: 0.04em;
     }
 
     h1 {
@@ -114,9 +115,11 @@
     }
 
     .step-num {
-      font-size: 28px;
-      font-weight: 300;
-      color: var(--border);
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--black);
+      opacity: 0.15;
       line-height: 1;
       margin-bottom: 8px;
     }
@@ -140,16 +143,14 @@
       margin-top: 8px;
     }
 
-    /* FAQ */
+    /* FAQ accordion */
     .faq {
       display: flex;
       flex-direction: column;
-      gap: 0;
     }
 
     .faq-item {
       border-bottom: 1px solid var(--border);
-      padding: 20px 0;
     }
 
     .faq-item:first-child {
@@ -157,23 +158,83 @@
     }
 
     .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 18px 0;
+      background: none;
+      border: none;
+      font-family: 'Sora', system-ui, sans-serif;
       font-size: 14px;
       font-weight: 500;
       color: var(--black);
-      margin-bottom: 8px;
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+    }
+
+    .faq-q:hover {
+      color: var(--muted);
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--muted);
+      border-radius: 1px;
+    }
+
+    .faq-icon::before {
+      top: 50%;
+      left: 3px;
+      right: 3px;
+      height: 1.5px;
+      transform: translateY(-50%);
+    }
+
+    .faq-icon::after {
+      left: 50%;
+      top: 3px;
+      bottom: 3px;
+      width: 1.5px;
+      transform: translateX(-50%);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .faq-item.open .faq-icon::after {
+      transform: translateX(-50%) scaleY(0);
+      opacity: 0;
     }
 
     .faq-a {
       font-size: 13px;
       line-height: 1.6;
       color: var(--muted);
+      overflow: hidden;
+      max-height: 0;
+      padding-bottom: 0;
+      transition: max-height 0.35s ease, padding-bottom 0.35s ease;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-bottom: 18px;
     }
 
     /* Links */
     .links {
       display: flex;
       flex-direction: column;
-      gap: 12px;
     }
 
     .link-item {
@@ -224,16 +285,25 @@
       color: var(--border);
     }
 
+    /* Section images (cup + stand) */
+    .section-img {
+      max-width: 220px;
+      max-height: 180px;
+      border-radius: 14px;
+      object-fit: cover;
+      margin: 0 auto;
+      display: block;
+    }
+
     .footer {
       text-align: center;
-      font-size: 11px;
-      color: var(--border);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 13px;
+      color: var(--muted);
     }
 
     @media (max-width: 480px) {
-      .page { padding: 36px 24px; gap: 40px; }
+      .site-header { padding: 28px 24px 20px; }
+      .page { padding: 0 24px 40px; gap: 40px; }
       h1 { font-size: 24px; }
       h2 { font-size: 18px; }
       .step { padding: 20px 22px; }
@@ -242,15 +312,14 @@
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="header">
-      <div class="logo">erre</div>
-      <div class="tagline">Guía para cafeterías</div>
-    </div>
+  <header class="site-header">
+    <a href="https://holaerre.com">erre</a>
+  </header>
 
+  <div class="page">
     <div class="section">
       <h1>Todo lo que necesitas saber para operar con vasos erre.</h1>
-      <p>erre es una red de vasos reutilizables que conecta cafeterías en Monterrey. Tus clientes piden su bebida en vaso erre, lo llevan, y lo devuelven en cualquier cafetería de la red.</p>
+      <p>erre es una red de vasos reutilizables que conecta cafeterías en Monterrey. Tus clientes piden su bebida en vaso erre, lo llevan, y lo devuelven en cualquier cafetería de la red. Todos los vasos son iguales para toda la red.</p>
     </div>
 
     <hr>
@@ -260,17 +329,17 @@
       <h2>Cómo funciona</h2>
       <div class="steps">
         <div class="step">
-          <div class="step-num">1</div>
+          <div class="step-num">01</div>
           <h3>El cliente pide su bebida en vaso erre</h3>
           <p>Deja un depósito de $30. Se lo puede llevar sin prisa y sin fecha límite.</p>
         </div>
         <div class="step">
-          <div class="step-num">2</div>
+          <div class="step-num">02</div>
           <h3>Devuelve el vaso en cualquier cafetería de la red</h3>
           <p>No tiene que ser la misma cafetería donde lo pidió. Puede ser cualquier punto erre.</p>
         </div>
         <div class="step">
-          <div class="step-num">3</div>
+          <div class="step-num">03</div>
           <h3>La cafetería le regresa los $30</h3>
           <p>Siempre. No importa quién lo trajo, ni en qué condición llegue el vaso. Los $30 se regresan completos.</p>
         </div>
@@ -305,7 +374,8 @@
     <!-- El vaso -->
     <div class="section">
       <h2>El vaso</h2>
-      <p>Material: polipropileno (PP), impresión por serigrafía UV. Si se cuida bien, cada vaso puede usarse más de 1,000 veces.</p>
+      <img src="/images/info/vaso-erre.jpg" alt="Vaso erre reutilizable" class="section-img">
+      <p>Material: polipropileno (PP), impresión por serigrafía UV. Todos los vasos de la red son iguales. Si se cuida bien, cada vaso puede usarse más de 1,000 veces.</p>
       <div class="card">
         <h3>Bebidas calientes y frías</h3>
         <p>El vaso funciona para ambas. Con bebidas calientes, el material traspasa algo de calor. Se recomienda agarrar de la parte de arriba o con una manga reusable si se necesita.</p>
@@ -319,49 +389,100 @@
 
     <hr>
 
+    <!-- El stand erre -->
+    <div class="section">
+      <h2>El stand erre</h2>
+      <img src="/images/info/stand-qr.jpg" alt="Stand erre con código QR y NFC" class="section-img">
+      <p>Cada cafetería de la red tiene un stand con un código QR único y un chip NFC. Los clientes pueden escanear el QR o acercar su celular al NFC para llegar a la página de "punto erre" de tu cafetería.</p>
+      <div class="card">
+        <h3>¿Qué encuentran ahí?</h3>
+        <p>La página de punto erre de tu cafetería muestra tu Instagram, horarios, dirección, fotos, un link a tu menú y 3 recomendaciones de bebidas que tú eliges.</p>
+        <p>Es una forma fácil para que los clientes conozcan tu cafetería mientras interactúan con el vaso erre.</p>
+      </div>
+      <div class="card">
+        <h3>Registro de rentas con la app</h3>
+        <p>El NFC del stand también sirve para registrar rentas y devoluciones desde la app de erre. Si el cliente acerca su celular al stand desde la sección de escanear en la app, puede registrar que rentó o devolvió un vaso.</p>
+        <p>Esto no mueve nada del depósito — el depósito se sigue manejando como siempre en la caja. El registro en la app es para que el cliente pueda ver cuántos vasos ha rentado, cuántos tiene sin devolver y cuántos desechables ha evitado.</p>
+      </div>
+    </div>
+
+    <hr>
+
     <!-- FAQ -->
     <div class="section">
       <h2>Preguntas frecuentes</h2>
       <div class="faq">
 
         <div class="faq-item">
-          <div class="faq-q">¿Qué pasa si llega un vaso sin tapa, rayado o roto?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Qué pasa si llega un vaso sin tapa, rayado o roto?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">Recíbelo y da los $30. No importa la condición. erre repone los vasos dañados, así que no te preocupes. Lo que queremos es que el cliente siempre tenga una buena experiencia al devolver.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">¿Qué pasa si alguien viene solo a devolver un vaso sin comprar nada?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Qué pasa si alguien viene solo a devolver un vaso sin comprar nada?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">Se le dan sus $30. Es parte del sistema. Puede que ese vaso haya salido de otra cafetería de la red.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">¿Qué pasa si un cliente no regresa el vaso?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Qué pasa si un cliente no regresa el vaso?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">No pasa nada. Ya pagó los $30 por él. Lo más probable es que lo regrese eventualmente en otra cafetería de la red. Y si no, pues se quedó con un buen vaso.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">¿Qué hago si me quedo sin vasos?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Qué hago si me quedo sin vasos?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">Mándanos un mensaje. erre te lleva más sin costo. No hay problema.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">¿Qué hago si se me acumulan muchos vasos?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Qué hago si se me acumulan muchos vasos?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">Avísanos. erre pasa a recoger los que te sobren y los redistribuye a otras cafeterías que los necesiten.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">¿Cómo manejo la caja chica de depósitos?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Cómo manejo la caja chica de depósitos?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">Lo que hacen las cafeterías de la red es sumar los $30 al cobro con tarjeta, y usar esos $30 en efectivo para devolver depósitos. Si recibes depósitos en efectivo, esos mismos billetes se quedan en caja para regresárselos al siguiente cliente que devuelva un vaso.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">¿Se puede usar para bebidas calientes?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Se puede usar para bebidas calientes?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">Sí. El vaso aguanta caliente y frío. Con bebidas calientes traspasa algo de calor, así que se recomienda agarrar de la parte de arriba o usar una manga reusable.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">¿Cuánto dura un vaso?</div>
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Cuánto dura un vaso?</span>
+            <span class="faq-icon"></span>
+          </button>
           <div class="faq-a">Si se cuida bien, más de 1,000 usos. Es importante lavarlo correctamente y no usar fibras abrasivas ni cloro.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>¿Los vasos son diferentes por cafetería?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-a">No. Todos los vasos de la red son iguales. Un cliente puede llevar el vaso a cualquier cafetería y devolverlo sin problema.</div>
         </div>
 
       </div>
@@ -406,7 +527,7 @@
     <div class="section">
       <h2>Beneficios para tu cafetería</h2>
       <ul class="benefits-list">
-        <li>erre provee los vasos, la app y el sistema de depósitos. No pagas nada por unirte.</li>
+        <li>erre provee los vasos y la app. No pagas nada por unirte.</li>
         <li>Tu cafetería aparece en holaerre.com y en la app con mapa, horarios, dirección e Instagram.</li>
         <li>Cada vaso que circula lleva gente nueva a tu puerta.</li>
         <li>Compromiso ambiental real que tus clientes ven y valoran.</li>
