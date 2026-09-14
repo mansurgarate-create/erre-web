@@ -119,16 +119,9 @@ export default function CafeOpsGuide() {
             <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6 md:mb-8">
               Todo lo que necesitas saber para operar con vasos erre.
             </h1>
-            <p className="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-10 md:mb-12">
+            <p className="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-16 md:mb-20">
               erre es una red de vasos reutilizables que conecta cafeterías en Monterrey. Tus clientes piden su bebida en vaso erre, lo llevan, y lo devuelven en cualquier cafetería de la red. Todos los vasos son iguales para toda la red.
             </p>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="erre-btn print-hide mb-16 md:mb-20"
-            >
-              Imprimir
-            </button>
           </FadeIn>
 
           <FadeIn delay={100}>
@@ -201,12 +194,17 @@ export default function CafeOpsGuide() {
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
               El vaso
             </h2>
+            <img
+              src="/images/info/vaso-erre.jpg"
+              alt="Vaso erre reutilizable"
+              className="max-w-[220px] max-h-[180px] rounded-2xl object-cover mx-auto block mb-8 md:mb-10"
+            />
             <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
               Material: polipropileno (PP), impresión por serigrafía UV. Todos los vasos de la red son iguales. Si se cuida bien, cada vaso puede usarse más de 1,000 veces.
             </p>
           </FadeIn>
 
-          <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
+          <div className="space-y-6 md:space-y-8 mb-6">
             <FadeIn delay={240}>
               <div className="rounded-2xl bg-wash p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
@@ -222,18 +220,8 @@ export default function CafeOpsGuide() {
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   Lavado
                 </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed mb-4">
-                  Lavar bien cada vaso antes de volver a usarlo. Agua tibia con jabón de trastes, esponja suave, enjuagar y secar al aire. También es apto para lavavajillas: charola superior, ciclo estándar — no el de sanitizado.
-                </p>
                 <p className="text-muted text-sm md:text-base leading-relaxed">
-                  La guía completa está en{' '}
-                  <Link
-                    to="/cuidado"
-                    className="text-black underline hover:text-muted transition-colors duration-300"
-                  >
-                    holaerre.com/cuidado
-                  </Link>
-                  .
+                  Lavar bien cada vaso antes de volver a usarlo. Agua tibia con jabón de trastes, esponja suave, enjuagar y secar al aire. También es apto para lavavajillas: charola superior, ciclo estándar — no el de sanitizado.
                 </p>
               </div>
             </FadeIn>
@@ -249,10 +237,25 @@ export default function CafeOpsGuide() {
             </FadeIn>
           </div>
 
+          <FadeIn delay={340}>
+            <Link
+              to="/cuidado"
+              className="flex justify-between items-center py-4 mb-16 md:mb-20 border-y border-border text-sm md:text-base font-medium text-black no-underline hover:text-muted transition-colors duration-300"
+            >
+              Guía de cuidado del vaso
+              <span className="text-muted text-sm">&rarr;</span>
+            </Link>
+          </FadeIn>
+
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
               El stand erre
             </h2>
+            <img
+              src="/images/info/stand-qr.jpg"
+              alt="Stand erre con código QR y NFC"
+              className="max-w-[220px] max-h-[180px] rounded-2xl object-cover mx-auto block mb-8 md:mb-10"
+            />
             <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
               Cada cafetería de la red tiene un stand con un código QR y un chip NFC. Los clientes pueden escanear el QR o acercar su celular al NFC para llegar a la página de punto erre de tu cafetería. El chip y el QR son de ese stand: no los muevas ni los reemplaces.
             </p>
