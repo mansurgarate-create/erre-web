@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import FadeIn from '../components/ui/FadeIn'
 import SiteHeader from '../components/SiteHeader'
 import Footer from '../components/Footer'
@@ -230,19 +229,6 @@ export default function CareGuide() {
                 ))}
               </ul>
             </div>
-          </FadeIn>
-
-          <FadeIn delay={400}>
-            <p className="text-muted text-sm md:text-base leading-relaxed">
-              La guía de operación de la red está en{' '}
-              <Link
-                to="/info"
-                className="text-black underline hover:text-muted transition-colors duration-300"
-              >
-                holaerre.com/info
-              </Link>
-              .
-            </p>
           </FadeIn>
         </div>
       </main>
