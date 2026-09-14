@@ -21,6 +21,12 @@ const washSteps = [
   },
 ]
 
+const attentionZones = [
+  { image: '/images/care/zona-1.jpg', caption: 'Borde interior de la tapa' },
+  { image: '/images/care/zona-2.jpg', caption: 'Fondo interior del vaso' },
+  { image: '/images/care/zona-3.jpg', caption: 'Ranura de la tapa' },
+]
+
 const avoidItems = [
   'Fibras metálicas, estropajos verdes abrasivos o polvos tipo Ajax — rayan la superficie y opacan el diseño.',
   'Cloro o blanqueadores concentrados.',
@@ -88,6 +94,38 @@ export default function CareGuide() {
             ))}
           </div>
 
+          {/* Zonas de atención */}
+          <FadeIn delay={200}>
+            <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
+              Zonas de atención
+            </h2>
+            <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
+              Presta especial atención a estas áreas al lavar.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20">
+            {attentionZones.map((zone, i) => (
+              <FadeIn key={zone.caption} delay={250 + i * 100}>
+                <div>
+                  <div className="aspect-square rounded-xl bg-wash overflow-hidden mb-3">
+                    <img
+                      src={zone.image}
+                      alt={zone.caption}
+                      className="w-full h-full object-cover hidden"
+                      onLoad={(e) => {
+                        (e.target as HTMLImageElement).classList.remove('hidden')
+                      }}
+                    />
+                  </div>
+                  <p className="text-muted text-xs md:text-sm">
+                    {zone.caption}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
           {/* Cuidados generales */}
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-8 md:mb-10">
@@ -119,13 +157,13 @@ export default function CareGuide() {
 
           {/* Evitar */}
           <FadeIn delay={300}>
-            <div className="rounded-2xl bg-black p-8 md:p-10 mb-8 md:mb-10">
-              <h2 className="font-heading text-xl md:text-2xl font-medium text-white mb-6">
+            <div className="rounded-2xl bg-wash p-8 md:p-10 mb-8 md:mb-10">
+              <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
                 Evitar
               </h2>
               <ul className="space-y-3">
                 {avoidItems.map((item, i) => (
-                  <li key={i} className="text-white/70 text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-white/40">
+                  <li key={i} className="text-muted text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-border">
                     {item}
                   </li>
                 ))}
@@ -135,13 +173,13 @@ export default function CareGuide() {
 
           {/* Inspección */}
           <FadeIn delay={350}>
-            <div className="rounded-2xl bg-black p-8 md:p-10 mb-16 md:mb-20">
-              <h2 className="font-heading text-xl md:text-2xl font-medium text-white mb-6">
+            <div className="rounded-2xl bg-wash p-8 md:p-10 mb-16 md:mb-20">
+              <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
                 Inspección antes de reusar
               </h2>
               <ul className="space-y-3">
                 {inspectItems.map((item, i) => (
-                  <li key={i} className="text-white/70 text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-white/40">
+                  <li key={i} className="text-muted text-sm md:text-base leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-border">
                     {item}
                   </li>
                 ))}
