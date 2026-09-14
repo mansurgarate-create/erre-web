@@ -228,14 +228,22 @@ export default function CafeOpsGuide() {
             <FadeIn delay={300}>
               <Link
                 to="/cuidado"
-                className="block rounded-2xl bg-impact-wash p-8 md:p-10 no-underline hover:opacity-90 transition-opacity duration-300"
+                className="flex items-center justify-between gap-6 rounded-2xl bg-white border border-black p-8 md:p-10 no-underline group hover:bg-wash transition-colors duration-300"
               >
-                <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Guía de cuidado del vaso
-                </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed">
-                  Paso a paso de lavado, zonas de atención y qué evitar.
-                </p>
+                <div>
+                  <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
+                    Guía de cuidado del vaso
+                  </h3>
+                  <p className="text-muted text-sm md:text-base leading-relaxed">
+                    Paso a paso de lavado, zonas de atención y qué evitar.
+                  </p>
+                </div>
+                <span
+                  className="text-black text-xl md:text-2xl shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden
+                >
+                  &rarr;
+                </span>
               </Link>
             </FadeIn>
             <FadeIn delay={320}>
