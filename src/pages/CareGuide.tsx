@@ -22,12 +22,6 @@ const washSteps = [
   },
 ]
 
-const attentionZones = [
-  { image: '/images/care/boquilla-tapa.jpg', caption: 'Boquilla y orificio de ventilación' },
-  { image: '/images/care/orilla-vaso.jpg', caption: 'Orilla superior del vaso' },
-  { image: '/images/care/orilla-tapa.jpg', caption: 'Orilla interior de la tapa' },
-]
-
 const avoidItems = [
   'Fibras metálicas, estropajos verdes abrasivos o polvos tipo Ajax — rayan la superficie y opacan el diseño.',
   'Cloro o blanqueadores concentrados.',
@@ -46,6 +40,76 @@ const careItems = [
   'No exponer al sol directo por tiempos prolongados — puede opacar los colores.',
   'Almacenar secos, boca abajo, en área limpia. Tapa separada del vaso.',
 ]
+
+const attentionZones: {
+  title: string
+  description: string
+  image?: string
+  imageAlt?: string
+}[] = [
+  {
+    title: 'Fondo del vaso',
+    description:
+      'El fondo interior es donde más fácil se quedan manchas. Asegúrate de tallarlo bien con la esponja hasta que quede completamente limpio.',
+  },
+  {
+    title: 'Anillo superior del vaso',
+    description:
+      'El borde donde se monta la tapa suele quedarse manchado. Ese anillo tiene que estar bien limpio para que la tapa selle correctamente y no queden residuos visibles.',
+    image: '/images/care/orilla-vaso.jpg',
+    imageAlt: 'Orilla del vaso, donde se ensambla la tapa',
+  },
+  {
+    title: 'Borde interior de la tapa',
+    description:
+      'La tapa tiene una hendidura interior en todo su diámetro donde se pueden quedar restos de bebida. Es importante buscar una herramienta (como un cepillo pequeño o un limpiador de popotes) que permita limpiar esa hendidura en todo el contorno de la tapa.',
+    image: '/images/care/orilla-tapa.jpg',
+    imageAlt: 'Orilla de la tapa, donde se ensambla en el vaso',
+  },
+  {
+    title: 'Boquilla y orificio de ventilación',
+    description:
+      'La boquilla hay que lavarla por dentro y por fuera; por dentro tiene unos dobleces difíciles de limpiar. El orificio de ventilación también acumula residuos, por dentro y por fuera. Si se puede, pasar un limpiador de popotes por ambos, con cuidado de no rayar el material.',
+    image: '/images/care/boquilla-orificio.jpg',
+    imageAlt: 'Boquilla y orificio de venteo de la tapa',
+  },
+]
+
+function ZoneBlock({
+  title,
+  description,
+  image,
+  imageAlt,
+}: {
+  title: string
+  description: string
+  image?: string
+  imageAlt?: string
+}) {
+  return (
+    <div
+      className={`rounded-2xl bg-wash p-8 md:p-10 ${
+        image ? 'md:grid md:grid-cols-2 md:gap-8 md:items-center' : ''
+      }`}
+    >
+      {image ? (
+        <img
+          src={image}
+          alt={imageAlt ?? title}
+          className="w-full max-h-[28rem] object-contain rounded-xl mb-6 md:mb-0"
+        />
+      ) : null}
+      <div>
+        <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
+          {title}
+        </h3>
+        <p className="text-muted text-sm md:text-base leading-relaxed">
+          {description}
+        </p>
+      </div>
+    </div>
+  )
+}
 
 export default function CareGuide() {
   useEffect(() => {
@@ -70,7 +134,6 @@ export default function CareGuide() {
             </p>
           </FadeIn>
 
-          {/* Lavado */}
           <FadeIn delay={100}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-12 md:mb-16">
               Lavado
@@ -95,98 +158,23 @@ export default function CareGuide() {
             ))}
           </div>
 
-          {/* Zonas de atención */}
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
               Zonas de atención
             </h2>
             <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
-              Toda la superficie del vaso debe lavarse bien por dentro y por fuera, pero hay zonas donde se acumulan residuos con más facilidad. Presta especial atención a las siguientes:
+              Toda la superficie del vaso y de la tapa debe lavarse bien por dentro y por fuera. Hay zonas donde se acumulan residuos con más facilidad. Presta especial atención a las siguientes:
             </p>
           </FadeIn>
 
-          <div className="space-y-6 md:space-y-8 mb-8 md:mb-10">
-            <FadeIn delay={250}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
-                <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Fondo del vaso
-                </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed">
-                  El fondo interior es donde más fácil se quedan manchas. Asegúrate de tallarlo bien con la esponja hasta que quede completamente limpio.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={300}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
-                <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Anillo superior del vaso
-                </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed">
-                  El borde donde se monta la tapa suele quedarse manchado. Ese anillo tiene que estar bien limpio para que la tapa selle correctamente y no queden residuos visibles.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={350}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
-                <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Borde interior de la tapa
-                </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed">
-                  La tapa tiene una hendidura interior en todo su diámetro donde se pueden quedar restos de bebida. Es importante buscar una herramienta (como un cepillo pequeño o un limpiador de popotes) que permita limpiar esa hendidura en todo el contorno de la tapa.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={400}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
-                <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Boquilla de la tapa
-                </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed">
-                  La boquilla tiene unos dobleces por dentro que son difíciles de limpiar. Hay que lavarla bien por dentro y por fuera. Si es posible, pasar un limpiador de popotes por la boquilla con cuidado de no rayar el material.
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={450}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
-                <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Orificio de ventilación
-                </h3>
-                <p className="text-muted text-sm md:text-base leading-relaxed">
-                  El orificio pequeño de ventilación también acumula residuos. Limpiar por dentro y por fuera, y si se puede, pasar un limpiador de popotes igual que con la boquilla.
-                </p>
-              </div>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={475}>
-            <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-6">
-              Referencia visual
-            </h3>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20">
+          <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             {attentionZones.map((zone, i) => (
-              <FadeIn key={zone.caption} delay={500 + i * 100}>
-                <div>
-                  <div className="aspect-video rounded-xl bg-wash overflow-hidden mb-3">
-                    <img
-                      src={zone.image}
-                      alt={zone.caption}
-                      className="w-full h-full object-cover hidden"
-                      onLoad={(e) => {
-                        (e.target as HTMLImageElement).classList.remove('hidden')
-                      }}
-                    />
-                  </div>
-                  <p className="text-muted text-xs md:text-sm">
-                    {zone.caption}
-                  </p>
-                </div>
+              <FadeIn key={zone.title} delay={250 + i * 80}>
+                <ZoneBlock {...zone} />
               </FadeIn>
             ))}
           </div>
 
-          {/* Cuidados generales */}
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-8 md:mb-10">
               Cuidados generales
@@ -203,7 +191,6 @@ export default function CareGuide() {
             </ul>
           </FadeIn>
 
-          {/* Lavavajillas */}
           <FadeIn delay={275}>
             <div className="rounded-2xl bg-wash p-8 md:p-10 mb-16 md:mb-20">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
@@ -215,7 +202,6 @@ export default function CareGuide() {
             </div>
           </FadeIn>
 
-          {/* Evitar */}
           <FadeIn delay={300}>
             <div className="rounded-2xl bg-wash p-8 md:p-10 mb-8 md:mb-10">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
@@ -231,7 +217,6 @@ export default function CareGuide() {
             </div>
           </FadeIn>
 
-          {/* Inspección */}
           <FadeIn delay={350}>
             <div className="rounded-2xl bg-wash p-8 md:p-10 mb-16 md:mb-20">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
