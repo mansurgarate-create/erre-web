@@ -204,7 +204,7 @@ export default function CafeOpsGuide() {
             </p>
           </FadeIn>
 
-          <div className="space-y-6 md:space-y-8 mb-6">
+          <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             <FadeIn delay={240}>
               <div className="rounded-2xl bg-wash p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
@@ -225,6 +225,19 @@ export default function CafeOpsGuide() {
                 </p>
               </div>
             </FadeIn>
+            <FadeIn delay={300}>
+              <Link
+                to="/cuidado"
+                className="block rounded-2xl bg-impact-wash p-8 md:p-10 no-underline hover:opacity-90 transition-opacity duration-300"
+              >
+                <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
+                  Guía de cuidado del vaso
+                </h3>
+                <p className="text-muted text-sm md:text-base leading-relaxed">
+                  Paso a paso de lavado, zonas de atención y qué evitar.
+                </p>
+              </Link>
+            </FadeIn>
             <FadeIn delay={320}>
               <div className="rounded-2xl bg-wash p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
@@ -236,16 +249,6 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
           </div>
-
-          <FadeIn delay={340}>
-            <Link
-              to="/cuidado"
-              className="flex justify-between items-center py-4 mb-16 md:mb-20 border-y border-border text-sm md:text-base font-medium text-black no-underline hover:text-muted transition-colors duration-300"
-            >
-              Guía de cuidado del vaso
-              <span className="text-muted text-sm">&rarr;</span>
-            </Link>
-          </FadeIn>
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
