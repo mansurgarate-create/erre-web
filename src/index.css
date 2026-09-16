@@ -223,6 +223,48 @@ body {
     border: 1px solid #e5e5e5;
     border-radius: 16px;
   }
+
+  body:has(.staff-sheet) {
+    background: #fff;
+  }
+
+  .staff-sheet-page main {
+    padding: 0 !important;
+  }
+
+  .staff-sheet-page .max-w-3xl {
+    max-width: none;
+  }
+
+  .staff-sheet h1 {
+    font-size: 22pt;
+    margin-bottom: 14pt;
+  }
+
+  .staff-sheet h2 {
+    font-size: 11pt;
+    margin-bottom: 6pt;
+  }
+
+  .staff-sheet li {
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  .staff-sheet-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12pt 20pt;
+  }
+
+  .staff-sheet-grid > * {
+    margin: 0;
+  }
+
+  .staff-sheet-foot {
+    margin-top: 14pt;
+    font-size: 8.5pt;
+  }
 }
 
 html[data-theme='dark'] {

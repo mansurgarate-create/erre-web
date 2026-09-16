@@ -95,6 +95,7 @@ const benefits = [
 const usefulLinks: { label: string; hint?: string; to?: string; href?: string }[] = [
   { label: 'Guía de cuidado del vaso', to: '/cuidado' },
   { label: 'Mapa de la red erre', to: '/#cafeterias' },
+  { label: 'Hoja para el staff', hint: 'para imprimir y dejar en caja', to: '/info/hoja' },
   { label: '@erreparallevar', hint: 'instagram', href: 'https://instagram.com/erreparallevar' },
   { label: 'App para iOS', href: APP_STORE_URL },
   { label: EMAIL, hint: 'contacto', href: `mailto:${EMAIL}` },

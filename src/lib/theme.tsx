@@ -46,7 +46,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const { pathname } = useLocation()
   const [pref, setPrefState] = useState<ThemePref>(readPref)
   const [systemIsDark, setSystemIsDark] = useState(systemDark)
-  const printLight = pathname === '/qr'
+  const printLight = pathname === '/qr' || pathname === '/info/hoja'
   const resolved: ResolvedTheme = printLight
     ? 'light'
     : pref === 'light'

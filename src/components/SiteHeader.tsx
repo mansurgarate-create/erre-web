@@ -10,7 +10,8 @@ export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: stri
     pathname === '/cuenta' ||
     pathname === '/privacidad' ||
     pathname === '/cuidado' ||
-    pathname === '/info'
+    pathname === '/info' ||
+    pathname === '/info/hoja'
   const label = !session ? 'Iniciar sesión' : firstName(profile?.name, profile?.email)
 
   return (
