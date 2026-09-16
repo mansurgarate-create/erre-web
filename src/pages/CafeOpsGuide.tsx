@@ -19,7 +19,12 @@ function MailLink() {
   )
 }
 
-const flowSteps = [
+const flowSteps: {
+  number: string
+  title: string
+  description: string
+  cta?: { label: string; to: string }
+}[] = [
   {
     number: '01',
     title: 'El cliente pide su bebida en vaso erre',
@@ -29,6 +34,7 @@ const flowSteps = [
     number: '02',
     title: 'Devuelve el vaso en cualquier cafetería de la red',
     description: 'No tiene que ser la misma cafetería donde lo pidió. Puede ser cualquier punto erre.',
+    cta: { label: 'Mapa de la red', to: '/#cafeterias' },
   },
   {
     number: '03',
@@ -86,13 +92,13 @@ const benefits = [
   'Compromiso ambiental real que tus clientes ven y valoran.',
 ]
 
-const usefulLinks: { label: string; to?: string; href?: string }[] = [
+const usefulLinks: { label: string; hint?: string; to?: string; href?: string }[] = [
   { label: 'Guía de cuidado del vaso', to: '/cuidado' },
   { label: 'Mapa de la red erre', to: '/#cafeterias' },
-  { label: 'holaerre.com', to: '/' },
-  { label: '@erreparallevar', href: 'https://instagram.com/erreparallevar' },
+  { label: '@erreparallevar', hint: 'instagram', href: 'https://instagram.com/erreparallevar' },
   { label: 'App para iOS', href: APP_STORE_URL },
-  { label: EMAIL, href: `mailto:${EMAIL}` },
+  { label: EMAIL, hint: 'contacto', href: `mailto:${EMAIL}` },
+  { label: 'holaerre.com', hint: 'página de inicio', to: '/' },
 ]
 
 export default function CafeOpsGuide() {
@@ -143,6 +149,22 @@ export default function CafeOpsGuide() {
                   <p className="text-muted text-sm md:text-base leading-relaxed">
                     {step.description}
                   </p>
+                  {step.cta ? (
+                    <Link
+                      to={step.cta.to}
+                      className="mt-6 flex items-center justify-between gap-4 rounded-2xl bg-white border border-black px-5 py-4 md:px-6 md:py-5 no-underline group hover:bg-wash transition-colors duration-300"
+                    >
+                      <span className="font-sans text-sm md:text-base font-medium text-black leading-snug">
+                        {step.cta.label}
+                      </span>
+                      <span
+                        className="text-black text-lg md:text-xl shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                        aria-hidden
+                      >
+                        &rarr;
+                      </span>
+                    </Link>
+                  ) : null}
                 </div>
               </FadeIn>
             ))}
@@ -313,13 +335,24 @@ export default function CafeOpsGuide() {
             <div className="mb-16 md:mb-20">
               {usefulLinks.map((item) => {
                 const className =
-                  'flex justify-between items-center py-4 border-b border-border text-sm md:text-base font-medium text-black no-underline hover:text-muted transition-colors duration-300 first:border-t'
-                const arrow = <span className="text-muted text-sm">&rarr;</span>
+                  'group flex justify-between items-center gap-4 py-4 border-b border-border no-underline first:border-t'
+                const content = (
+                  <>
+                    <span className="flex flex-col gap-0.5 min-w-0">
+                      <span className="text-sm md:text-base font-medium text-black group-hover:text-muted transition-colors duration-300">
+                        {item.label}
+                      </span>
+                      {item.hint ? (
+                        <span className="text-muted text-xs md:text-sm font-normal">{item.hint}</span>
+                      ) : null}
+                    </span>
+                    <span className="text-muted text-sm shrink-0">&rarr;</span>
+                  </>
+                )
                 if (item.to) {
                   return (
                     <Link key={item.label} to={item.to} className={className}>
-                      {item.label}
-                      {arrow}
+                      {content}
                     </Link>
                   )
                 }
@@ -332,8 +365,7 @@ export default function CafeOpsGuide() {
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : {})}
                   >
-                    {item.label}
-                    {arrow}
+                    {content}
                   </a>
                 )
               })}
