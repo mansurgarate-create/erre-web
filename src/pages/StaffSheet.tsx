@@ -35,6 +35,24 @@ const sections: { title: string; items: string[] }[] = [
   },
 ]
 
+const washZones: { src: string; alt: string; caption: string }[] = [
+  {
+    src: '/images/care/orilla-vaso.jpg',
+    alt: 'Orilla del vaso, donde se ensambla la tapa',
+    caption: 'Anillo del vaso',
+  },
+  {
+    src: '/images/care/orilla-tapa.jpg',
+    alt: 'Orilla de la tapa, donde se ensambla en el vaso',
+    caption: 'Hendidura de la tapa',
+  },
+  {
+    src: '/images/care/boquilla-orificio.jpg',
+    alt: 'Boquilla y orificio de venteo de la tapa',
+    caption: 'Boquilla y orificio',
+  },
+]
+
 export default function StaffSheet() {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -87,7 +105,21 @@ export default function StaffSheet() {
                 </section>
               ))}
             </div>
-            <p className="staff-sheet-foot text-muted text-xs md:text-sm mt-10 md:mt-12">
+            <div className="staff-sheet-zones grid grid-cols-3 gap-3 md:gap-4 mt-8 md:mt-10">
+              {washZones.map((zone) => (
+                <figure key={zone.src} className="m-0">
+                  <img
+                    src={zone.src}
+                    alt={zone.alt}
+                    className="w-full h-44 md:h-56 object-contain rounded-xl bg-wash"
+                  />
+                  <figcaption className="text-muted text-xs md:text-sm mt-2 text-center leading-snug">
+                    {zone.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="staff-sheet-foot text-muted text-xs md:text-sm mt-8 md:mt-10">
               hola@holaerre.com · holaerre.com/cuidado · holaerre.com/info
             </p>
           </article>
