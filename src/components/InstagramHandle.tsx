@@ -9,19 +9,9 @@ export function InstagramGlyph({ className = 'w-3.5 h-3.5 shrink-0' }: { classNa
   )
 }
 
-export function HoursPill({ hours, className = 'border border-border' }: { hours: string; className?: string }) {
-  const text = hours.trim()
-  if (!text) return null
-  return (
-    <span className={`inline-block text-sm text-muted px-3 py-2 ${className}`}>
-      {text}
-    </span>
-  )
-}
-
 export default function InstagramHandle({
   handle,
-  className = 'border border-border',
+  className = '',
 }: {
   handle: string
   className?: string
@@ -33,7 +23,7 @@ export default function InstagramHandle({
       href={`https://instagram.com/${user}`}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-1.5 text-sm text-muted no-underline px-3 py-2 hover:text-black transition-colors duration-300 ${className}`}
+      className={`inline-flex items-center gap-1.5 py-1 text-[15px] text-black no-underline underline-offset-4 hover:underline ${className}`}
     >
       <InstagramGlyph />
       @{user}

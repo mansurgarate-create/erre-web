@@ -87,7 +87,7 @@ function ZoneBlock({
 }) {
   return (
     <div
-      className={`border border-border p-8 md:p-10 ${
+      className={`border-t border-black pt-6 md:pt-8 ${
         image ? 'md:grid md:grid-cols-2 md:gap-8 md:items-center' : ''
       }`}
     >
@@ -142,8 +142,8 @@ export default function CareGuide() {
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             {washSteps.map((step, i) => (
               <FadeIn key={step.number} delay={150 + i * 100}>
-                <div className="border border-border p-8 md:p-10">
-                  <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-4">
+                <div className="border-t border-black pt-6 md:pt-8">
+                  <span className="font-heading text-3xl md:text-4xl text-muted block mb-4">
                     {step.number}
                   </span>
                   <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
@@ -191,7 +191,7 @@ export default function CareGuide() {
           </FadeIn>
 
           <FadeIn delay={275}>
-            <div className="border border-border p-8 md:p-10 mb-16 md:mb-20">
+            <div className="border-t border-black pt-6 md:pt-8 mb-16 md:mb-20">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
                 ¿se puede meter al lavavajillas?
               </h2>
@@ -202,7 +202,7 @@ export default function CareGuide() {
           </FadeIn>
 
           <FadeIn delay={300}>
-            <div className="border border-border p-8 md:p-10 mb-8 md:mb-10">
+            <div className="border-t border-black pt-6 md:pt-8 mb-8 md:mb-10">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
                 evitar
               </h2>
@@ -217,7 +217,7 @@ export default function CareGuide() {
           </FadeIn>
 
           <FadeIn delay={350}>
-            <div className="border border-border p-8 md:p-10 mb-16 md:mb-20">
+            <div className="border-t border-black pt-6 md:pt-8 mb-16 md:mb-20">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
                 inspección antes de reusar
               </h2>

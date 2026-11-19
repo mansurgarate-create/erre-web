@@ -6,7 +6,7 @@ import SiteHeader from '../components/SiteHeader'
 import PageLoading from '../components/ui/PageLoading'
 import { supabase } from '../lib/supabase'
 import { slugFromNfcTag } from '../lib/puntoSlug'
-import InstagramHandle, { HoursPill } from '../components/InstagramHandle'
+import InstagramHandle from '../components/InstagramHandle'
 
 interface RecommendedItem {
   nombre: string
@@ -149,17 +149,21 @@ function CafeBanner({ cafe }: { cafe: CafeInfo }) {
 
 function RecCard({ item }: { item: RecommendedItem }) {
   return (
-    <div className="shrink-0 w-[72%] sm:w-[46%] snap-start flex flex-col gap-3">
-      <div className="aspect-[4/5] overflow-hidden border border-border bg-border">
-        {item.imagen_url ? (
+    <div
+      className={`shrink-0 w-[72%] sm:w-[46%] snap-start flex flex-col gap-3 ${
+        item.imagen_url ? '' : 'border-t border-black pt-4'
+      }`}
+    >
+      {item.imagen_url ? (
+        <div className="aspect-[4/5] overflow-hidden bg-border">
           <img
             src={item.imagen_url}
             alt={item.nombre}
             loading="lazy"
             className="w-full h-full max-w-none object-cover object-center"
           />
-        ) : null}
-      </div>
+        </div>
+      ) : null}
       <div>
         <p className="font-heading text-base font-medium text-black m-0">{item.nombre}</p>
         {item.descripcion ? (
@@ -273,7 +277,7 @@ export default function CafeNFCLanding() {
     <div className="min-h-screen bg-white">
       <SiteHeader />
 
-      <main className="pb-8 md:pb-12">
+      <main className="pb-16 md:pb-24">
         <div className="max-w-3xl mx-auto">
           {loading ? (
             <div className="px-4 sm:px-6">
@@ -282,7 +286,7 @@ export default function CafeNFCLanding() {
           ) : (
             <FadeIn appear>
               {inactive ? (
-                <div className="px-4 sm:px-6">
+                <div className="px-4 sm:px-6 pt-10 md:pt-16">
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
                     punto erre
                   </h1>
@@ -294,7 +298,7 @@ export default function CafeNFCLanding() {
                   </Link>
                 </div>
               ) : notFound || !cafe ? (
-                <div className="px-4 sm:px-6">
+                <div className="px-4 sm:px-6 pt-10 md:pt-16">
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
                     punto erre
                   </h1>
@@ -317,22 +321,22 @@ export default function CafeNFCLanding() {
                       {cafe.name}
                     </h1>
                     {(cafe.hours.trim() || cafe.instagram || impactCount > 0) && (
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {cafe.hours.trim() ? <HoursPill hours={cafe.hours} /> : null}
-                        {cafe.instagram ? <InstagramHandle handle={cafe.instagram} /> : null}
-                        {impactCount > 0 ? (
-                          <span className="inline-flex items-baseline gap-1 text-sm border border-border px-3 py-2">
-                            <span className="font-heading font-medium text-black leading-none">
-                              {impactCount}
-                            </span>
-                            <span className="text-muted">
-                              {impactCount === 1
-                                ? 'vaso desechable evitado'
-                                : 'vasos desechables evitados'}
-                            </span>
-                          </span>
+                      <ul className="list-none m-0 p-0 flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-2 text-[15px] mb-6">
+                        {cafe.hours.trim() ? <li className="text-muted">{cafe.hours}</li> : null}
+                        {cafe.instagram ? (
+                          <li>
+                            <InstagramHandle handle={cafe.instagram} />
+                          </li>
                         ) : null}
-                      </div>
+                        {impactCount > 0 ? (
+                          <li>
+                            <span className="font-medium text-black">{impactCount}</span>{' '}
+                            <span className="text-muted">
+                              {impactCount === 1 ? 'vaso desechable evitado' : 'vasos desechables evitados'}
+                            </span>
+                          </li>
+                        ) : null}
+                      </ul>
                     )}
                   </div>
 

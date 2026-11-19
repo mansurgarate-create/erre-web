@@ -140,8 +140,8 @@ export default function CafeOpsGuide() {
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             {flowSteps.map((step, i) => (
               <FadeIn key={step.number} delay={150 + i * 100}>
-                <div className="border border-border p-8 md:p-10">
-                  <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-4">
+                <div className="border-t border-black pt-6 md:pt-8">
+                  <span className="font-heading text-3xl md:text-4xl text-muted block mb-4">
                     {step.number}
                   </span>
                   <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
@@ -179,7 +179,7 @@ export default function CafeOpsGuide() {
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             <FadeIn delay={220}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   si el cliente paga con tarjeta
                 </h3>
@@ -189,7 +189,7 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={260}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   si el cliente paga en efectivo
                 </h3>
@@ -199,7 +199,7 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={300}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   devoluciones
                 </h3>
@@ -229,7 +229,7 @@ export default function CafeOpsGuide() {
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             <FadeIn delay={240}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   bebidas calientes y frías
                 </h3>
@@ -239,7 +239,7 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={280}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   lavado
                 </h3>
@@ -263,7 +263,7 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={320}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   vasos dañados
                 </h3>
@@ -290,7 +290,7 @@ export default function CafeOpsGuide() {
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             <FadeIn delay={240}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   ¿qué encuentran ahí?
                 </h3>
@@ -303,7 +303,7 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={280}>
-              <div className="border border-border p-8 md:p-10">
+              <div className="border-t border-black pt-6 md:pt-8">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
                   registro de rentas con la app
                 </h3>
