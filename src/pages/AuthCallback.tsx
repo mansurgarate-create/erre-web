@@ -52,7 +52,7 @@ export default function AuthCallback() {
                 onClick={() => navigate('/', { replace: true })}
                 className="erre-btn"
               >
-                Volver
+                volver
               </button>
             </>
           ) : (

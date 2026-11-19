@@ -4,7 +4,7 @@ import SiteHeader from '../components/SiteHeader'
 
 const sections: { title: string; items: string[] }[] = [
   {
-    title: 'Depósito',
+    title: 'depósito',
     items: [
       'Al pedir en vaso erre: cobra $30 extra. Sin fecha límite para devolver.',
       'Al devolver: siempre regresas los $30. Da igual de qué cafetería salió, si compran o no, o si llega rayado / sin tapa.',
@@ -13,14 +13,14 @@ const sections: { title: string; items: string[] }[] = [
     ],
   },
   {
-    title: 'Antes de servir',
+    title: 'antes de servir',
     items: [
       'Revisar vaso y tapa: limpios, sin olor, sin grietas ni decoloración.',
       'Si no pasa: no lo llenes. Apártalo y escribe a hola@holaerre.com.',
     ],
   },
   {
-    title: 'Lavado',
+    title: 'lavado',
     items: [
       'Agua tibia, jabón de trastes, esponja suave. Interior, exterior y tapa.',
       'Zonas que se olvidan: fondo del vaso, anillo donde sella la tapa, hendidura interior de la tapa, boquilla y orificio.',
@@ -30,7 +30,7 @@ const sections: { title: string; items: string[] }[] = [
     ],
   },
   {
-    title: 'Stand',
+    title: 'stand',
     items: ['El QR y el NFC son de este stand: no los muevas.'],
   },
 ]
@@ -72,7 +72,7 @@ export default function StaffSheet() {
       <div className="print-hide">
         <SiteHeader />
       </div>
-      <main className="px-6 pb-24 md:pb-32 flex-1">
+      <main className="px-4 sm:px-6 pt-10 md:pt-16 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           <div className="print-hide">
             <FadeIn>
@@ -111,7 +111,7 @@ export default function StaffSheet() {
                   <img
                     src={zone.src}
                     alt={zone.alt}
-                    className="w-full h-44 md:h-56 object-contain rounded-xl bg-wash"
+                    className="w-full h-44 md:h-56 object-contain border border-border bg-white"
                   />
                   <figcaption className="text-muted text-xs md:text-sm mt-2 text-center leading-snug">
                     {zone.caption}

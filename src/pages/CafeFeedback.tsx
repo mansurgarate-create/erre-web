@@ -138,7 +138,7 @@ export default function CafeFeedback() {
     <div className="min-h-screen bg-white flex flex-col">
       <SiteHeader />
 
-      <main className="px-6 pb-24 md:pb-32 flex-1">
+      <main className="px-4 sm:px-6 pt-10 md:pt-16 pb-24 md:pb-32 flex-1">
         <div className="max-w-xl mx-auto">
           {loading ? (
             <PageLoading />
@@ -150,10 +150,10 @@ export default function CafeFeedback() {
                     punto erre
                   </h1>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-                    Este punto erre aún no está activo.
+                    este punto erre aún no está activo.
                   </p>
                   <Link to="/#cafeterias" className="erre-btn">
-                    Ver la red erre
+                    ver la red erre
                   </Link>
                 </>
               ) : missing || !cafe ? (
@@ -162,67 +162,67 @@ export default function CafeFeedback() {
                     punto erre
                   </h1>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-                    No encontramos esta cafetería. Revisa el mapa de la red erre.
+                    no encontramos este café. búscalo en el mapa de la red erre.
                   </p>
                   <Link to="/#cafeterias" className="erre-btn">
-                    Ver la red erre
+                    ver la red erre
                   </Link>
                 </>
               ) : (
                 <>
-                  <p className="text-muted text-xs md:text-sm mb-4">punto erre</p>
+                  <p className="erre-eyebrow mb-4">punto erre</p>
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-3">
-                    Hola. ¿Qué nos quieres contar de este punto erre?
+                    hola. ¿qué nos quieres contar de este punto erre?
                   </h1>
                   <p className="text-muted text-base md:text-lg mb-10">{cafe.name}</p>
 
                   {sent ? (
                     <p className="text-black text-base md:text-lg leading-relaxed mb-10">
-                      Gracias por tu comentario.
+                      gracias por tu comentario. lo leemos todo.
                     </p>
                   ) : (
                     <form onSubmit={onSubmit} className="flex flex-col gap-8">
                     <label className="flex flex-col gap-2">
                       <span className="text-sm font-medium text-black">
-                        ¿De qué se trata? <span className="text-muted">*</span>
+                        ¿de qué se trata? <span className="text-muted">*</span>
                       </span>
                       <select
                         required
                         value={topic}
                         onChange={(e) => setTopic(e.target.value)}
-                        className="w-full px-5 py-3 rounded-2xl bg-wash border-none text-base font-sans text-black focus:outline-none"
+                        className="w-full px-5 py-3 border border-black bg-white text-base font-sans font-light text-black focus-visible:ring-2 focus-visible:ring-black/30 focus:outline-none"
                       >
-                        <option value="">Elige una opción</option>
+                        <option value="">elige una opción</option>
                         {TOPICS.map((item) => (
                           <option key={item} value={item}>
-                            {item}
+                            {item.charAt(0).toLowerCase() + item.slice(1)}
                           </option>
                         ))}
                       </select>
                     </label>
 
                     <label className="flex flex-col gap-2">
-                      <span className="text-sm font-medium text-black">Cuéntanos qué pasó</span>
+                      <span className="text-sm font-medium text-black">cuéntanos qué pasó</span>
                       <textarea
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         rows={5}
-                        className="w-full px-5 py-3 rounded-2xl bg-wash border-none text-base font-sans text-black placeholder:text-muted focus:outline-none resize-y min-h-32"
+                        className="w-full px-5 py-3 border border-black bg-white text-base font-sans font-light text-black focus-visible:ring-2 focus-visible:ring-black/30 placeholder:text-muted focus:outline-none resize-y min-h-32"
                       />
                     </label>
 
                     {error ? (
                       <p className="text-muted text-sm">
-                        No se pudo enviar. Inténtalo de nuevo.
+                        no se pudo enviar. inténtalo de nuevo.
                       </p>
                     ) : null}
 
                     <button
                       type="submit"
                       disabled={!topic || sending}
-                      className="erre-btn self-start disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="erre-cta self-start disabled:opacity-40 disabled:cursor-not-allowed"
                     >
-                      {sending ? 'Enviando…' : 'Enviar'}
+                      {sending ? 'enviando…' : 'enviar'}
                     </button>
                     </form>
                   )}
@@ -231,7 +231,7 @@ export default function CafeFeedback() {
                     to={`/r/${slug}`}
                     className="inline-block mt-10 text-muted text-sm no-underline hover:text-black transition-colors duration-300"
                   >
-                    Volver al punto erre
+                    volver al punto erre
                   </Link>
                 </>
               )}

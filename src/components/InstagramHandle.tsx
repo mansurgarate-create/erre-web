@@ -9,11 +9,11 @@ export function InstagramGlyph({ className = 'w-3.5 h-3.5 shrink-0' }: { classNa
   )
 }
 
-export function HoursPill({ hours, className = 'bg-wash' }: { hours: string; className?: string }) {
+export function HoursPill({ hours, className = 'border border-border' }: { hours: string; className?: string }) {
   const text = hours.trim()
   if (!text) return null
   return (
-    <span className={`inline-block text-sm text-muted rounded-full px-3 py-2 ${className}`}>
+    <span className={`inline-block text-sm text-muted px-3 py-2 ${className}`}>
       {text}
     </span>
   )
@@ -21,7 +21,7 @@ export function HoursPill({ hours, className = 'bg-wash' }: { hours: string; cla
 
 export default function InstagramHandle({
   handle,
-  className = 'bg-wash',
+  className = 'border border-border',
 }: {
   handle: string
   className?: string
@@ -33,7 +33,7 @@ export default function InstagramHandle({
       href={`https://instagram.com/${user}`}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-1.5 text-sm text-muted no-underline rounded-full px-3 py-2 hover:text-black transition-colors duration-300 ${className}`}
+      className={`inline-flex items-center gap-1.5 text-sm text-muted no-underline px-3 py-2 hover:text-black transition-colors duration-300 ${className}`}
     >
       <InstagramGlyph />
       @{user}

@@ -138,18 +138,18 @@ export default function Account() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <SiteHeader />
-      <main className="px-6 pb-24 md:pb-32 flex-1">
+      <main className="px-4 sm:px-6 pt-10 md:pt-16 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           {ready ? (
             <FadeIn appear>
               <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
-                Cuenta
+                cuenta
               </h1>
 
               {!session ? (
                 <>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-8">
-                    Entra con Google o Apple para ver tu historial de vasos erre.
+                    entra con Google o Apple para ver tus vasos erre y tu historial.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <button
@@ -163,7 +163,7 @@ export default function Account() {
                         <path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 0 1 0-9.18l-7.98-6.19a24.08 24.08 0 0 0 0 21.56l7.98-6.19z"/>
                         <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
                       </svg>
-                      Continuar con Google
+                      continuar con Google
                     </button>
                     <button
                       type="button"
@@ -173,7 +173,7 @@ export default function Account() {
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                         <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
                       </svg>
-                      Continuar con Apple
+                      continuar con Apple
                     </button>
                   </div>
                 </>
@@ -187,42 +187,39 @@ export default function Account() {
                     ) : null}
                     {profile?.email || !profile?.name ? (
                       <p className="text-muted text-sm md:text-base">
-                        {profile?.email || 'Sesión iniciada'}
+                        {profile?.email || 'sesión iniciada'}
                       </p>
                     ) : null}
                   </div>
 
-                  <div className="flex flex-col gap-4 mb-10">
-                    <p className="inline-flex items-baseline gap-1.5 w-full rounded-full bg-impact-wash px-4 py-3">
-                      <span className="font-heading text-[22px] font-medium text-impact leading-none">
-                        {avoidedCount}
-                      </span>
-                      <span className="text-muted text-[13px]">
-                        {avoidedCount === 1
-                          ? 'vaso desechable evitado'
-                          : 'vasos desechables evitados'}
-                      </span>
-                    </p>
-                    <div className="rounded-2xl border border-border p-6">
-                      <p className="text-muted text-[13px] mb-2">Vasos en mano</p>
-                      <p className="font-heading text-[44px] font-medium text-black leading-none mb-2">
+                  <div className="grid grid-cols-2 border-t border-black mb-12">
+                    <div className="py-6 pr-4 border-b border-border">
+                      <p className="font-heading text-[44px] font-medium text-black leading-none tracking-[-0.02em]">
                         {profile?.cups_in_hand ?? 0}
                       </p>
-                      <p className="text-muted text-[13px]">vasos rentados actualmente</p>
+                      <p className="mt-2 text-sm">vasos en mano</p>
+                    </div>
+                    <div className="py-6 pl-4 border-b border-l border-border">
+                      <p className="font-heading text-[44px] font-medium text-black leading-none tracking-[-0.02em]">
+                        {avoidedCount}
+                      </p>
+                      <p className="mt-2 text-sm">
+                        {avoidedCount === 1 ? 'vaso desechable evitado' : 'vasos desechables evitados'}
+                      </p>
                     </div>
                   </div>
 
-                  <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
-                    Historial
+                  <h2 className="font-heading text-2xl md:text-3xl font-medium text-black tracking-[-0.02em] mb-6">
+                    historial
                   </h2>
                   {historyError && <p className="text-muted text-sm mb-4">{historyError}</p>}
                   {transactions.length === 0 && !historyError ? (
-                    <p className="text-muted text-sm md:text-base">Aún no hay rentas registradas.</p>
+                    <p className="text-muted text-sm md:text-base">aún no hay vasos registrados. pide tu próxima bebida en vaso erre.</p>
                   ) : (
                     <>
                       <FadeIn appear key={currentPage}>
                         <ul
-                          className="divide-y divide-border border-t border-border"
+                          className="divide-y divide-border border-t border-black"
                           style={{ minHeight: `calc(${PAGE_SIZE} * 4.75rem)` }}
                         >
                           {visibleTx.map((tx) => (
@@ -230,7 +227,7 @@ export default function Account() {
                               <TxArrow type={tx.type} />
                               <div className="min-w-0 flex-1">
                                 <p className="text-black text-sm md:text-base font-medium">
-                                  {tx.type === 'rent' ? 'Rentado' : 'Devuelto'}
+                                  {tx.type === 'rent' ? 'rentado' : 'devuelto'}
                                 </p>
                                 <p className="text-muted text-xs md:text-sm truncate">{tx.cafe_name}</p>
                               </div>
@@ -250,7 +247,7 @@ export default function Account() {
                             onClick={() => setPage((p) => Math.max(0, p - 1))}
                             className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
                           >
-                            Anterior
+                            anterior
                           </button>
                           <p className="text-muted text-xs">
                             {currentPage + 1} / {pageCount}
@@ -261,7 +258,7 @@ export default function Account() {
                             onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
                             className="text-sm text-black bg-transparent border-none cursor-pointer disabled:text-muted disabled:cursor-default p-0"
                           >
-                            Siguiente
+                            siguiente
                           </button>
                         </div>
                       )}
@@ -274,7 +271,7 @@ export default function Account() {
                       onClick={() => void signOut()}
                       className="text-sm text-muted bg-transparent border-none cursor-pointer hover:text-black transition-colors duration-300 p-0"
                     >
-                      Cerrar sesión
+                      cerrar sesión
                     </button>
                   </div>
                 </>

@@ -4,8 +4,8 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import CafeMap from './components/CafeMap'
-import CommunityImpact from './components/CommunityImpact'
-import About from './components/About'
+import TheCup from './components/TheCup'
+import ForCafes from './components/ForCafes'
 import FAQ from './components/FAQ'
 import Closing from './components/Closing'
 import Footer from './components/Footer'
@@ -36,10 +36,10 @@ function Landing() {
       <Navbar />
       <main>
         <Hero />
-        <HowItWorks />
         <CafeMap />
-        <CommunityImpact />
-        <About />
+        <HowItWorks />
+        <TheCup />
+        <ForCafes />
         <FAQ />
         <Closing />
       </main>

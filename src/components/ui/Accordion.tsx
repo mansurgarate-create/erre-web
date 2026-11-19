@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useId, useState, type ReactNode } from 'react'
 
 interface AccordionItemProps {
   question: string
@@ -7,12 +7,15 @@ interface AccordionItemProps {
 
 function AccordionItem({ question, answer }: AccordionItemProps) {
   const [open, setOpen] = useState(false)
+  const panelId = useId()
 
   return (
     <div className="border-b border-border">
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={panelId}
         className="w-full flex justify-between items-center py-6 text-left cursor-pointer bg-transparent border-none"
       >
         <span className="font-sans text-base md:text-lg font-medium text-black pr-4">
@@ -20,12 +23,15 @@ function AccordionItem({ question, answer }: AccordionItemProps) {
         </span>
         <span
           className="text-2xl text-muted transition-transform duration-300 shrink-0"
+          aria-hidden="true"
           style={{ transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}
         >
           +
         </span>
       </button>
       <div
+        id={panelId}
+        aria-hidden={!open}
         className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out print:grid-rows-[1fr] print:opacity-100 ${
           open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}

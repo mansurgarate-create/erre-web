@@ -27,18 +27,18 @@ const flowSteps: {
 }[] = [
   {
     number: '01',
-    title: 'El cliente pide su bebida en vaso erre',
+    title: 'el cliente pide su bebida en vaso erre',
     description: 'Deja un depósito de $30. Se lo puede llevar sin prisa y sin fecha límite.',
   },
   {
     number: '02',
-    title: 'Devuelve el vaso en cualquier cafetería de la red',
+    title: 'devuelve el vaso en cualquier cafetería de la red',
     description: 'No tiene que ser la misma cafetería donde lo pidió. Puede ser cualquier punto erre.',
-    cta: { label: 'Mapa de la red', to: '/#cafeterias' },
+    cta: { label: 'mapa de la red', to: '/#cafeterias' },
   },
   {
     number: '03',
-    title: 'La cafetería le regresa los $30',
+    title: 'la cafetería le regresa los $30',
     description: 'Siempre. No importa quién lo trajo, ni de qué cafetería salió. Los $30 se regresan completos.',
   },
 ]
@@ -93,11 +93,11 @@ const benefits = [
 ]
 
 const usefulLinks: { label: string; hint?: string; to?: string; href?: string }[] = [
-  { label: 'Guía de cuidado del vaso', to: '/cuidado' },
-  { label: 'Mapa de la red erre', to: '/#cafeterias' },
-  { label: 'Hoja para el staff', hint: 'para imprimir y dejar en caja', to: '/info/hoja' },
+  { label: 'guía de cuidado del vaso', to: '/cuidado' },
+  { label: 'mapa de la red erre', to: '/#cafeterias' },
+  { label: 'hoja para el staff', hint: 'para imprimir y dejar en caja', to: '/info/hoja' },
   { label: '@erreparallevar', hint: 'instagram', href: 'https://instagram.com/erreparallevar' },
-  { label: 'App para iOS', href: APP_STORE_URL },
+  { label: 'app para iOS', href: APP_STORE_URL },
   { label: EMAIL, hint: 'contacto', href: `mailto:${EMAIL}` },
   { label: 'holaerre.com', hint: 'página de inicio', to: '/' },
 ]
@@ -117,14 +117,14 @@ export default function CafeOpsGuide() {
         <SiteHeader />
       </div>
 
-      <main className="px-6 pb-24 md:pb-32 flex-1">
+      <main className="px-4 sm:px-6 pt-10 md:pt-16 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             <p className="text-muted text-xs md:text-sm mb-4">
               guía para cafeterías
             </p>
             <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6 md:mb-8">
-              Todo lo que necesitas saber para operar con vasos erre.
+              todo lo que necesitas saber para operar con vasos erre.
             </h1>
             <p className="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-16 md:mb-20">
               erre es una red de vasos reutilizables que conecta cafeterías en Monterrey. Tus clientes piden su bebida en vaso erre, lo llevan, y lo devuelven en cualquier cafetería de la red. Todos los vasos son iguales para toda la red.
@@ -133,14 +133,14 @@ export default function CafeOpsGuide() {
 
           <FadeIn delay={100}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-12 md:mb-16">
-              Cómo funciona
+              cómo funciona
             </h2>
           </FadeIn>
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             {flowSteps.map((step, i) => (
               <FadeIn key={step.number} delay={150 + i * 100}>
-                <div className="rounded-2xl bg-wash p-8 md:p-10">
+                <div className="border border-border p-8 md:p-10">
                   <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-4">
                     {step.number}
                   </span>
@@ -153,7 +153,7 @@ export default function CafeOpsGuide() {
                   {step.cta ? (
                     <Link
                       to={step.cta.to}
-                      className="mt-6 flex items-center justify-between gap-4 rounded-2xl bg-white border border-black px-5 py-4 md:px-6 md:py-5 no-underline group hover:bg-wash transition-colors duration-300"
+                      className="mt-6 flex items-center justify-between gap-4 bg-white border border-black px-5 py-4 md:px-6 md:py-5 no-underline group hover:bg-black/[0.03] transition-colors duration-300"
                     >
                       <span className="font-sans text-sm md:text-base font-medium text-black leading-snug">
                         {step.cta.label}
@@ -173,15 +173,15 @@ export default function CafeOpsGuide() {
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-8 md:mb-10">
-              Operación del depósito
+              operación del depósito
             </h2>
           </FadeIn>
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             <FadeIn delay={220}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Si el cliente paga con tarjeta
+                  si el cliente paga con tarjeta
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed">
                   Suma los $30 del depósito al total de la cuenta. Cuando alguien devuelva un vaso, regrésale los $30 en efectivo.
@@ -189,9 +189,9 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={260}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Si el cliente paga en efectivo
+                  si el cliente paga en efectivo
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed">
                   Cobra los $30 junto con la bebida. Ese dinero queda como caja chica para devolver depósitos cuando otros clientes regresen vasos.
@@ -199,9 +199,9 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={300}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Devoluciones
+                  devoluciones
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed mb-4">
                   Es posible que lleguen personas solo a devolver un vaso y recibir sus $30. No necesitan comprar nada. Hay que darles su depósito.
@@ -215,12 +215,12 @@ export default function CafeOpsGuide() {
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
-              El vaso
+              el vaso
             </h2>
             <img
               src="/images/info/vaso-erre.jpg"
               alt="Vaso erre reutilizable"
-              className="max-w-[220px] max-h-[180px] rounded-2xl object-cover mx-auto block mb-8 md:mb-10"
+              className="max-w-[220px] max-h-[180px] object-cover mx-auto block mb-8 md:mb-10"
             />
             <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
               Material: polipropileno (PP), impresión por serigrafía UV. Todos los vasos de la red son iguales. Si se cuida bien, cada vaso puede usarse más de 1,000 veces.
@@ -229,9 +229,9 @@ export default function CafeOpsGuide() {
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             <FadeIn delay={240}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Bebidas calientes y frías
+                  bebidas calientes y frías
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed">
                   El vaso funciona para ambas. Con bebidas calientes, el material traspasa algo de calor. Se recomienda agarrar de la parte de arriba o con una manga reusable si se necesita.
@@ -239,16 +239,16 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={280}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Lavado
+                  lavado
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed mb-6">
                   Lavar bien cada vaso antes de volver a usarlo. Agua tibia con jabón de trastes, esponja suave, enjuagar y secar al aire. También es apto para lavavajillas: charola superior, ciclo estándar — no el de sanitizado.
                 </p>
                 <Link
                   to="/cuidado"
-                  className="flex items-center justify-between gap-4 rounded-2xl bg-white border border-black px-5 py-4 md:px-6 md:py-5 no-underline group hover:bg-wash transition-colors duration-300"
+                  className="flex items-center justify-between gap-4 bg-white border border-black px-5 py-4 md:px-6 md:py-5 no-underline group hover:bg-black/[0.03] transition-colors duration-300"
                 >
                   <span className="font-sans text-sm md:text-base font-medium text-black leading-snug">
                     Guía de cuidado del vaso
@@ -263,9 +263,9 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={320}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Vasos dañados
+                  vasos dañados
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed">
                   Si llega un vaso o tapa con grietas, decoloración u olor residual: da los $30 y apártalo. No lo vuelvas a llenar. Escríbenos a <MailLink /> para reponerlo.
@@ -276,12 +276,12 @@ export default function CafeOpsGuide() {
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
-              El stand erre
+              el stand erre
             </h2>
             <img
               src="/images/info/stand-qr.jpg"
               alt="Stand erre con código QR y NFC"
-              className="max-w-[220px] max-h-[180px] rounded-2xl object-cover mx-auto block mb-8 md:mb-10"
+              className="max-w-[220px] max-h-[180px] object-cover mx-auto block mb-8 md:mb-10"
             />
             <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
               Cada cafetería de la red tiene un stand con un código QR y un chip NFC. Los clientes pueden escanear el QR o acercar su celular al NFC para llegar a la página de punto erre de tu cafetería. El chip y el QR son de ese stand: no los muevas ni los reemplaces.
@@ -290,9 +290,9 @@ export default function CafeOpsGuide() {
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             <FadeIn delay={240}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  ¿Qué encuentran ahí?
+                  ¿qué encuentran ahí?
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed mb-4">
                   La página de punto erre de tu cafetería muestra tu Instagram, horarios, dirección, fotos, un link a tu menú y recomendaciones de bebidas que tú eliges.
@@ -303,9 +303,9 @@ export default function CafeOpsGuide() {
               </div>
             </FadeIn>
             <FadeIn delay={280}>
-              <div className="rounded-2xl bg-wash p-8 md:p-10">
+              <div className="border border-border p-8 md:p-10">
                 <h3 className="font-sans text-lg md:text-xl font-medium text-black mb-2">
-                  Registro de rentas con la app
+                  registro de rentas con la app
                 </h3>
                 <p className="text-muted text-sm md:text-base leading-relaxed mb-4">
                   El NFC del stand también sirve para registrar rentas y devoluciones desde la app de erre. Si el cliente acerca su celular al stand desde la sección de escanear, puede registrar que rentó o devolvió un vaso.
@@ -319,7 +319,7 @@ export default function CafeOpsGuide() {
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-8 md:mb-10">
-              Preguntas frecuentes
+              preguntas frecuentes
             </h2>
           </FadeIn>
 
@@ -331,7 +331,7 @@ export default function CafeOpsGuide() {
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-8 md:mb-10">
-              Links útiles
+              links útiles
             </h2>
             <div className="mb-16 md:mb-20">
               {usefulLinks.map((item) => {
@@ -375,7 +375,7 @@ export default function CafeOpsGuide() {
 
           <FadeIn delay={220}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-8 md:mb-10">
-              Beneficios para tu cafetería
+              beneficios para tu cafetería
             </h2>
             <ul className="space-y-4">
               {benefits.map((item) => (

@@ -12,21 +12,21 @@ export default function SiteHeader({ maxWidth = 'max-w-3xl' }: { maxWidth?: stri
     pathname === '/cuidado' ||
     pathname === '/info' ||
     pathname === '/info/hoja'
-  const label = !session ? 'Iniciar sesión' : firstName(profile?.name, profile?.email)
+  const label = !session ? 'entrar' : firstName(profile?.name, profile?.email)
 
   return (
-    <header className="px-6 pt-10 pb-6 md:pt-14 md:pb-8">
-      <div className={`${maxWidth} mx-auto flex items-center justify-between gap-4`}>
+    <header className="px-4 sm:px-6 border-b border-border">
+      <div className={`${maxWidth} mx-auto flex items-center justify-between gap-4 h-16 md:h-20`}>
         <Link
           to="/"
-          className="font-heading text-xl md:text-2xl font-medium text-black no-underline hover:text-muted transition-colors duration-300"
+          className="font-heading text-2xl md:text-3xl font-medium tracking-tight text-black no-underline hover:text-muted transition-colors duration-300"
         >
           erre
         </Link>
         {hideAccountLink ? null : (
           <Link
             to="/cuenta"
-            className="text-sm text-muted hover:text-black transition-colors duration-300 no-underline truncate max-w-[40vw]"
+            className="text-[15px] text-muted hover:text-black transition-colors duration-300 no-underline truncate max-w-[40vw]"
           >
             {label}
           </Link>

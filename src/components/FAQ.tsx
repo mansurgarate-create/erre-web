@@ -3,44 +3,45 @@ import Accordion from './ui/Accordion'
 
 const faqItems = [
   {
-    question: '¿Cómo funciona erre?',
+    question: '¿necesito una app?',
     answer:
-      'Pides tu bebida en un vaso erre en cualquier cafetería participante. Cuando termines, lo devuelves en cualquier punto de la red. La cafetería lo lava y vuelve a circulación.',
+      'no. pides en caja, dejas tus $30 y listo. si quieres llevar registro de tus vasos, puedes entrar desde esta página con Google o acercar tu teléfono al punto erre del café.',
   },
   {
-    question: '¿Qué pasa si pierdo un vaso?',
-    answer:
-      'Sabemos que puede pasar. Por ahora, solo te pedimos que hagas tu mejor esfuerzo por devolverlo. Estamos construyendo una comunidad basada en la confianza.',
+    question: '¿lo tengo que devolver en el mismo café?',
+    answer: 'no. cualquier café erre lo recibe y te regresa tus $30. en el mapa de arriba ves cuál te queda cerca.',
   },
   {
-    question: '¿Dónde puedo devolver un vaso?',
+    question: '¿y si no lo devuelvo?',
     answer:
-      'En cualquier cafetería participante de la red erre. Consulta el mapa en esta página para encontrar la más cercana.',
+      'es tuyo, sigue reutilizándolo.',
   },
   {
-    question: '¿Necesito descargar una app?',
+    question: '¿cuesta más el café?',
     answer:
-      'No. Puedes acercar el teléfono al punto erre o elegir la cafetería en esta página, entrar con Google y registrar la renta o la devolución. El depósito se queda en caja. La app es opcional.',
+      'no. el café cuesta lo mismo. el depósito no es un cobro, es lo que mantiene al vaso circulando.',
   },
   {
-    question: '¿Tiene algún costo extra?',
-    answer:
-      'El café cuesta lo mismo. Al pedir tu bebida en un vaso erre, dejas un pequeño depósito que se te regresa completo cuando devuelves el vaso en cualquier cafetería de la red. No es un cobro, es una garantía de que el vaso sigue circulando.',
+    question: '¿cómo se lava el vaso?',
+    answer: 'cada café lo lava antes de volver a servir en él, a mano o en lavavajillas, como cualquier taza.',
   },
 ]
 
 export default function FAQ() {
   return (
-    <section id="faq" className="px-6 py-24 md:py-32">
-      <div className="max-w-2xl mx-auto">
-        <FadeIn>
-          <h2 className="font-heading text-3xl md:text-5xl font-medium text-black text-center mb-12 md:mb-16">
-            Preguntas frecuentes
+    <section id="faq" className="px-4 sm:px-6 pb-20 md:pb-32 scroll-mt-16">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16">
+        <FadeIn className="md:w-1/3 shrink-0">
+          <p className="erre-eyebrow mb-4">preguntas</p>
+          <h2 className="font-heading text-[32px] md:text-[44px] font-medium text-black leading-[1.1] tracking-[-0.02em]">
+            lo que más nos preguntan
           </h2>
         </FadeIn>
 
-        <FadeIn delay={150}>
-          <Accordion items={faqItems} />
+        <FadeIn delay={150} className="flex-1 min-w-0">
+          <div className="border-t border-black">
+            <Accordion items={faqItems} />
+          </div>
         </FadeIn>
       </div>
     </section>

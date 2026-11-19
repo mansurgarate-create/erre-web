@@ -11,10 +11,10 @@ export default function PrivacyPolicy() {
     <div className="min-h-screen bg-white flex flex-col">
       <SiteHeader />
 
-      <main className="px-6 pb-24 md:pb-32 flex-1">
+      <main className="px-4 sm:px-6 pt-10 md:pt-16 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6 md:mb-8">
-            Aviso de privacidad
+            aviso de privacidad
           </h1>
 
           <div className="space-y-8 text-muted text-sm md:text-base leading-relaxed">
@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                Datos personales que recabamos
+                datos personales que recabamos
               </h2>
               <p className="mb-4">
                 A través de nuestra página web y aplicaciones móviles, Erre recaba los siguientes datos personales:
@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
                 Adicionalmente, a través del formulario de contacto en la página web o por correo electrónico, podemos recabar nombre, teléfono y correo electrónico con la finalidad de atender sus consultas.
               </p>
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4 mt-8">
-                Uso de los datos personales
+                uso de los datos personales
               </h2>
               <p className="mb-4">
                 Los datos personales recabados serán utilizados para las siguientes finalidades primarias: (i) creación y administración de su cuenta de usuario; (ii) registro de transacciones de renta y devolución de vasos reutilizables; (iii) visualización de cafeterías cercanas y, en las aplicaciones móviles, verificación de que el usuario se encuentra en la cafetería al registrar una renta o una devolución; y (iv) contacto en caso de que así se hubiese solicitado.
@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                Transferencia de datos personales
+                transferencia de datos personales
               </h2>
               <p>
                 No se realizarán transferencias de datos personales, salvo aquellas que sean necesarias para atender requerimientos de información de una autoridad competente, que esté debidamente fundados y motivados. Para el inicio de sesión con Google o Apple en la página web y en las aplicaciones iOS y Android, así como para almacenar la cuenta y el historial, se utilizan los servicios de Google, Apple y de Supabase, quienes tratan dichos datos en su carácter de encargados o proveedores de autenticación e infraestructura, conforme a sus propias políticas.
@@ -71,7 +71,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                Uso de cookies y almacenamiento local
+                uso de cookies y almacenamiento local
               </h2>
               <p className="mb-4">
                 En la página web utilizamos almacenamiento local del navegador para mantener su sesión si inicia sesión con Google o Apple. Esa información es necesaria para que su cuenta y el historial de rentas funcionen; no se usa con fines publicitarios.
@@ -89,7 +89,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                Medios para limitar el uso y divulgación de los datos personales
+                medios para limitar el uso y divulgación de los datos personales
               </h2>
               <p className="mb-4">
                 En cualquier momento y a solicitud expresa de usted, eliminaremos o modificaremos la información personal que previamente nos haya proporcionado. Si usted desea revisar, actualizar o eliminar sus datos personales, favor de ingresar a la página para efectos de realizar los cambios deseados.
@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                Cambios al aviso de privacidad
+                cambios al aviso de privacidad
               </h2>
               <p>
                 Erre se reserva el derecho de modificar o actualizar el aviso de privacidad, en caso de que ello resulte necesario de conformidad con la normatividad vigente o como consecuencia de una mejora en nuestras políticas. Cualquier modificación o actualización, en su caso, será efectuada y hecha del conocimiento a través de este mismo medio.
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
 
             <div>
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                Procedimiento para ejercer sus derechos de acceso, modificación, cancelación u oposición
+                procedimiento para ejercer sus derechos de acceso, modificación, cancelación u oposición
               </h2>
               <p className="mb-4">
                 En caso de que requiera ejercer sus derechos de acceso, modificación, cancelación u oposición respecto de los datos proporcionados o recabados, Erre pone a disposición la siguiente cuenta de correo electrónico: <a href="mailto:hola@holaerre.com" className="text-black underline hover:text-muted transition-colors duration-300">hola@holaerre.com</a> en donde será atendido y recibirá la respuesta por parte del encargado del tratamiento y protección de los datos personales. También podrá en cualquier momento revocar su consentimiento de manera gratuita.

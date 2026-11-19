@@ -6,17 +6,17 @@ import Footer from '../components/Footer'
 const washSteps = [
   {
     number: '01',
-    title: 'Lava',
+    title: 'lava',
     description: 'Agua tibia con jabón líquido suave — el jabón de trastes de uso diario está perfecto. Usar esponja suave o fibra no abrasiva. Lavar interior, exterior y tapa.',
   },
   {
     number: '02',
-    title: 'Enjuaga',
+    title: 'enjuaga',
     description: 'Enjuagar bien para retirar cualquier residuo de jabón.',
   },
   {
     number: '03',
-    title: 'Seca',
+    title: 'seca',
     description: 'Dejar secar al aire. No apilar húmedos.',
   },
 ]
@@ -47,26 +47,26 @@ const attentionZones: {
   imageAlt?: string
 }[] = [
   {
-    title: 'Fondo del vaso',
+    title: 'fondo del vaso',
     description:
       'El fondo interior es donde más fácil se quedan manchas. Asegúrate de tallarlo bien con la esponja hasta que quede completamente limpio.',
   },
   {
-    title: 'Anillo superior del vaso',
+    title: 'anillo superior del vaso',
     description:
       'El borde donde se monta la tapa suele quedarse manchado. Ese anillo tiene que estar bien limpio para que la tapa selle correctamente y no queden residuos visibles.',
     image: '/images/care/orilla-vaso.jpg',
     imageAlt: 'Orilla del vaso, donde se ensambla la tapa',
   },
   {
-    title: 'Borde interior de la tapa',
+    title: 'borde interior de la tapa',
     description:
       'La tapa tiene una hendidura interior en todo su diámetro donde se pueden quedar restos de bebida. Es importante buscar una herramienta (como un cepillo pequeño o un limpiador de popotes) que permita limpiar esa hendidura en todo el contorno de la tapa.',
     image: '/images/care/orilla-tapa.jpg',
     imageAlt: 'Orilla de la tapa, donde se ensambla en el vaso',
   },
   {
-    title: 'Boquilla y orificio de ventilación',
+    title: 'boquilla y orificio de ventilación',
     description:
       'La boquilla hay que lavarla por dentro y por fuera; por dentro tiene unos dobleces difíciles de limpiar. El orificio de ventilación también acumula residuos, por dentro y por fuera. Si se puede, pasar un limpiador de popotes por ambos, con cuidado de no rayar el material.',
     image: '/images/care/boquilla-orificio.jpg',
@@ -87,7 +87,7 @@ function ZoneBlock({
 }) {
   return (
     <div
-      className={`rounded-2xl bg-wash p-8 md:p-10 ${
+      className={`border border-border p-8 md:p-10 ${
         image ? 'md:grid md:grid-cols-2 md:gap-8 md:items-center' : ''
       }`}
     >
@@ -95,7 +95,7 @@ function ZoneBlock({
         <img
           src={image}
           alt={imageAlt ?? title}
-          className="w-full max-h-[28rem] object-contain rounded-xl mb-6 md:mb-0"
+          className="w-full max-h-[28rem] object-contain mb-6 md:mb-0"
         />
       ) : null}
       <div>
@@ -119,14 +119,14 @@ export default function CareGuide() {
     <div className="min-h-screen bg-white flex flex-col">
       <SiteHeader />
 
-      <main className="px-6 pb-24 md:pb-32 flex-1">
+      <main className="px-4 sm:px-6 pt-10 md:pt-16 pb-24 md:pb-32 flex-1">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             <p className="text-muted text-xs md:text-sm mb-4">
               guía para cafeterías
             </p>
             <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6 md:mb-8">
-              Cuidado del vaso
+              cuidado del vaso
             </h1>
             <p className="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-16 md:mb-20">
               Instrucciones para mantener los vasos erre en las mejores condiciones. Material: polipropileno (PP). Impresión por serigrafía UV — resistente al uso y lavado normal.
@@ -135,14 +135,14 @@ export default function CareGuide() {
 
           <FadeIn delay={100}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-12 md:mb-16">
-              Lavado
+              lavado
             </h2>
           </FadeIn>
 
           <div className="space-y-6 md:space-y-8 mb-16 md:mb-20">
             {washSteps.map((step, i) => (
               <FadeIn key={step.number} delay={150 + i * 100}>
-                <div className="rounded-2xl bg-wash p-8 md:p-10">
+                <div className="border border-border p-8 md:p-10">
                   <span className="font-heading text-3xl md:text-4xl text-muted/40 block mb-4">
                     {step.number}
                   </span>
@@ -159,7 +159,7 @@ export default function CareGuide() {
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-4 md:mb-6">
-              Zonas de atención
+              zonas de atención
             </h2>
             <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
               Toda la superficie del vaso y de la tapa debe lavarse bien por dentro y por fuera. Hay zonas donde se acumulan residuos con más facilidad. Presta especial atención a las siguientes:
@@ -176,7 +176,7 @@ export default function CareGuide() {
 
           <FadeIn delay={200}>
             <h2 className="font-heading text-2xl md:text-3xl font-medium text-black mb-8 md:mb-10">
-              Cuidados generales
+              cuidados generales
             </h2>
           </FadeIn>
 
@@ -191,9 +191,9 @@ export default function CareGuide() {
           </FadeIn>
 
           <FadeIn delay={275}>
-            <div className="rounded-2xl bg-wash p-8 md:p-10 mb-16 md:mb-20">
+            <div className="border border-border p-8 md:p-10 mb-16 md:mb-20">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-4">
-                ¿Se puede meter al lavavajillas?
+                ¿se puede meter al lavavajillas?
               </h2>
               <p className="text-muted text-sm md:text-base leading-relaxed">
                 Sí, es apto para lavavajillas. De preferencia en la charola superior con ciclo estándar — no el de sanitizado con temperaturas muy altas. El lavado a mano conserva mejor los colores a largo plazo; el uso intensivo con temperaturas altas de forma repetida puede ir opacando los tonos con el tiempo.
@@ -202,9 +202,9 @@ export default function CareGuide() {
           </FadeIn>
 
           <FadeIn delay={300}>
-            <div className="rounded-2xl bg-wash p-8 md:p-10 mb-8 md:mb-10">
+            <div className="border border-border p-8 md:p-10 mb-8 md:mb-10">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
-                Evitar
+                evitar
               </h2>
               <ul className="space-y-3">
                 {avoidItems.map((item, i) => (
@@ -217,9 +217,9 @@ export default function CareGuide() {
           </FadeIn>
 
           <FadeIn delay={350}>
-            <div className="rounded-2xl bg-wash p-8 md:p-10 mb-16 md:mb-20">
+            <div className="border border-border p-8 md:p-10 mb-16 md:mb-20">
               <h2 className="font-heading text-xl md:text-2xl font-medium text-black mb-6">
-                Inspección antes de reusar
+                inspección antes de reusar
               </h2>
               <ul className="space-y-3">
                 {inspectItems.map((item, i) => (

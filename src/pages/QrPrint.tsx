@@ -40,7 +40,7 @@ function QrCard({ name, slug }: { name: string; slug: string }) {
   const url = `${QR_ORIGIN}/r/${slug}`
 
   return (
-    <li className="qr-print-card relative rounded-2xl bg-wash p-8 flex flex-col items-center text-center">
+    <li className="qr-print-card relative border border-border p-8 flex flex-col items-center text-center">
       <div className="qr-print-code p-3" style={{ background: '#FFFFFF' }}>
         <QRCodeSVG
           value={url}
@@ -112,7 +112,7 @@ export default function QrPrint() {
       <div className="print-hide">
         <SiteHeader />
       </div>
-      <main className="px-6 pb-24 md:pb-32 flex-1">
+      <main className="px-4 sm:px-6 pt-10 md:pt-16 pb-24 md:pb-32 flex-1">
         <div className="max-w-5xl mx-auto">
           <div className="print-hide">
             <FadeIn>

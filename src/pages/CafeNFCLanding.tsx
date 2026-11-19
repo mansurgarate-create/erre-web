@@ -112,61 +112,58 @@ async function loadImpactCount(cafeId: string): Promise<number> {
   return count
 }
 
+function CafeLogo({ cafe }: { cafe: CafeInfo }) {
+  return cafe.logoUrl ? (
+    <img
+      src={cafe.logoUrl}
+      alt={`${cafe.name} logo`}
+      className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-white bg-white"
+    />
+  ) : (
+    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border border-border bg-white flex items-center justify-center">
+      <span className="font-heading text-2xl md:text-3xl font-medium text-black">
+        {cafe.name.charAt(0).toUpperCase()}
+      </span>
+    </div>
+  )
+}
+
 function CafeBanner({ cafe }: { cafe: CafeInfo }) {
+  // Sin banner no dibujamos un bloque gris vacío: solo el logo.
+  if (!cafe.bannerUrl) {
+    return (
+      <div className="px-4 sm:px-6 md:px-10 pt-10 md:pt-14 -mb-6">
+        <CafeLogo cafe={cafe} />
+      </div>
+    )
+  }
   return (
     <div className="relative w-full" style={{ aspectRatio: '16/7' }}>
-      {cafe.bannerUrl ? (
-        <img
-          src={cafe.bannerUrl}
-          alt={`${cafe.name} banner`}
-          className="w-full h-full object-cover"
-        />
-      ) : (
-        <div className="w-full h-full bg-wash" />
-      )}
+      <img src={cafe.bannerUrl} alt={`${cafe.name} banner`} className="w-full h-full object-cover" />
       <div className="absolute -bottom-10 left-6 md:left-10">
-        {cafe.logoUrl ? (
-          <img
-            src={cafe.logoUrl}
-            alt={`${cafe.name} logo`}
-            className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-white bg-white"
-          />
-        ) : (
-          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-white bg-wash flex items-center justify-center">
-            <span className="font-heading text-2xl md:text-3xl font-medium text-muted">
-              {cafe.name.charAt(0).toUpperCase()}
-            </span>
-          </div>
-        )}
+        <CafeLogo cafe={cafe} />
       </div>
     </div>
   )
 }
 
 function RecCard({ item }: { item: RecommendedItem }) {
-  const hasPhoto = Boolean(item.imagen_url)
   return (
-    <div className="relative shrink-0 w-[78%] aspect-[4/5] rounded-2xl overflow-hidden bg-wash snap-start">
-      {hasPhoto ? (
-        <>
+    <div className="shrink-0 w-[72%] sm:w-[46%] snap-start flex flex-col gap-3">
+      <div className="aspect-[4/5] overflow-hidden border border-border bg-border">
+        {item.imagen_url ? (
           <img
-            src={item.imagen_url!}
+            src={item.imagen_url}
             alt={item.nombre}
-            className="absolute inset-0 w-full h-full max-w-none object-cover object-center"
+            loading="lazy"
+            className="w-full h-full max-w-none object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        </>
-      ) : null}
-      <div className="absolute left-0 bottom-0 p-4">
-        <p className={`font-heading text-base font-medium m-0 ${hasPhoto ? 'text-white' : 'text-black'}`}>
-          {item.nombre}
-        </p>
+        ) : null}
+      </div>
+      <div>
+        <p className="font-heading text-base font-medium text-black m-0">{item.nombre}</p>
         {item.descripcion ? (
-          <p
-            className={`text-sm m-0 mt-1 line-clamp-2 ${hasPhoto ? 'text-white/85' : 'text-muted'}`}
-          >
-            {item.descripcion}
-          </p>
+          <p className="text-sm text-muted m-0 mt-1 line-clamp-2">{item.descripcion}</p>
         ) : null}
       </div>
     </div>
@@ -176,10 +173,10 @@ function RecCard({ item }: { item: RecommendedItem }) {
 function RecsCarousel({ title, items }: { title: string; items: RecommendedItem[] }) {
   return (
     <div>
-      <h3 className="font-heading text-base font-medium text-black px-6 md:px-10 mb-3 mt-5">
+      <h3 className="font-heading text-base font-medium text-black px-4 sm:px-6 md:px-10 mb-3 mt-5">
         {title}
       </h3>
-      <div className="flex gap-3 overflow-x-auto px-6 md:px-10 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex gap-3 overflow-x-auto px-4 sm:px-6 md:px-10 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item) => (
           <RecCard key={item.nombre} item={item} />
         ))}
@@ -195,11 +192,11 @@ function RecommendedSection({ items }: { items: RecommendedItems }) {
 
   return (
     <div>
-      <h2 className="font-heading text-lg font-medium text-black px-6 md:px-10">
-        Recomendaciones erre
+      <h2 className="font-heading text-lg font-medium text-black px-4 sm:px-6 md:px-10">
+        recomendaciones erre
       </h2>
-      {drinks.length > 0 ? <RecsCarousel title="Bebidas" items={drinks} /> : null}
-      {food.length > 0 ? <RecsCarousel title="Comida" items={food} /> : null}
+      {drinks.length > 0 ? <RecsCarousel title="bebidas" items={drinks} /> : null}
+      {food.length > 0 ? <RecsCarousel title="comida" items={food} /> : null}
     </div>
   )
 }
@@ -279,33 +276,33 @@ export default function CafeNFCLanding() {
       <main className="pb-8 md:pb-12">
         <div className="max-w-3xl mx-auto">
           {loading ? (
-            <div className="px-6">
+            <div className="px-4 sm:px-6">
               <PageLoading />
             </div>
           ) : (
             <FadeIn appear>
               {inactive ? (
-                <div className="px-6">
+                <div className="px-4 sm:px-6">
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
                     punto erre
                   </h1>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-                    Este punto erre aún no está activo.
+                    este punto erre aún no está activo.
                   </p>
                   <Link to="/#cafeterias" className="erre-btn">
-                    Ver la red erre
+                    ver la red erre
                   </Link>
                 </div>
               ) : notFound || !cafe ? (
-                <div className="px-6">
+                <div className="px-4 sm:px-6">
                   <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-6">
                     punto erre
                   </h1>
                   <p className="text-muted text-base md:text-lg leading-relaxed mb-10">
-                    No encontramos esta cafetería. Revisa el mapa de la red erre.
+                    no encontramos este café. búscalo en el mapa de la red erre.
                   </p>
                   <Link to="/#cafeterias" className="erre-btn">
-                    Ver la red erre
+                    ver la red erre
                   </Link>
                 </div>
               ) : (
@@ -314,10 +311,8 @@ export default function CafeNFCLanding() {
                   <CafeBanner cafe={cafe} />
 
                   {/* Info + Instagram + Impact */}
-                  <div className="px-6 md:px-10 pt-4">
-                    <p className="text-muted text-xs md:text-sm mb-3">
-                      punto erre
-                    </p>
+                  <div className="px-4 sm:px-6 md:px-10 pt-4">
+                    <p className="erre-eyebrow mb-3">punto erre</p>
                     <h1 className="font-heading text-3xl md:text-5xl font-medium text-black leading-tight tracking-tight mb-4">
                       {cafe.name}
                     </h1>
@@ -326,7 +321,7 @@ export default function CafeNFCLanding() {
                         {cafe.hours.trim() ? <HoursPill hours={cafe.hours} /> : null}
                         {cafe.instagram ? <InstagramHandle handle={cafe.instagram} /> : null}
                         {impactCount > 0 ? (
-                          <span className="inline-flex items-baseline gap-1 text-sm rounded-full bg-wash px-3 py-2">
+                          <span className="inline-flex items-baseline gap-1 text-sm border border-border px-3 py-2">
                             <span className="font-heading font-medium text-black leading-none">
                               {impactCount}
                             </span>
@@ -347,21 +342,21 @@ export default function CafeNFCLanding() {
                   )}
 
                   {cafe.menuUrl && (
-                    <div className="px-6 md:px-10">
+                    <div className="px-4 sm:px-6 md:px-10">
                       <a
                         href={cafe.menuUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="erre-btn"
+                        className="erre-cta"
                       >
-                        Ver menú completo
+                        ver menú completo
                       </a>
                     </div>
                   )}
 
-                  <div className="h-px bg-border mx-6 md:mx-10" />
+                  <div className="h-px bg-border mx-4 sm:mx-6 md:mx-10" />
 
-                  <div className="px-6 md:px-10 flex flex-wrap gap-3">
+                  <div className="px-4 sm:px-6 md:px-10 flex flex-wrap gap-3">
                     {cafe.mapsUrl && (
                       <a
                         href={cafe.mapsUrl}
@@ -369,25 +364,25 @@ export default function CafeNFCLanding() {
                         rel="noopener noreferrer"
                         className="erre-btn"
                       >
-                        Abrir en Maps
+                        abrir en Maps
                       </a>
                     )}
                     <Link
                       to="/#cafeterias"
                       className="erre-btn"
                     >
-                      Ver la red erre
+                      ver la red erre
                     </Link>
                   </div>
 
-                  <div className="h-px bg-border mx-6 md:mx-10" />
+                  <div className="h-px bg-border mx-4 sm:mx-6 md:mx-10" />
 
-                  <div className="px-6 md:px-10">
+                  <div className="px-4 sm:px-6 md:px-10">
                     <p className="text-muted text-sm md:text-base leading-relaxed mb-3">
-                      ¿Algo que contar de este punto erre? Escríbenos:
+                      ¿algo que contar de este punto erre? escríbenos.
                     </p>
                     <Link to={`/r/${slug}/feedback`} className="erre-btn">
-                      Enviar comentarios
+                      enviar comentarios
                     </Link>
                   </div>
                 </div>
