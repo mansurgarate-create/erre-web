@@ -16,20 +16,3 @@ export const rentSteps = [
   },
 ]
 
-export const cafeSteps = [
-  {
-    number: '01',
-    title: 'ofrécelo',
-    description: '“¿para llevar? te lo puedo dar en vaso erre.” cobras $30 de depósito.',
-  },
-  {
-    number: '02',
-    title: 'recíbelo',
-    description: 'aceptas vasos de cualquier café de la red y regresas los $30.',
-  },
-  {
-    number: '03',
-    title: 'lávalo',
-    description: 'como cualquier taza, a mano o en lavavajillas, y vuelve a circular.',
-  },
-]
