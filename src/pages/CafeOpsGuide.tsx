@@ -284,7 +284,7 @@ export default function CafeOpsGuide() {
               className="max-w-[220px] max-h-[180px] object-cover mx-auto block mb-8 md:mb-10"
             />
             <p className="text-muted text-sm md:text-base leading-relaxed mb-8 md:mb-10">
-              Cada cafetería de la red tiene un stand con un código QR y un chip NFC. Los clientes pueden escanear el QR o acercar su celular al NFC para llegar a la página de punto erre de tu cafetería. El chip y el QR son de ese stand: no los muevas ni los reemplaces.
+              Cada cafetería de la red tiene un stand con un código QR y un chip NFC. Los clientes escanean el QR para llegar a la página de punto erre de tu cafetería; quienes tienen la app de erre también pueden acercar su celular al NFC. El chip y el QR son de ese stand: no los muevas ni los reemplaces.
             </p>
           </FadeIn>
 

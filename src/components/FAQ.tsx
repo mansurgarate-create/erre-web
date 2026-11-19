@@ -1,11 +1,25 @@
 import FadeIn from './ui/FadeIn'
 import Accordion from './ui/Accordion'
 
+const APP_STORE_URL = 'https://apps.apple.com/mx/app/erre/id6800519444'
+
 const faqItems = [
   {
     question: '¿necesito una app?',
-    answer:
-      'no. pides en caja, dejas tus $30 y listo. si quieres llevar registro de tus vasos, puedes entrar desde esta página con Google o acercar tu teléfono al punto erre del café.',
+    answer: (
+      <>
+        no. pides en caja, dejas tus $30 y listo. si quieres llevar registro de tus vasos, descarga la{' '}
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-black underline underline-offset-4"
+        >
+          app de erre para iPhone
+        </a>{' '}
+        y acerca tu teléfono al punto erre del café, o entra desde esta página con Google.
+      </>
+    ),
   },
   {
     question: '¿lo tengo que devolver en el mismo café?',

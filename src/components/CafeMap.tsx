@@ -226,7 +226,7 @@ export default function CafeMap() {
               busca por café o colonia
               <input
                 type="search"
-                placeholder="ej. Roma, Tec, Mood"
+                placeholder="ej. Roma, Tec, Fiato"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="h-12 px-4 border border-black bg-white text-base font-sans font-light text-black placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
