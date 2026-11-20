@@ -9,7 +9,7 @@
 -- 2) Apple Developer → Identifiers → Services ID for Sign in with Apple (web + Android).
 -- 3) Google Cloud → OAuth client type iOS, bundle com.holaerre.erre → Info.plist GIDClientID.
 --
--- Revert: restore ensure_web_user from supabase-web-auth.sql and
+-- Revert: restore ensure_web_user from 2026-08-26_web-auth.sql and
 --         drop function public.link_or_create_user(text, text, text, text);
 
 create or replace function public.link_or_create_user(

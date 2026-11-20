@@ -1,6 +1,6 @@
 -- Printed NFC/QR codes → current cafe.
 -- Paste once in Supabase SQL Editor. Does not change nfc_tag_id on cafes (iOS / Android).
--- Revert: run supabase-entry-codes-revert.sql
+-- Revert: run 2026-08-27_entry-codes-revert.sql
 --
 -- Remap a sticker without reprinting:
 --   update public.entry_codes
@@ -8,7 +8,7 @@
 --   where code = 'fiato-cafeto';
 --
 -- New cafe: insert into cafes, then assign the next empty p01–p10 code.
--- Do not insert a new slug into entry_codes. See supabase-assign-entry-code.sql.
+-- Do not insert a new slug into entry_codes. See 2026-08-29_assign-entry-code.sql.
 
 create table if not exists public.entry_codes (
   code text primary key,

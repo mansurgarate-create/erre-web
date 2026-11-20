@@ -8,7 +8,7 @@
 2. En Authentication → URL Configuration, agrega:
    - `http://localhost:5173/auth/callback`
    - (cuando publiques, también `https://holaerre.com/auth/callback`)
-3. SQL Editor: pega **todo** [`supabase-web-auth.sql`](supabase-web-auth.sql) y corre.
+3. SQL Editor: pega **todo** [`supabase/2026-08-26_web-auth.sql`](supabase/2026-08-26_web-auth.sql) y corre.
 4. En esta carpeta: `npm run dev` → abre `http://localhost:5173`.
 
 Ramas:
@@ -40,4 +40,4 @@ git reset --hard backup/web-pre-rentals
 
 ## Si corriste el SQL y quieres revertirlo
 
-Pega [`supabase-web-auth-revert.sql`](supabase-web-auth-revert.sql) en el SQL Editor. iOS y Android siguen igual: no toca `rent_cup` / `return_cup`.
+Pega [`supabase/2026-08-26_web-auth-revert.sql`](supabase/2026-08-26_web-auth-revert.sql) en el SQL Editor. iOS y Android siguen igual: no toca `rent_cup` / `return_cup`.

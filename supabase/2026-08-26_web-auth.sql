@@ -1,6 +1,6 @@
 -- erre web login + rentals
 -- Paste once in Supabase SQL Editor. Does not change rent_cup / return_cup (iOS / Android).
--- Revert: run supabase-web-auth-revert.sql
+-- Revert: run 2026-08-26_web-auth-revert.sql
 
 create or replace function public.ensure_web_user()
 returns json

@@ -7,6 +7,6 @@ alwaysApply: true
 
 When adding a cafe, insert into `cafes` with `nfc_tag_id` (`erre:slug`). Do **not** insert a new `entry_codes` row with that slug.
 
-Assign the next empty spare code (`p01` → `p10`) with `erre-web/supabase-assign-entry-code.sql`. Check [holaerre.com/qr](https://holaerre.com/qr) or `cafe_id is null` first.
+Assign the next empty spare code (`p01` → `p10`) with `erre-web/supabase/2026-08-29_assign-entry-code.sql`. Check [holaerre.com/qr](https://holaerre.com/qr) or `cafe_id is null` first.
 
 Leave existing slug codes as they are (Fiato, Belum, Mala, Mood). When p01–p10 are full, stop and generate a new batch (`p11`…). Do not invent more codes unless asked.

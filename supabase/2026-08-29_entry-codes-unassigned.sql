@@ -1,8 +1,8 @@
 -- Allow printed codes without a cafe yet, and seed 10 spare stickers.
--- Run AFTER supabase-entry-codes.sql
--- Revert: supabase-entry-codes-unassigned-revert.sql
+-- Run AFTER 2026-08-29_entry-codes.sql
+-- Revert: 2026-08-27_entry-codes-unassigned-revert.sql
 --
--- Assign a sticker later: see supabase-assign-entry-code.sql (p01 → p10, no new slugs).
+-- Assign a sticker later: see 2026-08-29_assign-entry-code.sql (p01 → p10, no new slugs).
 
 alter table public.entry_codes
   alter column cafe_id drop not null;
